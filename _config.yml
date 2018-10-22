@@ -68,8 +68,8 @@ feed:
 # or "master" otherwise
 safe: False
 lsi: False
-username: jekyller
-repo: jasper2
+username: postero20
+repo: postero20.github.io
 branch: master
 relative_source: ../jasper2/
 destination: ../jasper2-pages/
