@@ -9,6 +9,8 @@ sidebar:
   - title: "Year : 2014"
   - title: "Citation : 2208 (2019.05.22)"
 use_math: true
+categories : 
+  - adversarial example
 tags: 
   - adversarial examples
   - ICLR
@@ -68,6 +70,7 @@ Adversarial example이 대략 이런거구나 라고 생각 하셨을테니, 이
 > FGSM:
 >
 > $$ \eta = \epsilon(\nabla_x J(\theta, x, y)) $$,
+>
 > where J는 target model의 목적식, $\theta$는 모델의 파라미터, x와 y는 각각 input과 output 이며 $\epsilon$은 노이즈의 크기를 결정하는 상수 
 
 위에서 구한 $\eta$를 원본 이미지에 더해주어 나온 이미지가 adversarial example이 되며 식은 아래와 같습니다:

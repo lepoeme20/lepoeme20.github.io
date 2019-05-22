@@ -2,8 +2,8 @@
 main:
   - title: "Posts"
     url: /year-archive/
-  - title: "Collections"
-    url: /collection-archive/
+  - title: "Category"
+    url: /categories-archive/
   - title: "Profile"
     url: /profile/
 

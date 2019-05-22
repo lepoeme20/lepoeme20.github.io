@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="lepoeme's Blog">
 <meta property="og:title" content="Explaining and Harnessing Adversarial Examples">
-<meta property="og:url" content="http://localhost:4000/test/">
+<meta property="og:url" content="http://localhost:4000/adversarial%20example/explaining&harnessing-adversarial-examples/">
 
 
   <meta property="og:description" content="AGENDA1. What are the adversarial examples2. Explaining and Harnessing Adversarial Examples 논문 설명">
@@ -40,7 +40,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/test/">
+<link rel="canonical" href="http://localhost:4000/adversarial%20example/explaining&harnessing-adversarial-examples/">
 
 
 
@@ -102,6 +102,32 @@
 
 <!-- end custom head snippets -->
 
+    
+      <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+    
   </head>
 
   <body class="layout--single wide">
@@ -118,7 +144,7 @@
         <ul class="visible-links"><li class="masthead__menu-item">
               <a href="/year-archive/" >Posts</a>
             </li><li class="masthead__menu-item">
-              <a href="/collection-archive/" >Collections</a>
+              <a href="/categories-archive/" >Collections</a>
             </li><li class="masthead__menu-item">
               <a href="/profile/" >Profile</a>
             </li></ul>
@@ -204,7 +230,7 @@
 
 <h2 id="adversarial-example이란-무엇인가">Adversarial example이란 무엇인가?</h2>
 
-<iframe width="640" height="360" src="https://www.youtube.com/watch?v=i1sp4X57TL4" frameborder="0" allowfullscreen=""></iframe>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/i1sp4X57TL4" frameborder="0" allowfullscreen=""></iframe>
 
 <p>위의 영상을 보시면 바나나가 있습니다. 바나나가 홀로 있을 때와, 영상 초반에 깨끗해 보이는 이미지 패치 (사람이 들고 있는 작은 이미지)를 바나나 옆에 두었을 때는 학습해둔 모델이 100%에 가까운 confidence로 바나나를 분류 하고 있습니다(초록색 그래프).
 하지만 영상 중반부에 나오는 이상하게 생긴 이미지 패치를 바나나 옆에 두게 되면 모델은 이전과 다르게 100%에 가까운 confidence로 바나나를 토스터기로 <strong>오분류</strong> 하고 있음을 볼 수 있죠.
@@ -221,9 +247,10 @@ Adversarial attack의 종류와 의미는 다음과 같습니다(여기서 말�
   <li>White-box attack - 공격자가 target model (e.g. classifier)의 parameters를 알고 있는 상황</li>
   <li>Black-box attack - 공격자가 target model (e.g. classifier)의 parameters를 모르는 상황</li>
   <li>Targeted attack - Adversarial example이 공격자가 원하는 class로 target classifier가 오분류 하도록 공격하는 방식</li>
-  <li>Untargeted attack - Adversarial example이 true class가 아닌 어떠한 class로 target classifier가 오분류 하도록 공격하는 방식
-한 가지 더 언급할 점은 black-box attack의 경우 공격자가 target model의 parameter를 모르기 때문에 공격이 불가능 합니다. 이에 공격자가 가지고 있는 데이터를 이용하여 target model의 분류 경계면을 근사하는 모델을 하나 만들어 낸 후 해당 모델의 parameter를 이용하여 adversarial example을 생성하는 flow를 가집니다. 이러한 특성상 black-box attack이 방어를 하는 입장에서는 white-box attack보다 쉬운 경향을 띄게 됩니다.</li>
+  <li>Untargeted attack - Adversarial example이 true class가 아닌 어떠한 class로 target classifier가 오분류 하도록 공격하는 방식</li>
 </ul>
+
+<p>한 가지 더 언급할 점은 black-box attack의 경우 공격자가 target model의 parameter를 모르기 때문에 공격이 불가능 합니다. 이에 공격자가 가지고 있는 데이터를 이용하여 target model의 분류 경계면을 근사하는 모델을 하나 만들어 낸 후 해당 모델의 parameter를 이용하여 adversarial example을 생성하는 flow를 가집니다. 이러한 특성상 black-box attack이 방어를 하는 입장에서는 white-box attack보다 쉬운 경향을 띄게 됩니다.</p>
 
 <figure class="align-center">
   <img src="http://localhost:4000//assets/images/adv_exm.jpg" alt="" />
@@ -240,16 +267,18 @@ Adversarial attack의 종류와 의미는 다음과 같습니다(여기서 말�
 
 <p>한 가지 재미 있는 사실은 본 논문에서 activation fuction으로 기존에 사용하던 sigmoid 혹은 ReLU를 사용하지 않고 RBF를 사용하면 adversarial noise에 보다 강건한 모델이 됨을 언급하고 있습니다.</p>
 <blockquote>
-  <p>다시 말해 DNN은 우리가 생각하는 것 만큼 non-linear 하지 않습니다.
-생각을 해본다면 ReLU의 경우 최적화를 위해 태생이 매우 linear한 구조를 띄고 있습니다. 또한 sigmoid의 경우에도 모델을 학습 하다 보면 선형성을 지닌 부분에 많은 activation이 된다는 언급도 본 논문의 저자들은 잊지 않고 있네요.</p>
+  <p>다시 말해 DNN은 우리가 생각하는 것 만큼 non-linear 하지 않습니다.</p>
 </blockquote>
+
+<p>생각을 해본다면 ReLU의 경우 최적화를 위해 태생이 매우 linear한 구조를 띄고 있습니다. 또한 sigmoid의 경우에도 모델을 학습 하다 보면 선형성을 지닌 부분에 많은 activation이 된다는 언급도 본 논문의 저자들은 잊지 않고 있네요.</p>
 
 <p>하지만 이렇게 말로써 우리가 비선형적이라고 생각했던 모델은 사실 선형적이었어! 라고 한다면 이렇게까지 주목받는 논문이 되지 못했겠죠. 저자들은 매우 선형적인 공격 방식으로 생성한 adversarial example이 ‘<strong>비선형적</strong>’ 이라고 알려진 DNN (maxout)을 얼마나 잘 속이는지 실험을 통해 보여줍니다. 본 논문에서 사용하는 공격 방식은 Fast Gradient Sign Method (FGSM)이라고 불리며 식은 아래와 같습니다:</p>
 <blockquote>
   <p>FGSM:</p>
 
-  <p><script type="math/tex">\eta = \epsilon(\nabla_x J(\theta, x, y))</script>,
-where J는 target model의 목적식, $\theta$는 모델의 파라미터, x와 y는 각각 input과 output 이며 $\epsilon$은 노이즈의 크기를 결정하는 상수</p>
+  <p><script type="math/tex">\eta = \epsilon(\nabla_x J(\theta, x, y))</script>,</p>
+
+  <p>where J는 target model의 목적식, $\theta$는 모델의 파라미터, x와 y는 각각 input과 output 이며 $\epsilon$은 노이즈의 크기를 결정하는 상수</p>
 </blockquote>
 
 <p>위에서 구한 $\eta$를 원본 이미지에 더해주어 나온 이미지가 adversarial example이 되며 식은 아래와 같습니다:</p>
@@ -294,6 +323,10 @@ where J는 target model의 목적식, $\theta$는 모델의 파라미터, x와 y
     
       
       
+      <a href="/tags/#explaining-and-harnessing-adversarial-examples" class="page__taxonomy-item" rel="tag">Explaining and Harnessing Adversarial Examples</a><span class="sep">, </span>
+    
+      
+      
       <a href="/tags/#fast-gradient-sign-method" class="page__taxonomy-item" rel="tag">fast gradient sign method</a><span class="sep">, </span>
     
       
@@ -302,16 +335,31 @@ where J는 target model의 목적식, $\theta$는 모델의 파라미터, x와 y
     
       
       
-      <a href="/tags/#ian-goodfellow" class="page__taxonomy-item" rel="tag">ian goodfellow</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#iclr" class="page__taxonomy-item" rel="tag">iclr</a>
+      <a href="/tags/#iclr" class="page__taxonomy-item" rel="tag">ICLR</a>
     
     </span>
   </p>
 
 
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#adversarial-example" class="page__taxonomy-item" rel="tag">adversarial example</a>
+    
+    </span>
+  </p>
 
 
         
@@ -324,13 +372,13 @@ where J는 target model의 목적식, $\theta$는 모델의 파라미터, x와 y
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Explaining+and+Harnessing+Adversarial+Examples%20http%3A%2F%2Flocalhost%3A4000%2Ftest%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Explaining+and+Harnessing+Adversarial+Examples%20http%3A%2F%2Flocalhost%3A4000%2Fadversarial%2520example%2Fexplaining%26harnessing-adversarial-examples%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Ftest%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fadversarial%2520example%2Fexplaining%26harnessing-adversarial-examples%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=http%3A%2F%2Flocalhost%3A4000%2Ftest%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=http%3A%2F%2Flocalhost%3A4000%2Fadversarial%2520example%2Fexplaining%26harnessing-adversarial-examples%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Ftest%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fadversarial%2520example%2Fexplaining%26harnessing-adversarial-examples%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -363,7 +411,7 @@ where J는 target model의 목적식, $\theta$는 모델의 파라미터, x와 y
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="/test/" rel="permalink">Explaining and Harnessing Adversarial Examples
+        <a href="/adversarial%20example/explaining&harnessing-adversarial-examples/" rel="permalink">Explaining and Harnessing Adversarial Examples
 </a>
       
     </h2>
@@ -451,8 +499,8 @@ where J는 target model의 목적식, $\theta$는 모델의 파라미터, x와 y
     
   <script>
     var disqus_config = function () {
-      this.page.url = "http://localhost:4000/test/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/test"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "http://localhost:4000/adversarial%20example/explaining&harnessing-adversarial-examples/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/adversarial%20example/explaining&harnessing adversarial examples"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function() { // DON'T EDIT BELOW THIS LINE
       var d = document, s = d.createElement('script');

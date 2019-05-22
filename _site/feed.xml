@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-05-22T17:30:17+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">lepoeme’s Blog</title><subtitle>고려대학교 DSBA Lab </subtitle><author><name>Seungwan Seo</name><email>zach0206@korea.ac.kr</email></author><entry><title type="html">Explaining and Harnessing Adversarial Examples</title><link href="http://localhost:4000/test/" rel="alternate" type="text/html" title="Explaining and Harnessing Adversarial Examples" /><published>2019-05-22T00:00:00+09:00</published><updated>2019-05-22T00:00:00+09:00</updated><id>http://localhost:4000/test</id><content type="html" xml:base="http://localhost:4000/test/">&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;AGENDA&lt;/span&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-05-22T21:27:38+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">lepoeme’s Blog</title><subtitle>고려대학교 DSBA Lab </subtitle><author><name>Seungwan Seo</name><email>zach0206@korea.ac.kr</email></author><entry><title type="html">Explaining and Harnessing Adversarial Examples</title><link href="http://localhost:4000/adversarial%20example/explaining&harnessing-adversarial-examples/" rel="alternate" type="text/html" title="Explaining and Harnessing Adversarial Examples" /><published>2019-05-22T00:00:00+09:00</published><updated>2019-05-22T00:00:00+09:00</updated><id>http://localhost:4000/adversarial%20example/explaining&amp;harnessing%20adversarial%20examples</id><content type="html" xml:base="http://localhost:4000/adversarial%20example/explaining&amp;harnessing-adversarial-examples/">&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;AGENDA&lt;/span&gt;
 &lt;span class=&quot;s&quot;&gt;1. What are the adversarial examples&lt;/span&gt;
 &lt;span class=&quot;s&quot;&gt;2. Explaining and Harnessing Adversarial Examples 논문 설명&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -8,7 +8,7 @@
 
 &lt;h2 id=&quot;adversarial-example이란-무엇인가&quot;&gt;Adversarial example이란 무엇인가?&lt;/h2&gt;
 
-&lt;iframe width=&quot;640&quot; height=&quot;360&quot; src=&quot;https://www.youtube.com/watch?v=i1sp4X57TL4&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;iframe width=&quot;640&quot; height=&quot;360&quot; src=&quot;https://www.youtube.com/embed/i1sp4X57TL4&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 
 &lt;p&gt;위의 영상을 보시면 바나나가 있습니다. 바나나가 홀로 있을 때와, 영상 초반에 깨끗해 보이는 이미지 패치 (사람이 들고 있는 작은 이미지)를 바나나 옆에 두었을 때는 학습해둔 모델이 100%에 가까운 confidence로 바나나를 분류 하고 있습니다(초록색 그래프).
 하지만 영상 중반부에 나오는 이상하게 생긴 이미지 패치를 바나나 옆에 두게 되면 모델은 이전과 다르게 100%에 가까운 confidence로 바나나를 토스터기로 &lt;strong&gt;오분류&lt;/strong&gt; 하고 있음을 볼 수 있죠.
@@ -25,9 +25,10 @@ Adversarial attack의 종류와 의미는 다음과 같습니다(여기서 말�
   &lt;li&gt;White-box attack - 공격자가 target model (e.g. classifier)의 parameters를 알고 있는 상황&lt;/li&gt;
   &lt;li&gt;Black-box attack - 공격자가 target model (e.g. classifier)의 parameters를 모르는 상황&lt;/li&gt;
   &lt;li&gt;Targeted attack - Adversarial example이 공격자가 원하는 class로 target classifier가 오분류 하도록 공격하는 방식&lt;/li&gt;
-  &lt;li&gt;Untargeted attack - Adversarial example이 true class가 아닌 어떠한 class로 target classifier가 오분류 하도록 공격하는 방식
-한 가지 더 언급할 점은 black-box attack의 경우 공격자가 target model의 parameter를 모르기 때문에 공격이 불가능 합니다. 이에 공격자가 가지고 있는 데이터를 이용하여 target model의 분류 경계면을 근사하는 모델을 하나 만들어 낸 후 해당 모델의 parameter를 이용하여 adversarial example을 생성하는 flow를 가집니다. 이러한 특성상 black-box attack이 방어를 하는 입장에서는 white-box attack보다 쉬운 경향을 띄게 됩니다.&lt;/li&gt;
+  &lt;li&gt;Untargeted attack - Adversarial example이 true class가 아닌 어떠한 class로 target classifier가 오분류 하도록 공격하는 방식&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;한 가지 더 언급할 점은 black-box attack의 경우 공격자가 target model의 parameter를 모르기 때문에 공격이 불가능 합니다. 이에 공격자가 가지고 있는 데이터를 이용하여 target model의 분류 경계면을 근사하는 모델을 하나 만들어 낸 후 해당 모델의 parameter를 이용하여 adversarial example을 생성하는 flow를 가집니다. 이러한 특성상 black-box attack이 방어를 하는 입장에서는 white-box attack보다 쉬운 경향을 띄게 됩니다.&lt;/p&gt;
 
 &lt;figure class=&quot;align-center&quot;&gt;
   &lt;img src=&quot;http://localhost:4000//assets/images/adv_exm.jpg&quot; alt=&quot;&quot; /&gt;
@@ -44,16 +45,18 @@ Adversarial attack의 종류와 의미는 다음과 같습니다(여기서 말�
 
 &lt;p&gt;한 가지 재미 있는 사실은 본 논문에서 activation fuction으로 기존에 사용하던 sigmoid 혹은 ReLU를 사용하지 않고 RBF를 사용하면 adversarial noise에 보다 강건한 모델이 됨을 언급하고 있습니다.&lt;/p&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;다시 말해 DNN은 우리가 생각하는 것 만큼 non-linear 하지 않습니다.
-생각을 해본다면 ReLU의 경우 최적화를 위해 태생이 매우 linear한 구조를 띄고 있습니다. 또한 sigmoid의 경우에도 모델을 학습 하다 보면 선형성을 지닌 부분에 많은 activation이 된다는 언급도 본 논문의 저자들은 잊지 않고 있네요.&lt;/p&gt;
+  &lt;p&gt;다시 말해 DNN은 우리가 생각하는 것 만큼 non-linear 하지 않습니다.&lt;/p&gt;
 &lt;/blockquote&gt;
+
+&lt;p&gt;생각을 해본다면 ReLU의 경우 최적화를 위해 태생이 매우 linear한 구조를 띄고 있습니다. 또한 sigmoid의 경우에도 모델을 학습 하다 보면 선형성을 지닌 부분에 많은 activation이 된다는 언급도 본 논문의 저자들은 잊지 않고 있네요.&lt;/p&gt;
 
 &lt;p&gt;하지만 이렇게 말로써 우리가 비선형적이라고 생각했던 모델은 사실 선형적이었어! 라고 한다면 이렇게까지 주목받는 논문이 되지 못했겠죠. 저자들은 매우 선형적인 공격 방식으로 생성한 adversarial example이 ‘&lt;strong&gt;비선형적&lt;/strong&gt;’ 이라고 알려진 DNN (maxout)을 얼마나 잘 속이는지 실험을 통해 보여줍니다. 본 논문에서 사용하는 공격 방식은 Fast Gradient Sign Method (FGSM)이라고 불리며 식은 아래와 같습니다:&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;p&gt;FGSM:&lt;/p&gt;
 
-  &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\eta = \epsilon(\nabla_x J(\theta, x, y))&lt;/script&gt;,
-where J는 target model의 목적식, $\theta$는 모델의 파라미터, x와 y는 각각 input과 output 이며 $\epsilon$은 노이즈의 크기를 결정하는 상수&lt;/p&gt;
+  &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\eta = \epsilon(\nabla_x J(\theta, x, y))&lt;/script&gt;,&lt;/p&gt;
+
+  &lt;p&gt;where J는 target model의 목적식, $\theta$는 모델의 파라미터, x와 y는 각각 input과 output 이며 $\epsilon$은 노이즈의 크기를 결정하는 상수&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;위에서 구한 $\eta$를 원본 이미지에 더해주어 나온 이미지가 adversarial example이 되며 식은 아래와 같습니다:&lt;/p&gt;
@@ -73,4 +76,4 @@ where J는 target model의 목적식, $\theta$는 모델의 파라미터, x와 y
 &lt;p&gt;본 논문에서 저자들은 adversarial training이라는 개념을 통하여 이러한 공격을 어느정도 막을 수 있다고 언급하고 있습니다. 하지만 최근 연구 동향은 이러한 adversarial training이 여러 공격 패턴에 robust하지 못하다는 점을 조금 critical하게 생각하고 크게 사용하지 않는 추세 입니다. Adversarial training은 간략히 말해서 생성된 adversarial example을 모델이 학습하는 동안 clean data와 함께 학습시키는 방식 입니다. 직관적으로 생각해봐도 공격 방법이 늘어날수록 모든 공격방법으로 얻은 adversarial example을 획득한 다음 모든 data를 학습에 이용해야 하니 상당히 비효율 적일 것 같네요.&lt;/p&gt;
 
 &lt;h2 id=&quot;마무리&quot;&gt;마무리&lt;/h2&gt;
-&lt;p&gt;이로써 첫 번째 포스팅이 마무리 되었습니다. 어떠신가요? 저는 이 분야를 공부하면서 매우 새롭고 신비로웠습니다. 지금도 그렇구요. 여러분들도 조금의 흥미 그리고 믿고 있던 DNN에 대해서 회의를 느끼는 시간이 되셨으면 좋겠습니다.&lt;/p&gt;</content><author><name>Seungwan Seo</name><email>zach0206@korea.ac.kr</email></author><category term="adversarial examples" /><category term="iclr" /><category term="ian goodfellow" /><category term="FGSM" /><category term="fast gradient sign method" /><summary type="html">AGENDA 1. What are the adversarial examples 2. Explaining and Harnessing Adversarial Examples 논문 설명</summary></entry></feed>
+&lt;p&gt;이로써 첫 번째 포스팅이 마무리 되었습니다. 어떠신가요? 저는 이 분야를 공부하면서 매우 새롭고 신비로웠습니다. 지금도 그렇구요. 여러분들도 조금의 흥미 그리고 믿고 있던 DNN에 대해서 회의를 느끼는 시간이 되셨으면 좋겠습니다.&lt;/p&gt;</content><author><name>Seungwan Seo</name><email>zach0206@korea.ac.kr</email></author><category term="adversarial examples" /><category term="ICLR" /><category term="Explaining and Harnessing Adversarial Examples" /><category term="FGSM" /><category term="fast gradient sign method" /><summary type="html">AGENDA 1. What are the adversarial examples 2. Explaining and Harnessing Adversarial Examples 논문 설명</summary></entry></feed>
