@@ -8,11 +8,11 @@ sidebar:
     text: "Adversarial example"
   - title: "Year : 2014"
   - title: "Citation : 2208 (2019.05.22)"
-
+use_math: true
 tags: 
   - adversarial examples
-  - iclr
-  - ian goodfellow
+  - ICLR
+  - Explaining and Harnessing Adversarial Examples
   - FGSM
   - fast gradient sign method
 ---
@@ -28,7 +28,7 @@ Adversarial example에 대하여 생소하신 분들이 있으실 수 있으니,
 
 ## Adversarial example이란 무엇인가?
 
-<iframe width="640" height="360" src="https://www.youtube.com/watch?v=i1sp4X57TL4" frameborder="0" allowfullscreen></iframe>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/i1sp4X57TL4" frameborder="0" allowfullscreen></iframe>
 
 위의 영상을 보시면 바나나가 있습니다. 바나나가 홀로 있을 때와, 영상 초반에 깨끗해 보이는 이미지 패치 (사람이 들고 있는 작은 이미지)를 바나나 옆에 두었을 때는 학습해둔 모델이 100%에 가까운 confidence로 바나나를 분류 하고 있습니다(초록색 그래프).
 하지만 영상 중반부에 나오는 이상하게 생긴 이미지 패치를 바나나 옆에 두게 되면 모델은 이전과 다르게 100%에 가까운 confidence로 바나나를 토스터기로 **오분류** 하고 있음을 볼 수 있죠.
