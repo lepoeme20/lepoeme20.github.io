@@ -15,20 +15,20 @@ minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Postero20's Blog"
+title                    : "lepoeme's Blog"
 title_separator          : "-"
-name                     : "Postero20"
-description              : "An amazing website."
-url                      : "https://postero20.github.io"
+name                     : "lepoeme20"
+description              : "고려대학교 DSBA Lab "
+url                      : "https://lepoeme20.github.io"
 baseurl                  : "/"
-repository               : "postero20/postero20"
+repository               : "lepoeme20/lepoeme20"
 teaser                   : "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
-  provider               : # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2" "custom"
+  provider               : "disqus" # false (default), , "discourse", "facebook", "google-plus", "staticman", "staticman_v2" "custom"
   disqus:
-    shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+    shortname            : 'lepoeme20'
   discourse:
     server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
   facebook:
@@ -100,30 +100,18 @@ analytics:
 
 # Site Author
 author:
-  name             : "Your Name"
+  name             : "Seungwan Seo"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an amazing person."
-  location         : "Somewhere"
-  email            :
+  bio              : "Graduate student in </br> DSBA Lab. Korea Univ. </br></br> Especially interested in adversarial examples "
+  location         : "Seoul, Korea"
+  email            : "zach0206@korea.ac.kr"
   links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      # url: mailto:your.name@email.com
-    - label: "Website"
+    - label: "LinkedIn"
       icon: "fas fa-fw fa-link"
-      # url: "https://your-website.com"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      # url: "https://twitter.com/"
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
-      # url: "https://facebook.com/"
+      url: "https://www.linkedin.com/in/lepoeme"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://github.com/"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      # url: "https://instagram.com/"
+      url: "https://github.com/lepoeme20"
 
 # Site Footer
 footer:
@@ -284,6 +272,6 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: # true
+      comments: true
       share: true
       related: true
