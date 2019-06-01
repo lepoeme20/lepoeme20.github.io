@@ -14,8 +14,11 @@ tags:
   - MIT
   - Deep learning
   - Lecture
-  - FGSM
-  - fast gradient sign method
+  - Basic
+  - activation function
+  - Regulaization
+  - overfitting
+  - optimization
 ---
 
 ```yaml
@@ -67,11 +70,11 @@ Neural network는 사실 Fig 2.에서 가운데 위치하는 hidden layer를 여
 이러한 어려운 상황에서 해를 구하기 위해서 우리는 gradient descent와 backpropagation을 사용합니다.
 
 ## Neural Networks in practice
-### optimization
+### Optimization
 DNN은 매우 복잡한 결합함수 형태를 띄고 있기 때문에 구조적으로 매우 많은 local minimum이 존재하고 initial point에 따라 이런 local minimum에 빠질수도, 저런 local minimum에 빠질 수도 있습니다.
 이 때문에 optimization (adam, adadelta, RMSprop, ...) 연구도 매우 활발히 진행 되었으나 최근에는 주춤하는 모습인것 같습니다. 본인이 선호하는 optimizer를 사용하는 추세이며 'local optimum에 빠지더라도 충분히 좋다' 라는게 ~~학계의 정설~~ 입니다.
 
-### overfitting
+### Overfitting
 Model은 새로운 데이터 (test set)에 대해서도 강건함을 목표로 학습됩니다. 다시 말해, 처음 보는 데이터에 대해서도 학습때의 성능을 보여주길 바라며 모델을 학습 시키죠. 하지만 간혹 학습 데이터를 완전히 외워버리는 모델들이 등장하곤 하는데 이러한 경우 새로운 데이터에 대한 성능은 현저히 떨어질 수 밖에 없습니다. 학습 데이터를 온전히 외워버리기 때문에 새로운 데이터에 대해서 대처하지 못하는 상황이기 때문이죠. 이러한 현상을 우리는 overfitting이라 부릅니다.
 
 ### Regulaization
