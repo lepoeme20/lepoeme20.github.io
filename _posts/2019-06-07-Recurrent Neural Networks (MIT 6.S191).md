@@ -28,7 +28,7 @@ AGENDA
 
 움직이는 공을 찍고 있는 동영상을 일시 정지 했다고 상상해 봅시다. 멈춘 화면을 보고 다음 시점에 공이 어느 방향으로 움직일지 예측하는 것은 매우 어려운 일입니다. 하지만 만약 이전 시점들이 주어진다면 어떨까요? 공의 궤적을 통해 다음 시점에 이동할 방향을 예측하기 매우 쉬워질 것입니다. 이처럼 순서에 영향을 받는 데이터를 sequence data라고 부르며 예로는 오디오나 텍스트, 그리고 동영상등이 있습니다.
 
-## <B> A sequence Modeling Problem: Predict the Next Word </B>
+## **A sequence Modeling Problem: Predict the Next Word**
 예를 들어 다음과 같은 문장이 있다고 합시다. "This morning I took my cat for a walk." 이 문장에서 우리는 앞 부분의 맥락을 통하여 가장 마지막 단어인 walk를 예측하고 싶습니다. 근본적으로 마지막 단어를 예측하기 위하여 우리는 단어를 vectorization할 필요가 있겠죠.
 
 ### Bag of Words
@@ -40,7 +40,7 @@ AGENDA
 그렇다면 이러한 embedding은 아무런 문제가 없을까요?
 학습을 가정해 본다면 위의 문장을 보는 neural network는 무리 없이 this morning을 어떤 특정한 '것'으로 인지할 것입니다. 하지만 this morning이 앞 부분이 아니라, 뒷 부분에 등장하는 문장이 있다고 한다면 "This morning took the cat ... "이라는 문장으로 학습되고 있는 neural network의 문장 뒤를 담당하는 parameters들은 지금까지 보지 못했던 this morning을 접해야 하기 때문에 this morning을 계속해서 이전과 같은 어떠한 '것' 으로 인지하기는 어렵게 됩니다. 
 
-## <B> sequence modeling을 위하여 우리는 다음과 같은 사항을 고려해야 합니다 (input이 text라 가정하고 기술하겠습니다)</B>
+## **sequence modeling을 위하여 우리는 다음과 같은 사항을 고려해야 합니다 (input이 text라 가정하고 기술하겠습니다)**
 * 다양한 길이의 문장을 다루어야 한다
 * 긴 길이의 문장을 다루어야 한다
 * 단어간의 순서 정보를 보존해야 한다
@@ -48,7 +48,7 @@ AGENDA
 
 이러한 특성을 다루기 위하여 RNN이 등장하였습니다.
 
-## <B> RNN 구조</B>
+## **RNN 구조**
 * One to One  - 전통적인 NN -> sequence를 다루는데 적합하지 않음
 * Many to One - 감성분석과 같은 분류
 * Many to Many - 매우 다양하게 활용 가능 : 본 수업의 타겟
@@ -88,7 +88,7 @@ Gradient가 계속 작아지는 상황을 상상해보죠.
 * Trick 2 : parameter 초기화를 identity matrix로 하면 도움이 된다
 * Trick 3 : LSTM, GRU와 같은 gated cell을 사용하는 것이 가장 강건한 해결책이 된다
 
-## <B>LSTM에 대하여 알아보자!</B>
+## **LSTM에 대하여 알아보자!**
 vanilla RNN에서 발전한 형태인 LSTM에 대해서 알아보겠습니다. 우선 모델 구조는 아래와 같습니다.
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec2/LSTM.png" alt="">
@@ -106,12 +106,13 @@ vanilla RNN에서 발전한 형태인 LSTM에 대해서 알아보겠습니다. �
 
 LSTM은 기본적인 RNN이 sequence가 길어짐에 따라 발생하는 gradient descent문제를 해결하고자 등장하였습니다. LSTM은 input gate ($i_t$), output gate ($o_t$), 그리고 forget gate ($f_t$)와 같은 gate unit을 활용합니다. 각 gate들은 sigmoid layer로 구성되어 있으며 output이 1 인 경우 해당 값을 온전히 유지하게 되며, 0인 경우에는 전혀 사용하지 않습니다. 이러한 연산을 통하여 기존에 vanilla RNN에서는 할 수 없었던 sequence의 정보를 얼마나 기억할지와 잊어버릴지를 파라미터를 통하여 학습할 수 있게 된 것이죠! 사실 LSTM이 가지는 가장 큰 특성은 cell state이며 LSTM의 구조를 나타내는 Figure 3의 상단 부분 수평선이 바로 그 cell state입니다. Cell state는 gates들을 통하여 정보를 추가하거나 제거하는 역학을 맡고 있습니다. LSTM는 우선 forget gate를 통하여 버릴 정보를 선택합니다. Forget gate와 input gate는 현 시점의 input과 이전 시점의 hidden state를 받아 0과 1 사이의 output을 가지며, 앞의 두 gates들을 통하여 LSTM cell은 잊을 정보와 기억할 정보를 cell state에 update 하게 되는 것이죠. $\widetilde{C}_t$는 최종적으로 updated된 cell state를 나타냅니다. LSTM의 output ($h_t$)은 vanilla RNN과 같이 이전 state의 hidden state value와 현재의 output을 통해 산출됩니다. 
 
-## <B>GRU 대하여 알아보자!</B>
+
+## **GRU 대하여 알아보자!**
 LSTM과 같이 vanishing gradient문제를 해결하면서도 파라미터의 수를 줄여 계산 복잡도를 감소시키기 위해 GRU model이 소개되었습니다.  GRU는 cell state와 hidden state를 결합하여 하나의 hidden state로 나타냄과 동시에 forget gate와 input gate를 결합한 update gate를 제안 합니다. Figure 4에서 확인할 수 있듯이 GRU의 구조는 LSTM에 비해 훨씬 간단합니다.
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec2/GRU.png" alt="">
 <figcaption>Fig 4. GRU 구조도</figcaption>
-GRU가 가지는 cell들은 아래와 같습니다.
+GRU가 가지는 cell들은 아래와 같습니다:
 
 > GRU:
 >
@@ -122,14 +123,14 @@ GRU가 가지는 cell들은 아래와 같습니다.
 
 $z_t$는 update gate의 계산 방식입니다. GRU의 reset gate는 모델이 과거 정보의 얼마만큼을 다음 스텝으로 전달해야 하는지 결정하는데 도움을 줍니다. $r_t$가 바로 reset gate이며 이름처럼 지난 정보를 얼마나 사용하지 않을지를 결정하고 있습니다. 나머지 부분은 vinilla RNN과 LSTM에서 보신 것과 매우 흡사 합니다.
 
-## <B>RNN application</B>
+## **RNN application**
 RNN은 다음과 같이 여러 방면에서 활용되고 있습니다.
 
 * Music generation
 * Sentiment classification
 * Machine translation
 
-## <B>마무리</B>
+## **마무리**
 사실 sentiment classification의 경우 Yoon Kim 님의 textCNN이 나온 이후로 CNN구조에 비해 크게 좋은 성능을 보이고 있지 못하고 있습니다. CNN에서도 text의 감성이나 주제를 분류하기 위하여 많은 연구들이 제안되어 왔었구요. 현재 RNN의 가장 큰 활용 분야는 역시 machine translation과 (visual)Q&A가 아닐까 싶습니다. BERT와 같은 훌륭한 pretrained model도 나왔고 앞으로 계속 더 발전하지 않을까 라는 개인적인 생각이 있습니다.
 
 사실 많은 수업에서 CNN을 RNN보다 먼저 다루고 있는 것으로 알고 있습니다만, 본 강의에서는 RNN을 2강에서, 그리고 CNN을 3강에서 다루고 있습니다. 그럼 3강에서 CNN으로 찾아뵙겠습니다.
