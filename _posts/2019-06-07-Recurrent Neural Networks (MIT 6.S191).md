@@ -58,7 +58,9 @@ AGENDA
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec2/RNN.png" alt="">
 <figcaption>Fig 1. RNN의 종류</figcaption>
 
+
 ### Standard RNN gradient flow 
+
 최초에 제안된 RNN은 아래와 같이 생겼습니다.
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec2/vanilla_RNN.png" alt="">
@@ -93,12 +95,15 @@ vanilla RNN에서 발전한 형태인 LSTM에 대해서 알아보겠습니다. �
 <figcaption>Fig 3. LSTM 구조도</figcaption>
 딱 보기에도 RNN보다 훨씬 복잡한 구조임을 확인할 수 있습니다. 수식을 통해 어떤 부분이 추가되었는지 살펴보죠.
 
-> $$ f_t = \sigma(\mathbf{W}_f\cdot [h_{t-1},x_t]+b_f) $$
-> $$ i_t = \sigma(\mathbf{W}_i\cdot [h_{t-1},x_t]+b_i) $$
-> $$ \widetilde{C}_t=tanh(\mathbf{W}_c\cdot[h_{t-1},x_t]+b_c) $$
-> $$ C_t=f_t\times C_{t-1} + i_t \times \widetilde{C}_t $$
-> $$ o_t = \sigma(\mathbf{W}_o\cdot [h_{t-1},x_t]+b_o) $$
+> LSTM:
+>
+> $$ f_t = \sigma(\mathbf{W}_f\cdot [h_{t-1},x_t]+b_f), $$,
+> $$ i_t = \sigma(\mathbf{W}_i\cdot [h_{t-1},x_t]+b_i), $$,
+> $$ \widetilde{C}_t=tanh(\mathbf{W}_c\cdot[h_{t-1},x_t]+b_c), $$,
+> $$ C_t=f_t\times C_{t-1} + i_t \times \widetilde{C}_t, $$,
+> $$ o_t = \sigma(\mathbf{W}_o\cdot [h_{t-1},x_t]+b_o), $$,
 > $$ h_t = o_t \times tanh(C_t). $$
+
 LSTM은 기본적인 RNN이 sequence가 길어짐에 따라 발생하는 gradient descent문제를 해결하고자 등장하였습니다. LSTM은 input gate ($i_t$), output gate ($o_t$), 그리고 forget gate ($f_t$)와 같은 gate unit을 활용합니다. 각 gate들은 sigmoid layer로 구성되어 있으며 output이 1 인 경우 해당 값을 온전히 유지하게 되며, 0인 경우에는 전혀 사용하지 않습니다. 이러한 연산을 통하여 기존에 vanilla RNN에서는 할 수 없었던 sequence의 정보를 얼마나 기억할지와 잊어버릴지를 파라미터를 통하여 학습할 수 있게 된 것이죠! 사실 LSTM이 가지는 가장 큰 특성은 cell state이며 LSTM의 구조를 나타내는 Figure 3의 상단 부분 수평선이 바로 그 cell state입니다. Cell state는 gates들을 통하여 정보를 추가하거나 제거하는 역학을 맡고 있습니다. LSTM는 우선 forget gate를 통하여 버릴 정보를 선택합니다. Forget gate와 input gate는 현 시점의 input과 이전 시점의 hidden state를 받아 0과 1 사이의 output을 가지며, 앞의 두 gates들을 통하여 LSTM cell은 잊을 정보와 기억할 정보를 cell state에 update 하게 되는 것이죠. $\widetilde{C}_t$는 최종적으로 updated된 cell state를 나타냅니다. LSTM의 output ($h_t$)은 vanilla RNN과 같이 이전 state의 hidden state value와 현재의 output을 통해 산출됩니다. 
 
 ## <B>GRU 대하여 알아보자!</B>
@@ -108,10 +113,12 @@ LSTM과 같이 vanishing gradient문제를 해결하면서도 파라미터의 �
 <figcaption>Fig 4. GRU 구조도</figcaption>
 GRU가 가지는 cell들은 아래와 같습니다.
 
-> $$ z_t = \sigma(\mathbf{W}_z\cdot [h_{t-1},x_t]+b_z) $$
-> $$ r_t = \sigma(\mathbf{W}_i\cdot [h_{t-1},x_t]+b_r) $$
-> $$ \widetilde{h}_t=tanh(\mathbf{W}_c\cdot[h_{t-1},x_t]+b_c) $$
-> $$ h_t=(1-z_t)\times h_{t-1} + z_t \times \widetilde{h}_t. $$
+> GRU:
+>
+> $$ z_t = \sigma(\mathbf{W}_z\cdot [h_{t-1},x_t]+b_z), $$,
+> $$ r_t = \sigma(\mathbf{W}_i\cdot [h_{t-1},x_t]+b_r), $$,
+> $$ \widetilde{h}_t=tanh(\mathbf{W}_c\cdot[h_{t-1},x_t]+b_c), $$,
+> $$ h_t=(1-z_t)\times h_{t-1} + z_t \times \widetilde{h}_t. $$,
 
 $z_t$는 update gate의 계산 방식입니다. GRU의 reset gate는 모델이 과거 정보의 얼마만큼을 다음 스텝으로 전달해야 하는지 결정하는데 도움을 줍니다. $r_t$가 바로 reset gate이며 이름처럼 지난 정보를 얼마나 사용하지 않을지를 결정하고 있습니다. 나머지 부분은 vinilla RNN과 LSTM에서 보신 것과 매우 흡사 합니다.
 
