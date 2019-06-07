@@ -104,7 +104,6 @@ vanilla RNN에서 발전한 형태인 LSTM에 대해서 알아보겠습니다. �
 
 LSTM은 기본적인 RNN이 sequence가 길어짐에 따라 발생하는 gradient descent문제를 해결하고자 등장하였습니다. LSTM은 input gate ($i_t$), output gate ($o_t$), 그리고 forget gate ($f_t$)와 같은 gate unit을 활용합니다. 각 gate들은 sigmoid layer로 구성되어 있으며 output이 1 인 경우 해당 값을 온전히 유지하게 되며, 0인 경우에는 전혀 사용하지 않습니다. 이러한 연산을 통하여 기존에 vanilla RNN에서는 할 수 없었던 sequence의 정보를 얼마나 기억할지와 잊어버릴지를 파라미터를 통하여 학습할 수 있게 된 것이죠! 사실 LSTM이 가지는 가장 큰 특성은 cell state이며 LSTM의 구조를 나타내는 Figure 3의 상단 부분 수평선이 바로 그 cell state입니다. Cell state는 gates들을 통하여 정보를 추가하거나 제거하는 역학을 맡고 있습니다. LSTM는 우선 forget gate를 통하여 버릴 정보를 선택합니다. Forget gate와 input gate는 현 시점의 input과 이전 시점의 hidden state를 받아 0과 1 사이의 output을 가지며, 앞의 두 gates들을 통하여 LSTM cell은 잊을 정보와 기억할 정보를 cell state에 update 하게 되는 것이죠. $\widetilde{C}_t$는 최종적으로 updated된 cell state를 나타냅니다. LSTM의 output ($h_t$)은 vanilla RNN과 같이 이전 state의 hidden state value와 현재의 output을 통해 산출됩니다. 
 
-
 ## **GRU 대하여 알아보자!**
 LSTM과 같이 vanishing gradient문제를 해결하면서도 파라미터의 수를 줄여 계산 복잡도를 감소시키기 위해 GRU model이 소개되었습니다.  GRU는 cell state와 hidden state를 결합하여 하나의 hidden state로 나타냄과 동시에 forget gate와 input gate를 결합한 update gate를 제안 합니다. Figure 4에서 확인할 수 있듯이 GRU의 구조는 LSTM에 비해 훨씬 간단합니다.
 <figure class="align-center">
