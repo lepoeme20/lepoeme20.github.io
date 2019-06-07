@@ -28,7 +28,7 @@ AGENDA
 
 움직이는 공을 찍고 있는 동영상을 일시 정지 했다고 상상해 봅시다. 멈춘 화면을 보고 다음 시점에 공이 어느 방향으로 움직일지 예측하는 것은 매우 어려운 일입니다. 하지만 만약 이전 시점들이 주어진다면 어떨까요? 공의 궤적을 통해 다음 시점에 이동할 방향을 예측하기 매우 쉬워질 것입니다. 이처럼 순서에 영향을 받는 데이터를 sequence data라고 부르며 예로는 오디오나 텍스트, 그리고 동영상등이 있습니다.
 
-## **A sequence Modeling Problem: Predict the Next Word**
+## A sequence Modeling Problem: Predict the Next Word
 예를 들어 다음과 같은 문장이 있다고 합시다. "This morning I took my cat for a walk." 이 문장에서 우리는 앞 부분의 맥락을 통하여 가장 마지막 단어인 walk를 예측하고 싶습니다. 근본적으로 마지막 단어를 예측하기 위하여 우리는 단어를 vectorization할 필요가 있겠죠.
 
 ### Bag of Words
@@ -40,7 +40,7 @@ AGENDA
 그렇다면 이러한 embedding은 아무런 문제가 없을까요?
 학습을 가정해 본다면 위의 문장을 보는 neural network는 무리 없이 this morning을 어떤 특정한 '것'으로 인지할 것입니다. 하지만 this morning이 앞 부분이 아니라, 뒷 부분에 등장하는 문장이 있다고 한다면 "This morning took the cat ... "이라는 문장으로 학습되고 있는 neural network의 문장 뒤를 담당하는 parameters들은 지금까지 보지 못했던 this morning을 접해야 하기 때문에 this morning을 계속해서 이전과 같은 어떠한 '것' 으로 인지하기는 어렵게 됩니다. 
 
-## **sequence modeling을 위하여 우리는 다음과 같은 사항을 고려해야 합니다 (input이 text라 가정하고 기술하겠습니다)**
+## sequence modeling을 위하여 우리는 다음과 같은 사항을 고려해야 합니다 (input이 text라 가정하고 기술하겠습니다)
 * 다양한 길이의 문장을 다루어야 한다
 * 긴 길이의 문장을 다루어야 한다
 * 단어간의 순서 정보를 보존해야 한다
@@ -86,7 +86,7 @@ Gradient가 계속 작아지는 상황을 상상해보죠.
 * Trick 2 : parameter 초기화를 identity matrix로 하면 도움이 된다
 * Trick 3 : LSTM, GRU와 같은 gated cell을 사용하는 것이 가장 강건한 해결책이 된다
 
-## **LSTM에 대하여 알아보자!**
+## LSTM에 대하여 알아보자!
 vanilla RNN에서 발전한 형태인 LSTM에 대해서 알아보겠습니다. 우선 모델 구조는 아래와 같습니다.
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec2/LSTM.png" alt="">
