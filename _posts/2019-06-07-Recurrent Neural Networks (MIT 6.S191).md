@@ -54,15 +54,19 @@ AGENDA
 * Many to Many - 매우 다양하게 활용 가능 : 본 수업의 타겟
 
 위에 기재되어 있는 RNN을 아래 그림과 매칭시켜 보시면 이해가 편하실 것 같습니다.
+
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec2/RNN.png" alt="">
-<figcaption>Fig 1. RNN의 종류</figcaption>
+  <figcaption>Fig 1. RNN의 종류</figcaption>
+</figure> 
+
 
 ### Standard RNN gradient flow 
 최초에 제안된 RNN은 아래와 같이 생겼습니다.
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec2/vanilla_RNN.png" alt="">
-<figcaption>Fig 2. Vanilla RNN 구조도</figcaption>
+  <figcaption>Fig 2. Vanilla RNN 구조도</figcaption>
+</figure> 
 
 최초에 제안된 RNN을 vanilla RNN이라 부르며, cell의 연산은 아래의 식을 따릅니다:
 
@@ -90,7 +94,8 @@ Gradient가 계속 작아지는 상황을 상상해보죠.
 vanilla RNN에서 발전한 형태인 LSTM에 대해서 알아보겠습니다. 우선 모델 구조는 아래와 같습니다.
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec2/LSTM.png" alt="">
-<figcaption>Fig 3. LSTM 구조도</figcaption>
+  <figcaption>Fig 3. LSTM 구조도</figcaption>
+</figure> 
 딱 보기에도 RNN보다 훨씬 복잡한 구조임을 확인할 수 있습니다. 수식을 통해 어떤 부분이 추가되었는지 살펴보죠.
 
 > LSTM:
@@ -109,7 +114,8 @@ LSTM은 기본적인 RNN이 sequence가 길어짐에 따라 발생하는 gradien
 LSTM과 같이 vanishing gradient문제를 해결하면서도 파라미터의 수를 줄여 계산 복잡도를 감소시키기 위해 GRU model이 소개되었습니다.  GRU는 cell state와 hidden state를 결합하여 하나의 hidden state로 나타냄과 동시에 forget gate와 input gate를 결합한 update gate를 제안 합니다. Figure 4에서 확인할 수 있듯이 GRU의 구조는 LSTM에 비해 훨씬 간단합니다.
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec2/GRU.png" alt="">
-<figcaption>Fig 4. GRU 구조도</figcaption>
+  <figcaption>Fig 4. GRU 구조도</figcaption>
+</figure> 
 GRU가 가지는 cell들은 아래와 같습니다:
 
 > GRU:
@@ -131,4 +137,4 @@ RNN은 다음과 같이 여러 방면에서 활용되고 있습니다.
 ## **마무리**
 사실 sentiment classification의 경우 Yoon Kim 님의 textCNN이 나온 이후로 CNN구조에 비해 크게 좋은 성능을 보이고 있지 못하고 있습니다. CNN에서도 text의 감성이나 주제를 분류하기 위하여 많은 연구들이 제안되어 왔었구요. 현재 RNN의 가장 큰 활용 분야는 역시 machine translation과 (visual)Q&A가 아닐까 싶습니다. BERT와 같은 훌륭한 pretrained model도 나왔고 앞으로 계속 더 발전하지 않을까 라는 개인적인 생각이 있습니다.
 
-사실 많은 수업에서 CNN을 RNN보다 먼저 다루고 있는 것으로 알고 있습니다만, 본 강의에서는 RNN을 2강에서, 그리고 CNN을 3강에서 다루고 있습니다. 그럼 3강에서 CNN으로 찾아뵙겠습니다!!
+사실 많은 수업에서 CNN을 RNN보다 먼저 다루고 있는 것으로 알고 있습니다만, 본 강의에서는 RNN을 2강에서, 그리고 CNN을 3강에서 다루고 있습니다. 그럼 3강에서 CNN으로 찾아뵙겠습니다.
