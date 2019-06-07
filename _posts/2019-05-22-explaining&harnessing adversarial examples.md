@@ -49,7 +49,7 @@ Adversarial attack의 종류와 의미는 다음과 같습니다(여기서 말�
 한 가지 더 언급할 점은 black-box attack의 경우 공격자가 target model의 parameter를 모르기 때문에 공격이 불가능 합니다. 이에 공격자가 가지고 있는 데이터를 이용하여 target model의 분류 경계면을 근사하는 모델을 하나 만들어 낸 후 해당 모델의 parameter를 이용하여 adversarial example을 생성하는 flow를 가집니다. 이러한 특성상 black-box attack이 방어를 하는 입장에서는 white-box attack보다 쉬운 경향을 띄게 됩니다.
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/adv_exm.jpg" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/paper/adv_example/FGSM/adv_exm.jpg" alt="">
   <figcaption>Fig 1. Examples of adversarial examples</figcaption>
 </figure> 
 Fig 1.에서 위쪽 행은 clean images이며 아래쪽 행은 adversarial examples입니다. 이미지 아래 보이는 숫자와 기호는 모델이 위의 이미지를 보고 분류한 class를 나타내고 있습니다. 자율주행 자동차가 카메라로 사물을 인식하며 움직이다가 위와 같이 adversarial example을 만나 오분류를 하게 된다면 정말 끔찍한 일이 아닐 수 없습니다. 이러한 문제 인식을 통하여 모델 자체(연구) 뿐만 아니라 실생활에서도 본 문제를 꼭 해결해야 한다는 경각심을 가질 수 있습니다.
@@ -79,7 +79,7 @@ Adversarial example이 대략 이런거구나 라고 생각 하셨을테니, 이
 본 포스트의 상단부에서 말씀드린 adversarial example의 통상적인 정의에 따라 공격자는 사람이 인지하지 못할 만큼 작은 $\eta$를 원본 이미지에 더하여 target model을 속이는 것을 목표로 하고 있습니다. 
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/fgsm.jpg" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/paper/adv_example/FGSM/fgsm.jpg" alt="">
   <figcaption>Fig 2. FGSM</figcaption>
 </figure> 
 

@@ -36,7 +36,7 @@ AGENDA
 수업 진행자가 하는 말을 그대로 가지고 와보았습니다. 이는 결국 데이터의 패턴을 잘 파악하여 미래 데이터에 적용한 후 정보를 추출하는 일련의 과정이 됩니다. 그렇다면 어떠한 점들이 machine learning과의 차이점일까요? 
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/ai-ml-dl.png" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec1/ai-ml-dl.png" alt="">
   <figcaption>Fig 1. The differences between AI, ML, and DL</figcaption>
 </figure> 
 
@@ -48,7 +48,7 @@ AGENDA
 
 ## Feed forward propagation
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MLP.png" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec1/MLP.png" alt="">
   <figcaption>Fig 2. MLP</figcaption>
 </figure> 
 일반적인 neural network의 feed forward propagation은 위 그림에서 보이는 $$x_1, x_2, x_3$$와 같은 input들과 $$w_11, w_12, w_32$$와 같은 weight들의 dot product 로 나온 값을 비선형 함수에 input으로 사용하는 과정들을 반복한 후 최종 output이 산출 됩니다. 이 과정에서 추가되는 bias term은 activation function을 shift하는 효과를 준다고 하네요. 
