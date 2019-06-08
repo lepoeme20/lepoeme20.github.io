@@ -1,4 +1,5 @@
 ---
+layout: posts
 title: "Explaining and Harnessing Adversarial Examples"
 classes: wide
 author_profile: false
