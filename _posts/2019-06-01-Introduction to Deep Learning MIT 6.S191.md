@@ -26,6 +26,8 @@ tags:
 ---
 
 ```yaml
+"Introduction to Deep Learning"
+
 AGENDA
 1. Introduction of basic concepts for Deep learning
 ```

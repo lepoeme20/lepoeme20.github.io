@@ -11,6 +11,9 @@ use_math: true
 categories : 
   - lectures
   - basic
+sitemap :
+  changefreq : daily
+  priority : 1.0
 tags: 
   - MIT
   - Deep learning
@@ -22,6 +25,8 @@ tags:
 ---
 
 ```yaml
+"Recurrent Neural Networks-MIT 6.S191"
+
 AGENDA
 1. Introduction of basic concepts for RNN
 ```
