@@ -4,10 +4,16 @@ classes: wide
 author_profile: false
 comments: true
 sidebar:
+  - title: "MIT 6.S191"
+  - title: "Lecture 2"
+  - title: "Year : 2019"
 use_math: true
 categories : 
   - lectures
   - basic
+sitemap :
+  changefreq : daily
+  priority : 1.0
 tags: 
   - MIT
   - Deep learning
