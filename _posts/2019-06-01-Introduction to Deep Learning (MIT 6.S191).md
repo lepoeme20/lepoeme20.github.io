@@ -9,8 +9,8 @@ sidebar:
   - title: "Year : 2019"
 use_math: true
 categories : 
-  - Lectures
-  - Basic
+  - lectures
+  - basic
 tags: 
   - MIT
   - Deep learning
