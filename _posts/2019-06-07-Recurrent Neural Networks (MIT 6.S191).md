@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Recurrent Neural Networks-MIT 6.S191"
 classes: wide
 author_profile: false
