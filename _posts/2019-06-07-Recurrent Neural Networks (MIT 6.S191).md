@@ -25,7 +25,7 @@ tags:
 ---
 
 ```yaml
-"Recurrent Neural Networks-MIT 6.S191"
+Recurrent Neural Networks-MIT 6.S191
 
 AGENDA
 1. Introduction of basic concepts for RNN
