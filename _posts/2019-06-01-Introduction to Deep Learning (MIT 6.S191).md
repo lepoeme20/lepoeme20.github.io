@@ -4,9 +4,10 @@ classes: wide
 author_profile: false
 comments: true
 sidebar:
-  - title: "MIT 6.S191"
-  - title: "Lecture 1"
-  - title: "Year - 2019"
+  - title: "Domain"
+    text: "Adversarial example"
+  - title: "Year : 2014"
+  - title: "Citation : 2208 (2019.05.22)"
 use_math: true
 sitemap :
   changefreq : daily
@@ -30,6 +31,7 @@ AGENDA
 1. Introduction of basic concepts for Deep learning
 ```
 
+11
 이미 너무 유명하고 우리에게 친숙한 Stanford 에서 제공하는 CS231n 수업 외에도 deep learning을 학습하기 위한 좋은 material이 있지 않을까? 라는 생각에서 시작하여 2019년 MIT에서 제공하는 deep learning 수업을 review 해볼까 합니다. 전반적으로 CS231n보다 범위가 넓고 깊이가 얕은 특성이 있는 듯 합니다.
 
 사족이지만 해당 class의 final project의 결과에 따라 우수한 학생에게는 RTX 2080 Ti를 상으로 제공한다고 하네요.... ~~MIT 만세~~
