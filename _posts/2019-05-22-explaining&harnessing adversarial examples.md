@@ -41,6 +41,7 @@ Adversarial example의 통상적인 정의는 아래와 같습니다:
 
 Adversarial example을 만들어 내는 행위를 adversarial attack이라 칭하며, 이를 방어하는 행위는 defense against adversarial attack 이라 부릅니다.<br/>
 Adversarial attack의 종류와 의미는 다음과 같습니다(여기서 말하는 종류는 세세한 모델이 아니라 큰 흐름을 의미합니다):
+
 * White-box attack - 공격자가 target model (e.g. classifier)의 parameters를 알고 있는 상황
 * Black-box attack - 공격자가 target model (e.g. classifier)의 parameters를 모르는 상황
 * Targeted attack - Adversarial example이 공격자가 원하는 class로 target classifier가 오분류 하도록 공격하는 방식
@@ -51,7 +52,7 @@ Adversarial attack의 종류와 의미는 다음과 같습니다(여기서 말�
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/paper/adv_example/FGSM/adv_exm.jpg" alt="">
   <figcaption>Fig 1. Examples of adversarial examples</figcaption>
-</figure> 
+</figure>
 Fig 1.에서 위쪽 행은 clean images이며 아래쪽 행은 adversarial examples입니다. 이미지 아래 보이는 숫자와 기호는 모델이 위의 이미지를 보고 분류한 class를 나타내고 있습니다. 자율주행 자동차가 카메라로 사물을 인식하며 움직이다가 위와 같이 adversarial example을 만나 오분류를 하게 된다면 정말 끔찍한 일이 아닐 수 없습니다. 이러한 문제 인식을 통하여 모델 자체(연구) 뿐만 아니라 실생활에서도 본 문제를 꼭 해결해야 한다는 경각심을 가질 수 있습니다.
 
 ## **Explaining and Harnessing Adversarial Examples**
@@ -81,11 +82,12 @@ Adversarial example이 대략 이런거구나 라고 생각 하셨을테니, 이
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/paper/adv_example/FGSM/fgsm.jpg" alt="">
   <figcaption>Fig 2. FGSM</figcaption>
-</figure> 
+</figure>
 
-위의 2번 이미지를 보면 57.7%의 confidence를 가지고 팬더를 팬더로 인식하는 모델을 속이기 위하여 FGSM 방식으로 얻은 noise를 원본 이미지에 더해주고 있습니다. 이러한 과정을 거쳐 나온 이미지, adversarial example은 모델이 99.3%의 confidence로 긴팔 원숭이로 분류하고 있음을 확인 할 수 있습니다. 심지어 생성된 노이즈는 8.2%의 confidence로 선형동물로 인식되는 매우 의미 없는 문자 그대로의 nosie인데도 말이죠. 그리고 위에서 노이즈 앞에 보이시는 0.007이라는 수가 위 식에서 보셨던 noise의 크기를 결정하는 $\epsilon$입니다. 
+위의 2번 이미지를 보면 57.7%의 confidence를 가지고 팬더를 팬더로 인식하는 모델을 속이기 위하여 FGSM 방식으로 얻은 noise를 원본 이미지에 더해주고 있습니다. 이러한 과정을 거쳐 나온 이미지, adversarial example은 모델이 99.3%의 confidence로 긴팔 원숭이로 분류하고 있음을 확인 할 수 있습니다. 심지어 생성된 노이즈는 8.2%의 confidence로 선형동물로 인식되는 매우 의미 없는 문자 그대로의 nosie인데도 말이죠. 그리고 위에서 노이즈 앞에 보이시는 0.007이라는 수가 위 식에서 보셨던 noise의 크기를 결정하는 $\epsilon$입니다.
 
 본 논문에서 저자들은 adversarial training이라는 개념을 통하여 이러한 공격을 어느정도 막을 수 있다고 언급하고 있습니다. 하지만 최근 연구 동향은 이러한 adversarial training이 여러 공격 패턴에 robust하지 못하다는 점을 조금 critical하게 생각하고 크게 사용하지 않는 추세 입니다. Adversarial training은 간략히 말해서 생성된 adversarial example을 모델이 학습하는 동안 clean data와 함께 학습시키는 방식 입니다. 직관적으로 생각해봐도 공격 방법이 늘어날수록 모든 공격방법으로 얻은 adversarial example을 획득한 다음 모든 data를 학습에 이용해야 하니 상당히 비효율 적일 것 같네요.
 
 ## **마무리**
-이로써 첫 번째 포스팅이 마무리 되었습니다. 어떠신가요? 저는 이 분야를 공부하면서 매우 새롭고 신비로웠습니다. 지금도 그렇구요. 여러분들도 조금의 흥미 그리고 믿고 있던 DNN에 대해서 회의를 느끼는 시간이 되셨으면 좋겠습니다. 
+
+이로써 첫 번째 포스팅이 마무리 되었습니다. 어떠신가요? 저는 이 분야를 공부하면서 매우 새롭고 신비로웠습니다. 지금도 그렇구요. 여러분들도 조금의 흥미 그리고 믿고 있던 DNN에 대해서 회의를 느끼는 시간이 되셨으면 좋겠습니다.
