@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Deep Learning-MIT 6.S191"
+title: "Explaining and Harnessing Adversarial"
 classes: wide
 author_profile: false
 comments: true
@@ -13,17 +13,13 @@ sitemap :
   changefreq : daily
   priority : 1.0
 categories : 
-  - lectures
-  - basic
+  - adversarial example
 tags: 
-  - MIT
-  - Deep learning
-  - Lecture
-  - Basic
-  - activation function
-  - Regulaization
-  - overfitting
-  - optimization
+  - adversarial examples
+  - ICLR
+  - Explaining and Harnessing Adversarial Examples
+  - FGSM
+  - fast gradient sign method
 ---
 
 ```yaml

@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Deep Learning-MIT 6.S191"
+title: "Introduction to Deep Learning MIT 6.S191"
 classes: wide
 author_profile: false
 comments: true
