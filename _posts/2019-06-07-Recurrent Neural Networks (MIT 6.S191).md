@@ -70,7 +70,7 @@ AGENDA
 
 최초에 제안된 RNN을 vanilla RNN이라 부르며, cell의 연산은 아래의 식을 따릅니다:
 
-> $$ h_t = tanh(x_t\mathbf{U}+h_{t-1}\mathbf{W} + b_t). $$,
+> $$ h_t = tanh(x_t\mathbf{U}+h_{t-1}\mathbf{W} + b_t). $$ <br/>
 
 위 식에서 확인할 수 있듯이 vanilla RNN은 이전 state의 hidden vector와 현재 state의 input vector간의 선형 결합으로 이루어져 있습니다. 이러한 재귀적인 구조를 통해 CNN과는 다르게 데이터의 sequence 정보를 보존할 수 있지만 아래와 같은 문제점들을 지닙니다.
 

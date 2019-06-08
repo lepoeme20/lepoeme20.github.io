@@ -52,6 +52,7 @@ AGENDA
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec1/MLP.png" alt="">
   <figcaption>Fig 2. MLP</figcaption>
 </figure> 
+
 일반적인 neural network의 feed forward propagation은 위 그림에서 보이는 $$x_1, x_2, x_3$$와 같은 input들과 $$w_11, w_12, w_32$$와 같은 weight들의 dot product 로 나온 값을 비선형 함수에 input으로 사용하는 과정들을 반복한 후 최종 output이 산출 됩니다. 이 과정에서 추가되는 bias term은 activation function을 shift하는 효과를 준다고 하네요. 
 
 Neural network는 사실 Fig 2.에서 가운데 위치하는 hidden layer를 여려층 쌓음으로 매우 복잡한 결합함수 형태를 가집니다. 만약 선형함수를 계속 결합한다면 어떻게 될까요? 최종적인 함수의 형태도 선형 함수가 되겠죠? 그렇다면 힘들게 쌓아올린 hidden layer들이 큰 의미를 갖기 어려울 것입니다. 이러한 문제를 해결하기 위하여 neural network에서는 비선형함수인 activation function을 사용하여 모델에 비선형성을 추가해 줍니다. 이러한 특성 덕분에 neural net은 매우 비선형적인 현실 데이터에서도 높은 성능을 지닐 수 있게 됩니다.
