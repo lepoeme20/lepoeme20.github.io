@@ -1,5 +1,5 @@
 ---
-title: "2019-06-07-Recurrent Neural Networks (MIT 6.S191)"
+title: "Recurrent Neural Networks (MIT 6.S191)"
 classes: wide
 author_profile: false
 comments: true
