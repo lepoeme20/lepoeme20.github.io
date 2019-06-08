@@ -228,7 +228,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 <p>Adversarial example에 대하여 생소하신 분들이 있으실 수 있으니, 우선 간략히 해당 개념에 대하여 영상과 함께 설명 드리겠습니다.
 그 후 본 포스트의 주제인 Explaining and Harnessing Adversarial Examples 논문에 대하여 설명 드리겠습니다.</p>
 
-<h2 id="adversarial-example이란-무엇인가">Adversarial example이란 무엇인가?</h2>
+<h2 id="adversarial-example이란-무엇인가"><strong>Adversarial example이란 무엇인가?</strong></h2>
 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/i1sp4X57TL4" frameborder="0" allowfullscreen=""></iframe>
 
@@ -253,12 +253,12 @@ Adversarial attack의 종류와 의미는 다음과 같습니다(여기서 말�
 <p>한 가지 더 언급할 점은 black-box attack의 경우 공격자가 target model의 parameter를 모르기 때문에 공격이 불가능 합니다. 이에 공격자가 가지고 있는 데이터를 이용하여 target model의 분류 경계면을 근사하는 모델을 하나 만들어 낸 후 해당 모델의 parameter를 이용하여 adversarial example을 생성하는 flow를 가집니다. 이러한 특성상 black-box attack이 방어를 하는 입장에서는 white-box attack보다 쉬운 경향을 띄게 됩니다.</p>
 
 <figure class="align-center">
-  <img src="http://localhost:4000//assets/images/adv_exm.jpg" alt="" />
+  <img src="http://localhost:4000//assets/images/paper/adv_example/FGSM/adv_exm.jpg" alt="" />
   <figcaption>Fig 1. Examples of adversarial examples</figcaption>
 </figure>
 <p>Fig 1.에서 위쪽 행은 clean images이며 아래쪽 행은 adversarial examples입니다. 이미지 아래 보이는 숫자와 기호는 모델이 위의 이미지를 보고 분류한 class를 나타내고 있습니다. 자율주행 자동차가 카메라로 사물을 인식하며 움직이다가 위와 같이 adversarial example을 만나 오분류를 하게 된다면 정말 끔찍한 일이 아닐 수 없습니다. 이러한 문제 인식을 통하여 모델 자체(연구) 뿐만 아니라 실생활에서도 본 문제를 꼭 해결해야 한다는 경각심을 가질 수 있습니다.</p>
 
-<h2 id="explaining-and-harnessing-adversarial-examples">Explaining and Harnessing Adversarial Examples</h2>
+<h2 id="explaining-and-harnessing-adversarial-examples"><strong>Explaining and Harnessing Adversarial Examples</strong></h2>
 
 <p>Adversarial example이 대략 이런거구나 라고 생각 하셨을테니, 이제 본격적으로 본 논문을 소개 드리도록 하겠습니다.</p>
 
@@ -289,7 +289,7 @@ Adversarial attack의 종류와 의미는 다음과 같습니다(여기서 말�
 <p>본 포스트의 상단부에서 말씀드린 adversarial example의 통상적인 정의에 따라 공격자는 사람이 인지하지 못할 만큼 작은 $\eta$를 원본 이미지에 더하여 target model을 속이는 것을 목표로 하고 있습니다.</p>
 
 <figure class="align-center">
-  <img src="http://localhost:4000//assets/images/fgsm.jpg" alt="" />
+  <img src="http://localhost:4000//assets/images/paper/adv_example/FGSM/fgsm.jpg" alt="" />
   <figcaption>Fig 2. FGSM</figcaption>
 </figure>
 
@@ -297,7 +297,7 @@ Adversarial attack의 종류와 의미는 다음과 같습니다(여기서 말�
 
 <p>본 논문에서 저자들은 adversarial training이라는 개념을 통하여 이러한 공격을 어느정도 막을 수 있다고 언급하고 있습니다. 하지만 최근 연구 동향은 이러한 adversarial training이 여러 공격 패턴에 robust하지 못하다는 점을 조금 critical하게 생각하고 크게 사용하지 않는 추세 입니다. Adversarial training은 간략히 말해서 생성된 adversarial example을 모델이 학습하는 동안 clean data와 함께 학습시키는 방식 입니다. 직관적으로 생각해봐도 공격 방법이 늘어날수록 모든 공격방법으로 얻은 adversarial example을 획득한 다음 모든 data를 학습에 이용해야 하니 상당히 비효율 적일 것 같네요.</p>
 
-<h2 id="마무리">마무리</h2>
+<h2 id="마무리"><strong>마무리</strong></h2>
 <p>이로써 첫 번째 포스팅이 마무리 되었습니다. 어떠신가요? 저는 이 분야를 공부하면서 매우 새롭고 신비로웠습니다. 지금도 그렇구요. 여러분들도 조금의 흥미 그리고 믿고 있던 DNN에 대해서 회의를 느끼는 시간이 되셨으면 좋겠습니다.</p>
 
         
@@ -403,6 +403,44 @@ Adversarial attack의 종류와 의미는 다음과 같습니다(여기서 말�
     <div class="page__related">
       <h4 class="page__related-title">You may also enjoy</h4>
       <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/500x300.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/lectures/basic/Recurrent-Neural-Networks-(MIT-6.S191)/" rel="permalink">2019-06-07-Recurrent Neural Networks (MIT 6.S191)
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">AGENDA
+1. Introduction of basic concepts for RNN
+
+
+</p>
+  </article>
+</div>
         
           
 

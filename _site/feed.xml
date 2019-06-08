@@ -1,4 +1,146 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-06-01T19:57:34+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">lepoeme’s Blog</title><subtitle>고려대학교 DSBA Lab </subtitle><author><name>Seungwan Seo</name><email>zach0206@korea.ac.kr</email></author><entry><title type="html">2019-06-01-Introduction to Deep Learning (MIT 6.S191)</title><link href="http://localhost:4000/lectures/basic/Introduction-to-Deep-Learning-(MIT-6.S191)/" rel="alternate" type="text/html" title="2019-06-01-Introduction to Deep Learning (MIT 6.S191)" /><published>2019-06-01T00:00:00+09:00</published><updated>2019-06-01T00:00:00+09:00</updated><id>http://localhost:4000/lectures/basic/Introduction%20to%20Deep%20Learning%20(MIT%206.S191)</id><content type="html" xml:base="http://localhost:4000/lectures/basic/Introduction-to-Deep-Learning-(MIT-6.S191)/">&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;AGENDA&lt;/span&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-06-08T15:44:42+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">lepoeme’s Blog</title><subtitle>고려대학교 DSBA Lab </subtitle><author><name>Seungwan Seo</name><email>zach0206@korea.ac.kr</email></author><entry><title type="html">2019-06-07-Recurrent Neural Networks (MIT 6.S191)</title><link href="http://localhost:4000/lectures/basic/Recurrent-Neural-Networks-(MIT-6.S191)/" rel="alternate" type="text/html" title="2019-06-07-Recurrent Neural Networks (MIT 6.S191)" /><published>2019-06-07T00:00:00+09:00</published><updated>2019-06-07T00:00:00+09:00</updated><id>http://localhost:4000/lectures/basic/Recurrent%20Neural%20Networks%20(MIT%206.S191)</id><content type="html" xml:base="http://localhost:4000/lectures/basic/Recurrent-Neural-Networks-(MIT-6.S191)/">&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;AGENDA&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;1. Introduction of basic concepts for RNN&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;움직이는 공을 찍고 있는 동영상을 일시 정지 했다고 상상해 봅시다. 멈춘 화면을 보고 다음 시점에 공이 어느 방향으로 움직일지 예측하는 것은 매우 어려운 일입니다. 하지만 만약 이전 시점들이 주어진다면 어떨까요? 공의 궤적을 통해 다음 시점에 이동할 방향을 예측하기 매우 쉬워질 것입니다. 이처럼 순서에 영향을 받는 데이터를 sequence data라고 부르며 예로는 오디오나 텍스트, 그리고 동영상등이 있습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;a-sequence-modeling-problem-predict-the-next-word&quot;&gt;&lt;strong&gt;A sequence Modeling Problem: Predict the Next Word&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;예를 들어 다음과 같은 문장이 있다고 합시다. “This morning I took my cat for a walk.” 이 문장에서 우리는 앞 부분의 맥락을 통하여 가장 마지막 단어인 walk를 예측하고 싶습니다. 근본적으로 마지막 단어를 예측하기 위하여 우리는 단어를 vectorization할 필요가 있겠죠.&lt;/p&gt;
+
+&lt;h3 id=&quot;bag-of-words&quot;&gt;Bag of Words&lt;/h3&gt;
+
+&lt;p&gt;가장 대표적인 vectorization 방식은 BoW로 불리는 Bag of Words 입니다. 이름 그 대로 단어들의 가방이라는 의미를 지니는데요, 문서(corpus)에 들어 있는 모든 단어의 수를 차원으로 가지는 vector에서 단어가 등장하면 1, 등장하지 않으면 0을 표기하는 방식으로 문장을 embedding(vector화) 하는 방식입니다. 예를 들어보죠. “The food was good, not bad at all.” Vs. “The food was bad, not good at all”라는 두 문장을 보면 다음과 같은 단어들이 등장합니다.
+[the, food, was, bad, not, good, at, all]. 여기에 보다 직관적인 이해를 위해 apple, eat이라는 단어가 다른 문장에서 등장했다고 가정 하겠습니다(따라서 등장하는 전체 단어는 [the, food, was, bad, not, good, at, all, apple, eat]이 됩니다). 이러한 상황에서 앞의 두 문장을 BoW방식으로 embedding 하면 다음과 같습니다. 첫번째 문장은 [1, 1, 1, 1, 1, 1, 1, 1, 0, 0]와 같이 되겠네요. 그렇다면 두 번째 문장은 어떨까요? 놀랍게도 두 번째 문장 역시 [1, 1, 1, 1, 1, 1, 1, 1, 0, 0]와 같은 형태를 띕니다. “The food was good, not bad at all.”와 “The food was bad, not good at all”는 정 반대의 의미를 가지는데 BoW 방식을 통해 embedding을 하게 되면 두 문장의 벡터가 정확히 동일해지는 크나큰 문제가 생깁니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;use-a-really-big-fixed-window&quot;&gt;Use a really big fixed window&lt;/h3&gt;
+
+&lt;p&gt;또 다른 방식이 있습니다. 바로 corpus에 등장하는 모든 단어를 one-hot vector로 encoding 할 수 있지 않을까? 라는 생각에서 나온 방식인데요, 예를 들어 “This morning took the cat … “이라는 문장이 있으면 [1 0 0 0 0 (this), 0 0 0 0 1 (morning), 0 0 1 0 0 (took), 0 1 0 0 0 (the), 0 0 0 1 0 (cat), …]과 같이 vectorization을 하는 것 입니다.
+그렇다면 이러한 embedding은 아무런 문제가 없을까요?
+학습을 가정해 본다면 위의 문장을 보는 neural network는 무리 없이 this morning을 어떤 특정한 ‘것’으로 인지할 것입니다. 하지만 this morning이 앞 부분이 아니라, 뒷 부분에 등장하는 문장이 있다고 한다면 “This morning took the cat … “이라는 문장으로 학습되고 있는 neural network의 문장 뒤를 담당하는 parameters들은 지금까지 보지 못했던 this morning을 접해야 하기 때문에 this morning을 계속해서 이전과 같은 어떠한 ‘것’ 으로 인지하기는 어렵게 됩니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;sequence-modeling을-위하여-우리는-다음과-같은-사항을-고려해야-합니다-input이-text라-가정하고-기술하겠습니다&quot;&gt;&lt;strong&gt;sequence modeling을 위하여 우리는 다음과 같은 사항을 고려해야 합니다 (input이 text라 가정하고 기술하겠습니다)&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;다양한 길이의 문장을 다루어야 한다&lt;/li&gt;
+  &lt;li&gt;긴 길이의 문장을 다루어야 한다&lt;/li&gt;
+  &lt;li&gt;단어간의 순서 정보를 보존해야 한다&lt;/li&gt;
+  &lt;li&gt;sequence간의 parameters들이 공유 되어야 한다&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이러한 특성을 다루기 위하여 RNN이 등장하였습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;rnn-구조&quot;&gt;&lt;strong&gt;RNN 구조&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;One to One  - 전통적인 NN -&amp;gt; sequence를 다루는데 적합하지 않음&lt;/li&gt;
+  &lt;li&gt;Many to One - 감성분석과 같은 분류&lt;/li&gt;
+  &lt;li&gt;Many to Many - 매우 다양하게 활용 가능 : 본 수업의 타겟&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;위에 기재되어 있는 RNN을 아래 그림과 매칭시켜 보시면 이해가 편하실 것 같습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;align-center&quot;&gt;
+  &lt;img src=&quot;http://localhost:4000//assets/images/MIT6.S191/lec2/RNN.png&quot; alt=&quot;&quot; /&gt;
+  &lt;figcaption&gt;Fig 1. RNN의 종류&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;standard-rnn-gradient-flow&quot;&gt;Standard RNN gradient flow&lt;/h3&gt;
+
+&lt;p&gt;최초에 제안된 RNN은 아래와 같이 생겼습니다.&lt;/p&gt;
+&lt;figure class=&quot;align-center&quot;&gt;
+  &lt;img src=&quot;http://localhost:4000//assets/images/MIT6.S191/lec2/vanilla_RNN.png&quot; alt=&quot;&quot; /&gt;
+  &lt;figcaption&gt;Fig 2. Vanilla RNN 구조도&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;최초에 제안된 RNN을 vanilla RNN이라 부르며, cell의 연산은 아래의 식을 따릅니다:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;h_t = tanh(x_t\mathbf{U}+h_{t-1}\mathbf{W} + b_t).&lt;/script&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;위 식에서 확인할 수 있듯이 vanilla RNN은 이전 state의 hidden vector와 현재 state의 input vector간의 선형 결합으로 이루어져 있습니다. 이러한 재귀적인 구조를 통해 CNN과는 다르게 데이터의 sequence 정보를 보존할 수 있지만 아래와 같은 문제점들을 지닙니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;exploding-gradients&quot;&gt;Exploding gradients&lt;/h4&gt;
+
+&lt;p&gt;많은 gradients value가 1보다 큰 경우를 의미하며, 이 경우 gradient가 발산하여 어떠한 optimization도 할 수 없게 됩니다. 이러한 문제는 gradient clipping을 통해 다소 간단하게 해소 가능 합니다. Gradient clipping이란 단순하게 gradient가 계속 커지는 것을 막기 위하여 특정한 값을 곱해주어 크기를 축소시키는 방법 입니다.&lt;/p&gt;
+
+&lt;h4 id=&quot;vanishing-gradients&quot;&gt;Vanishing gradients&lt;/h4&gt;
+
+&lt;p&gt;사실 이 부분이 해소가 어려워 vanilla RNN이 등장했을 때 많이 환영받지 못하였습니다. Vanishing gradients 문제는 많은 gradients value가 1보다 작은 경우 gradient가 사라지는 문제를 뜻합니다. 이를 해소하기 위하여서는 activation function을 변경하거나,
+좋은 Weight 초기화 방법을 사용하는 방식이 있지만 이보다는 근본적으로 모델 구조를 변경하는 것이 가장 강건한 방식 입니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;vanishing-gradient가-왜-문제인가&quot;&gt;vanishing gradient가 왜 문제인가?&lt;/h3&gt;
+
+&lt;p&gt;Gradient가 계속 작아지는 상황을 상상해보죠.
+20단어로 이루어진 문장이 있는데 10단어째 부터 gradient가 매우 작아진다면 결국 첫 번째 단어까지 gradient 전파가 불가능해겠죠?
+이런 상황에서는 RNN의 학습이 제대로 이루어질리 만무합니다.
+이를 해소하기 위하여 수업에서는 아래와 같은 트릭들을 설명합니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Trick 1 : Activation function을 tanh에서 ReLU를 사용하는 것이 도움이 된다&lt;/li&gt;
+  &lt;li&gt;Trick 2 : parameter 초기화를 identity matrix로 하면 도움이 된다&lt;/li&gt;
+  &lt;li&gt;Trick 3 : LSTM, GRU와 같은 gated cell을 사용하는 것이 가장 강건한 해결책이 된다&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;lstm에-대하여-알아보자&quot;&gt;&lt;strong&gt;LSTM에 대하여 알아보자!&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;vanilla RNN에서 발전한 형태인 LSTM에 대해서 알아보겠습니다. 우선 모델 구조는 아래와 같습니다.&lt;/p&gt;
+&lt;figure class=&quot;align-center&quot;&gt;
+  &lt;img src=&quot;http://localhost:4000//assets/images/MIT6.S191/lec2/LSTM.png&quot; alt=&quot;&quot; /&gt;
+  &lt;figcaption&gt;Fig 3. LSTM 구조도&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;딱 보기에도 RNN보다 훨씬 복잡한 구조임을 확인할 수 있습니다. 수식을 통해 어떤 부분이 추가되었는지 살펴보죠.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;LSTM:&lt;/p&gt;
+
+  &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;f_t = \sigma(\mathbf{W}_f\cdot [h_{t-1},x_t]+b_f),&lt;/script&gt; &lt;br /&gt;
+&lt;script type=&quot;math/tex&quot;&gt;i_t = \sigma(\mathbf{W}_i\cdot [h_{t-1},x_t]+b_i),&lt;/script&gt; &lt;br /&gt;
+&lt;script type=&quot;math/tex&quot;&gt;\widetilde{C}_t=tanh(\mathbf{W}_c\cdot[h_{t-1},x_t]+b_c),&lt;/script&gt; &lt;br /&gt;
+&lt;script type=&quot;math/tex&quot;&gt;C_t=f_t\times C_{t-1} + i_t \times \widetilde{C}_t,&lt;/script&gt; &lt;br /&gt;
+&lt;script type=&quot;math/tex&quot;&gt;o_t = \sigma(\mathbf{W}_o\cdot [h_{t-1},x_t]+b_o),&lt;/script&gt; &lt;br /&gt;
+&lt;script type=&quot;math/tex&quot;&gt;h_t = o_t \times tanh(C_t).&lt;/script&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;LSTM은 기본적인 RNN이 sequence가 길어짐에 따라 발생하는 gradient descent문제를 해결하고자 등장하였습니다. LSTM은 input gate ($i_t$), output gate ($o_t$), 그리고 forget gate ($f_t$)와 같은 gate unit을 활용합니다. 각 gate들은 sigmoid layer로 구성되어 있으며 output이 1 인 경우 해당 값을 온전히 유지하게 되며, 0인 경우에는 전혀 사용하지 않습니다. 이러한 연산을 통하여 기존에 vanilla RNN에서는 할 수 없었던 sequence의 정보를 얼마나 기억할지와 잊어버릴지를 파라미터를 통하여 학습할 수 있게 된 것이죠! 사실 LSTM이 가지는 가장 큰 특성은 cell state이며 LSTM의 구조를 나타내는 Figure 3의 상단 부분 수평선이 바로 그 cell state입니다. Cell state는 gates들을 통하여 정보를 추가하거나 제거하는 역학을 맡고 있습니다. LSTM는 우선 forget gate를 통하여 버릴 정보를 선택합니다. Forget gate와 input gate는 현 시점의 input과 이전 시점의 hidden state를 받아 0과 1 사이의 output을 가지며, 앞의 두 gates들을 통하여 LSTM cell은 잊을 정보와 기억할 정보를 cell state에 update 하게 되는 것이죠. $\widetilde{C}_t$는 최종적으로 updated된 cell state를 나타냅니다. LSTM의 output ($h_t$)은 vanilla RNN과 같이 이전 state의 hidden state value와 현재의 output을 통해 산출됩니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;gru-대하여-알아보자&quot;&gt;&lt;strong&gt;GRU 대하여 알아보자!&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;LSTM과 같이 vanishing gradient문제를 해결하면서도 파라미터의 수를 줄여 계산 복잡도를 감소시키기 위해 GRU model이 소개되었습니다.  GRU는 cell state와 hidden state를 결합하여 하나의 hidden state로 나타냄과 동시에 forget gate와 input gate를 결합한 update gate를 제안 합니다. Figure 4에서 확인할 수 있듯이 GRU의 구조는 LSTM에 비해 훨씬 간단합니다.&lt;/p&gt;
+&lt;figure class=&quot;align-center&quot;&gt;
+  &lt;img src=&quot;http://localhost:4000//assets/images/MIT6.S191/lec2/GRU.png&quot; alt=&quot;&quot; /&gt;
+  &lt;figcaption&gt;Fig 4. GRU 구조도&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;GRU가 가지는 cell들은 아래와 같습니다:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;GRU:&lt;/p&gt;
+
+  &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;z_t = \sigma(\mathbf{W}_z\cdot [h_{t-1},x_t]+b_z),&lt;/script&gt; &lt;br /&gt;
+&lt;script type=&quot;math/tex&quot;&gt;r_t = \sigma(\mathbf{W}_i\cdot [h_{t-1},x_t]+b_r),&lt;/script&gt; &lt;br /&gt;
+&lt;script type=&quot;math/tex&quot;&gt;\widetilde{h}_t=tanh(\mathbf{W}_c\cdot[h_{t-1},x_t]+b_c),&lt;/script&gt; &lt;br /&gt;
+&lt;script type=&quot;math/tex&quot;&gt;h_t=(1-z_t)\times h_{t-1} + z_t \times \widetilde{h}_t.&lt;/script&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;$z_t$는 update gate의 계산 방식입니다. GRU의 reset gate는 모델이 과거 정보의 얼마만큼을 다음 스텝으로 전달해야 하는지 결정하는데 도움을 줍니다. $r_t$가 바로 reset gate이며 이름처럼 지난 정보를 얼마나 사용하지 않을지를 결정하고 있습니다. 나머지 부분은 vinilla RNN과 LSTM에서 보신 것과 매우 흡사 합니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;rnn-application&quot;&gt;&lt;strong&gt;RNN application&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;RNN은 다음과 같이 여러 방면에서 활용되고 있습니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Music generation&lt;/li&gt;
+  &lt;li&gt;Sentiment classification&lt;/li&gt;
+  &lt;li&gt;Machine translation&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;마무리&quot;&gt;&lt;strong&gt;마무리&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;사실 sentiment classification의 경우 Yoon Kim 님의 textCNN이 나온 이후로 CNN구조에 비해 크게 좋은 성능을 보이고 있지 못하고 있습니다. CNN에서도 text의 감성이나 주제를 분류하기 위하여 많은 연구들이 제안되어 왔었구요. 현재 RNN의 가장 큰 활용 분야는 역시 machine translation과 (visual)Q&amp;amp;A가 아닐까 싶습니다. BERT와 같은 훌륭한 pretrained model도 나왔고 앞으로 계속 더 발전하지 않을까 라는 개인적인 생각이 있습니다.&lt;/p&gt;
+
+&lt;p&gt;사실 많은 수업에서 CNN을 RNN보다 먼저 다루고 있는 것으로 알고 있습니다만, 본 강의에서는 RNN을 2강에서, 그리고 CNN을 3강에서 다루고 있습니다. 그럼 3강에서 CNN으로 찾아뵙겠습니다.&lt;/p&gt;</content><author><name>Seungwan Seo</name><email>zach0206@korea.ac.kr</email></author><category term="MIT" /><category term="Deep learning" /><category term="Lecture" /><category term="Basic" /><category term="RNN" /><category term="LSTM" /><category term="GRU" /><summary type="html">AGENDA 1. Introduction of basic concepts for RNN</summary></entry><entry><title type="html">2019-06-01-Introduction to Deep Learning (MIT 6.S191)</title><link href="http://localhost:4000/lectures/basic/Introduction-to-Deep-Learning-(MIT-6.S191)/" rel="alternate" type="text/html" title="2019-06-01-Introduction to Deep Learning (MIT 6.S191)" /><published>2019-06-01T00:00:00+09:00</published><updated>2019-06-01T00:00:00+09:00</updated><id>http://localhost:4000/lectures/basic/Introduction%20to%20Deep%20Learning%20(MIT%206.S191)</id><content type="html" xml:base="http://localhost:4000/lectures/basic/Introduction-to-Deep-Learning-(MIT-6.S191)/">&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;AGENDA&lt;/span&gt;
 &lt;span class=&quot;s&quot;&gt;1. Introduction of basic concepts for Deep learning&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -6,7 +148,7 @@
 
 &lt;p&gt;사족이지만 해당 class의 final project의 결과에 따라 우수한 학생에게는 RTX 2080 Ti를 상으로 제공한다고 하네요…. &lt;del&gt;MIT 만세&lt;/del&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;deep-learning은-무엇인가&quot;&gt;Deep learning은 무엇인가?&lt;/h2&gt;
+&lt;h2 id=&quot;deep-learning은-무엇인가&quot;&gt;&lt;b&gt;Deep learning은 무엇인가?&lt;/b&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;“An intelligence as the ability to process information to inform future decision.”&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -14,7 +156,7 @@
 &lt;p&gt;수업 진행자가 하는 말을 그대로 가지고 와보았습니다. 이는 결국 데이터의 패턴을 잘 파악하여 미래 데이터에 적용한 후 정보를 추출하는 일련의 과정이 됩니다. 그렇다면 어떠한 점들이 machine learning과의 차이점일까요?&lt;/p&gt;
 
 &lt;figure class=&quot;align-center&quot;&gt;
-  &lt;img src=&quot;http://localhost:4000//assets/images/ai-ml-dl.jpg&quot; alt=&quot;&quot; /&gt;
+  &lt;img src=&quot;http://localhost:4000//assets/images/MIT6.S191/lec1/ai-ml-dl.png&quot; alt=&quot;&quot; /&gt;
   &lt;figcaption&gt;Fig 1. The differences between AI, ML, and DL&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -24,35 +166,36 @@
 
 &lt;p&gt;가장 단순하게 이야기 하면 기존에 사용하던 hand-crafed features에 비하여 우리의 손을 거치지 않고 기계가 직접 중요하다고 판단한 features를 사용하는 것이 많은 분야에서 성능이 ‘훨씬’ 더 좋기 때문일 것입니다.&lt;/p&gt;
 
-&lt;h2 id=&quot;feed-forward-propagation&quot;&gt;Feed forward propagation&lt;/h2&gt;
+&lt;h2 id=&quot;feed-forward-propagation&quot;&gt;&lt;b&gt;Feed forward propagation&lt;/b&gt;&lt;/h2&gt;
 &lt;figure class=&quot;align-center&quot;&gt;
-  &lt;img src=&quot;http://localhost:4000//assets/images/ai-ml-dl.jpg&quot; alt=&quot;&quot; /&gt;
+  &lt;img src=&quot;http://localhost:4000//assets/images/MIT6.S191/lec1/MLP.png&quot; alt=&quot;&quot; /&gt;
   &lt;figcaption&gt;Fig 2. MLP&lt;/figcaption&gt;
 &lt;/figure&gt;
+
 &lt;p&gt;일반적인 neural network의 feed forward propagation은 위 그림에서 보이는 &lt;script type=&quot;math/tex&quot;&gt;x_1, x_2, x_3&lt;/script&gt;와 같은 input들과 &lt;script type=&quot;math/tex&quot;&gt;w_11, w_12, w_32&lt;/script&gt;와 같은 weight들의 dot product 로 나온 값을 비선형 함수에 input으로 사용하는 과정들을 반복한 후 최종 output이 산출 됩니다. 이 과정에서 추가되는 bias term은 activation function을 shift하는 효과를 준다고 하네요.&lt;/p&gt;
 
 &lt;p&gt;Neural network는 사실 Fig 2.에서 가운데 위치하는 hidden layer를 여려층 쌓음으로 매우 복잡한 결합함수 형태를 가집니다. 만약 선형함수를 계속 결합한다면 어떻게 될까요? 최종적인 함수의 형태도 선형 함수가 되겠죠? 그렇다면 힘들게 쌓아올린 hidden layer들이 큰 의미를 갖기 어려울 것입니다. 이러한 문제를 해결하기 위하여 neural network에서는 비선형함수인 activation function을 사용하여 모델에 비선형성을 추가해 줍니다. 이러한 특성 덕분에 neural net은 매우 비선형적인 현실 데이터에서도 높은 성능을 지닐 수 있게 됩니다.&lt;/p&gt;
 
 &lt;p&gt;가장 유명하고 오래 쓰인 activation function은 sigmoid 함수 입니다. sigmoid 함수는 인풋을 0-1로 바꾸어주기 때문에 모델을 통하여 확률을 구하고자 하는 경우에 상당히 유용한 함수가 될것이라고 강의자는 말하고 있습니다. 또 하나의 유용하고 유명한 함수는 Rectified Liner Unit (ReLU) 입니다. ReLU의 경우 0보다 작은 input은 무시하고 0보다 큰 값에 대하여서는 인풋이 아웃풋이 되는 &lt;script type=&quot;math/tex&quot;&gt;y=x&lt;/script&gt; 형태를 띄고 있습니다. 이러한 특성 때문에 picewise linearity라고 불리죠. 이렇게 단순한 함수로 충분한지 의심이 드실텐데요, ReLU는 굉장히 선형적으로 생겼음에도 불구하고 모든 중요한 속성을 보존함과 동시에 연산이 쉽기 때문에 최근 대부분의 모델에서 사용하고 있습니다.&lt;/p&gt;
 
-&lt;h2 id=&quot;building-neural-network-with-perceptrons&quot;&gt;Building neural network with Perceptrons&lt;/h2&gt;
+&lt;h2 id=&quot;building-neural-network-with-perceptrons&quot;&gt;&lt;strong&gt;Building neural network with Perceptrons&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;그림 2에서 &lt;script type=&quot;math/tex&quot;&gt;h_1&lt;/script&gt;은 inputs과 weights를 사용한 weighted sum 형태가 됩니다. 이렇게 weighted sum이 된 값에 activation function을 거쳐 neuron 하나의 output이 산출되죠. Hidden unit이 많아져도 neuron마다 찬찬히 살펴보면 단순히 하나의 neuron을 가진 perceptron network (그림 2) 와 다를바가 없습니다. 물론 weights들의 값이 다르기 때문에 &lt;script type=&quot;math/tex&quot;&gt;h1, h2&lt;/script&gt;의 값은 각각 다르겠지요. 이렇게 빽빽하게 weight가 연결된 구조를 우리는 dense layer라고 부릅니다. Deep Neural Network또한 이러한 구조와 크게 다르지 않은데, 단순히 계속적으로 엄청 많이 계속 계속 이러한 dense layer을 stack하게 되면 그것이 DNN이 됩니다.&lt;/p&gt;
 
-&lt;h2 id=&quot;applying-neural-networks&quot;&gt;Applying Neural Networks&lt;/h2&gt;
+&lt;h2 id=&quot;applying-neural-networks&quot;&gt;&lt;strong&gt;Applying Neural Networks&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;굉장히 뜨겁고 모든 것을 해줄것만 같은 deep learning model또한 물론 만능이 아닙니다. 사람이 봤을때도 합리적인 판단을 모델이 하기 위해서 우리는 모델을 ‘잘’ 학습 시켜야만 하죠. 우리는 실제 정답을 ground truth, model이 예측한 정답을 predicted output이라 부르며 이 둘의 차이를 점차 줄여나가는 과정을 학습이라 부릅니다. 이처럼 실제 정답과 모델이 추측한 정답을 줄여나가기 위하여 세우는 함수인 Loss function (NLL, cross-entrophy, MSE와 같은 다양한 방법들이 있습니다)을 정의하는 것은 machine learning의 art에 속합니다.&lt;/p&gt;
 
-&lt;h2 id=&quot;training-neural-networks&quot;&gt;Training Neural Networks&lt;/h2&gt;
+&lt;h2 id=&quot;training-neural-networks&quot;&gt;&lt;strong&gt;Training Neural Networks&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;위에서 우리는 모델을 잘 학습 시켜야 한다고 말하였습니다. 그렇다면 학습을 시킨다는 것은 무엇을 의미하는 것일까요? 모델을 학습 시키는 궁극적인 목표는 모델이 가지고 있는 파라미터 W (weights)를 최적화 하는 것입니다.
 여기서 최적화의 의미는 predicted output과 ground truth의 차이를 최소화 하는 것이 됩니다.
 하지만 Neural network는 위에서 말한 것 처럼 상당히 많은 layer (function)가 stack되어 있기 때문에 최적해를 closed form으로 구할 수 없는 문제점을 가지고 있습니다.
 이러한 어려운 상황에서 해를 구하기 위해서 우리는 gradient descent와 backpropagation을 사용합니다.&lt;/p&gt;
 
-&lt;h2 id=&quot;neural-networks-in-practice&quot;&gt;Neural Networks in practice&lt;/h2&gt;
-&lt;h3 id=&quot;optimization&quot;&gt;optimization&lt;/h3&gt;
+&lt;h2 id=&quot;neural-networks-in-practice&quot;&gt;&lt;strong&gt;Neural Networks in practice&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;optimization&quot;&gt;Optimization&lt;/h3&gt;
 &lt;p&gt;DNN은 매우 복잡한 결합함수 형태를 띄고 있기 때문에 구조적으로 매우 많은 local minimum이 존재하고 initial point에 따라 이런 local minimum에 빠질수도, 저런 local minimum에 빠질 수도 있습니다.
 이 때문에 optimization (adam, adadelta, RMSprop, …) 연구도 매우 활발히 진행 되었으나 최근에는 주춤하는 모습인것 같습니다. 본인이 선호하는 optimizer를 사용하는 추세이며 ‘local optimum에 빠지더라도 충분히 좋다’ 라는게 &lt;del&gt;학계의 정설&lt;/del&gt; 입니다.&lt;/p&gt;
 
-&lt;h3 id=&quot;overfitting&quot;&gt;overfitting&lt;/h3&gt;
+&lt;h3 id=&quot;overfitting&quot;&gt;Overfitting&lt;/h3&gt;
 &lt;p&gt;Model은 새로운 데이터 (test set)에 대해서도 강건함을 목표로 학습됩니다. 다시 말해, 처음 보는 데이터에 대해서도 학습때의 성능을 보여주길 바라며 모델을 학습 시키죠. 하지만 간혹 학습 데이터를 완전히 외워버리는 모델들이 등장하곤 하는데 이러한 경우 새로운 데이터에 대한 성능은 현저히 떨어질 수 밖에 없습니다. 학습 데이터를 온전히 외워버리기 때문에 새로운 데이터에 대해서 대처하지 못하는 상황이기 때문이죠. 이러한 현상을 우리는 overfitting이라 부릅니다.&lt;/p&gt;
 
 &lt;h3 id=&quot;regulaization&quot;&gt;Regulaization&lt;/h3&gt;
@@ -62,8 +205,8 @@
 &lt;p&gt;두 번째 방식은 early stopping이라 불리는 트릭 입니다.
 이름과 같이 말 그대로 빠르게 학습을 중단시키는 방식인데 그 기준은 training error는 계속 낮아지지만 validation error가 올라가는 지점입니다. Training set은 학습에 계속 사용 되지만 validation set은 학습에 사용되지 않기 때문에 validation error가 올라간다는 것은 모델이 overfitting되어 test set의 performance도 떨어질 것이라는 가정을 담고 있는 것이죠.&lt;/p&gt;
 
-&lt;h2 id=&quot;마무리&quot;&gt;마무리&lt;/h2&gt;
-&lt;p&gt;기본적인 컨셉을 잡는 강의었습니다. 구글이나 유튜브에 ‘MIT 6.S191’를 검색하시면 슬라이드와 강의 영상을 쉽게 찾으실 수 있으니 관심 있으신 분들은 꼭 본 강의를 참고 부탁드립니다!&lt;/p&gt;</content><author><name>Seungwan Seo</name><email>zach0206@korea.ac.kr</email></author><category term="MIT" /><category term="Deep learning" /><category term="Lecture" /><category term="FGSM" /><category term="fast gradient sign method" /><summary type="html">AGENDA 1. Introduction of basic concepts for Deep learning</summary></entry><entry><title type="html">Explaining and Harnessing Adversarial Examples</title><link href="http://localhost:4000/adversarial%20example/explaining&harnessing-adversarial-examples/" rel="alternate" type="text/html" title="Explaining and Harnessing Adversarial Examples" /><published>2019-05-22T00:00:00+09:00</published><updated>2019-05-22T00:00:00+09:00</updated><id>http://localhost:4000/adversarial%20example/explaining&amp;harnessing%20adversarial%20examples</id><content type="html" xml:base="http://localhost:4000/adversarial%20example/explaining&amp;harnessing-adversarial-examples/">&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;AGENDA&lt;/span&gt;
+&lt;h2 id=&quot;마무리&quot;&gt;&lt;strong&gt;마무리&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;기본적인 컨셉을 잡는 강의었습니다. 구글이나 유튜브에 ‘MIT 6.S191’를 검색하시면 슬라이드와 강의 영상을 쉽게 찾으실 수 있으니 관심 있으신 분들은 꼭 본 강의를 참고 부탁드립니다!&lt;/p&gt;</content><author><name>Seungwan Seo</name><email>zach0206@korea.ac.kr</email></author><category term="MIT" /><category term="Deep learning" /><category term="Lecture" /><category term="Basic" /><category term="activation function" /><category term="Regulaization" /><category term="overfitting" /><category term="optimization" /><summary type="html">AGENDA 1. Introduction of basic concepts for Deep learning</summary></entry><entry><title type="html">Explaining and Harnessing Adversarial Examples</title><link href="http://localhost:4000/adversarial%20example/explaining&harnessing-adversarial-examples/" rel="alternate" type="text/html" title="Explaining and Harnessing Adversarial Examples" /><published>2019-05-22T00:00:00+09:00</published><updated>2019-05-22T00:00:00+09:00</updated><id>http://localhost:4000/adversarial%20example/explaining&amp;harnessing%20adversarial%20examples</id><content type="html" xml:base="http://localhost:4000/adversarial%20example/explaining&amp;harnessing-adversarial-examples/">&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;AGENDA&lt;/span&gt;
 &lt;span class=&quot;s&quot;&gt;1. What are the adversarial examples&lt;/span&gt;
 &lt;span class=&quot;s&quot;&gt;2. Explaining and Harnessing Adversarial Examples 논문 설명&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -71,7 +214,7 @@
 &lt;p&gt;Adversarial example에 대하여 생소하신 분들이 있으실 수 있으니, 우선 간략히 해당 개념에 대하여 영상과 함께 설명 드리겠습니다.
 그 후 본 포스트의 주제인 Explaining and Harnessing Adversarial Examples 논문에 대하여 설명 드리겠습니다.&lt;/p&gt;
 
-&lt;h2 id=&quot;adversarial-example이란-무엇인가&quot;&gt;Adversarial example이란 무엇인가?&lt;/h2&gt;
+&lt;h2 id=&quot;adversarial-example이란-무엇인가&quot;&gt;&lt;strong&gt;Adversarial example이란 무엇인가?&lt;/strong&gt;&lt;/h2&gt;
 
 &lt;iframe width=&quot;640&quot; height=&quot;360&quot; src=&quot;https://www.youtube.com/embed/i1sp4X57TL4&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 
@@ -96,12 +239,12 @@ Adversarial attack의 종류와 의미는 다음과 같습니다(여기서 말�
 &lt;p&gt;한 가지 더 언급할 점은 black-box attack의 경우 공격자가 target model의 parameter를 모르기 때문에 공격이 불가능 합니다. 이에 공격자가 가지고 있는 데이터를 이용하여 target model의 분류 경계면을 근사하는 모델을 하나 만들어 낸 후 해당 모델의 parameter를 이용하여 adversarial example을 생성하는 flow를 가집니다. 이러한 특성상 black-box attack이 방어를 하는 입장에서는 white-box attack보다 쉬운 경향을 띄게 됩니다.&lt;/p&gt;
 
 &lt;figure class=&quot;align-center&quot;&gt;
-  &lt;img src=&quot;http://localhost:4000//assets/images/adv_exm.jpg&quot; alt=&quot;&quot; /&gt;
+  &lt;img src=&quot;http://localhost:4000//assets/images/paper/adv_example/FGSM/adv_exm.jpg&quot; alt=&quot;&quot; /&gt;
   &lt;figcaption&gt;Fig 1. Examples of adversarial examples&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;Fig 1.에서 위쪽 행은 clean images이며 아래쪽 행은 adversarial examples입니다. 이미지 아래 보이는 숫자와 기호는 모델이 위의 이미지를 보고 분류한 class를 나타내고 있습니다. 자율주행 자동차가 카메라로 사물을 인식하며 움직이다가 위와 같이 adversarial example을 만나 오분류를 하게 된다면 정말 끔찍한 일이 아닐 수 없습니다. 이러한 문제 인식을 통하여 모델 자체(연구) 뿐만 아니라 실생활에서도 본 문제를 꼭 해결해야 한다는 경각심을 가질 수 있습니다.&lt;/p&gt;
 
-&lt;h2 id=&quot;explaining-and-harnessing-adversarial-examples&quot;&gt;Explaining and Harnessing Adversarial Examples&lt;/h2&gt;
+&lt;h2 id=&quot;explaining-and-harnessing-adversarial-examples&quot;&gt;&lt;strong&gt;Explaining and Harnessing Adversarial Examples&lt;/strong&gt;&lt;/h2&gt;
 
 &lt;p&gt;Adversarial example이 대략 이런거구나 라고 생각 하셨을테니, 이제 본격적으로 본 논문을 소개 드리도록 하겠습니다.&lt;/p&gt;
 
@@ -132,7 +275,7 @@ Adversarial attack의 종류와 의미는 다음과 같습니다(여기서 말�
 &lt;p&gt;본 포스트의 상단부에서 말씀드린 adversarial example의 통상적인 정의에 따라 공격자는 사람이 인지하지 못할 만큼 작은 $\eta$를 원본 이미지에 더하여 target model을 속이는 것을 목표로 하고 있습니다.&lt;/p&gt;
 
 &lt;figure class=&quot;align-center&quot;&gt;
-  &lt;img src=&quot;http://localhost:4000//assets/images/fgsm.jpg&quot; alt=&quot;&quot; /&gt;
+  &lt;img src=&quot;http://localhost:4000//assets/images/paper/adv_example/FGSM/fgsm.jpg&quot; alt=&quot;&quot; /&gt;
   &lt;figcaption&gt;Fig 2. FGSM&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -140,5 +283,5 @@ Adversarial attack의 종류와 의미는 다음과 같습니다(여기서 말�
 
 &lt;p&gt;본 논문에서 저자들은 adversarial training이라는 개념을 통하여 이러한 공격을 어느정도 막을 수 있다고 언급하고 있습니다. 하지만 최근 연구 동향은 이러한 adversarial training이 여러 공격 패턴에 robust하지 못하다는 점을 조금 critical하게 생각하고 크게 사용하지 않는 추세 입니다. Adversarial training은 간략히 말해서 생성된 adversarial example을 모델이 학습하는 동안 clean data와 함께 학습시키는 방식 입니다. 직관적으로 생각해봐도 공격 방법이 늘어날수록 모든 공격방법으로 얻은 adversarial example을 획득한 다음 모든 data를 학습에 이용해야 하니 상당히 비효율 적일 것 같네요.&lt;/p&gt;
 
-&lt;h2 id=&quot;마무리&quot;&gt;마무리&lt;/h2&gt;
+&lt;h2 id=&quot;마무리&quot;&gt;&lt;strong&gt;마무리&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;이로써 첫 번째 포스팅이 마무리 되었습니다. 어떠신가요? 저는 이 분야를 공부하면서 매우 새롭고 신비로웠습니다. 지금도 그렇구요. 여러분들도 조금의 흥미 그리고 믿고 있던 DNN에 대해서 회의를 느끼는 시간이 되셨으면 좋겠습니다.&lt;/p&gt;</content><author><name>Seungwan Seo</name><email>zach0206@korea.ac.kr</email></author><category term="adversarial examples" /><category term="ICLR" /><category term="Explaining and Harnessing Adversarial Examples" /><category term="FGSM" /><category term="fast gradient sign method" /><summary type="html">AGENDA 1. What are the adversarial examples 2. Explaining and Harnessing Adversarial Examples 논문 설명</summary></entry></feed>
