@@ -6,7 +6,7 @@ comments: true
 sidebar:
   - title: "MIT 6.S191"
   - title: "Lecture 1"
-  - title: "Year : 2019"
+  - title: "Year - 2019"
 use_math: true
 sitemap :
   changefreq : daily
