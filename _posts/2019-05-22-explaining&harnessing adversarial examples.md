@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Explaining and Harnessing Adversarial Examples"
 classes: wide
 author_profile: false
@@ -10,8 +9,6 @@ sidebar:
   - title: "Year : 2014"
   - title: "Citation : 2208 (2019.05.22)"
 use_math: true
-date:   2016-03-14 12:00:00 
-lastmod : 2016-03-15 12:00:00
 sitemap :
   changefreq : daily
   priority : 1.0
