@@ -94,12 +94,12 @@ Vision domain에서 가장 대표적인 task는 classification입니다. 모델�
 
 수업에서 제시하는 예시는 다음과 같습니다. 사람은 아래 두 이미지 모두 x로 판단하겠죠.
 <figure class="align-left">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec3/x_image.gif" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec3/x_image.png" alt="">
 </figure>
 
 하지만 기존의 방식으로는 이러한 variation에 강건하기 힘듭니다.하지만 우리는 shited, shrunk, rotated, deformed와 같은 variation에대해 모델이 강건하기를 바라며 이러한 이유로 convolution 연산을 사용합니다.
 <figure class="align-left">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec3/x_1_image.gif" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec3/x_1_image.png" alt="">
 </figure>
 
  위의 figure와 같이 3x3 filter가 stride 1로 움직이며 연산을 하다보면 왜곡된 이미지임에도 불구하고 동일한 featrue를 강건하게 추출할 수 있게 됩니다.
@@ -113,7 +113,7 @@ CNN은 아래와 같은 propertise를 가집니다.
 * Pooling : 각 feature map에 downsampling 진행(max나 average pooling)
 
 <figure class="align-left">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec3/ReLU.gif" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec3/ReLU.png" alt="">
     <figcaption>ReLU function</figcaption>
 </figure>
 
