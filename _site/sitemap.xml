@@ -2,15 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
-        <loc>http://localhost:4000/lectures/basic/Recurrent-Neural-Networks-(MIT-6.S191)/</loc>
+        <loc>http://localhost:4000/archive/Deep-Learning-for-Computer-Vision-(MIT-6.S191)</loc>
     </url>
     
     <url>
-        <loc>http://localhost:4000/lectures/basic/Introduction-to-Deep-Learning-(MIT-6.S191)/</loc>
+        <loc>http://localhost:4000/archive/Recurrent-Neural-Networks-(MIT-6.S191)</loc>
     </url>
     
     <url>
-        <loc>http://localhost:4000/adversarial%20example/explaining&harnessing-adversarial-examples/</loc>
+        <loc>http://localhost:4000/archive/Introduction-to-Deep-Learning-MIT-6.S191</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/archive/FGSM</loc>
     </url>
     
 
@@ -20,7 +24,7 @@
     
     
     <url>
-        <loc>http://localhost:4000/category/adversarial%20example/</loc>
+        <loc>http://localhost:4000/categories/adversarial%20example</loc>
     </url>
     
     
@@ -36,7 +40,7 @@
     
     
     <url>
-        <loc>http://localhost:4000/category/basic/</loc>
+        <loc>http://localhost:4000/categories/basic</loc>
     </url>
     
     
@@ -78,6 +82,14 @@
     
     
     <url>
+        <loc>http://localhost:4000/categories/</loc>
+    </url>
+    
+    
+    
+    
+    
+    <url>
         <loc>http://localhost:4000/profile/</loc>
     </url>
     
@@ -86,7 +98,7 @@
     
     
     <url>
-        <loc>http://localhost:4000/category/lecture/</loc>
+        <loc>http://localhost:4000/categories/lectures</loc>
     </url>
     
     

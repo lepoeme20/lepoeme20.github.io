@@ -5,36 +5,49 @@
         <description>고려대학교 DSBA Lab </description>      
         <link>http://localhost:4000</link>
         <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Fri, 07 Jun 2019 00:00:00 +0900</lastBuildDate>
+        <lastBuildDate>Thu, 13 Jun 2019 00:00:00 +0900</lastBuildDate>
+        
+            <item>
+                <title>Deep Learning for Computer Vision-MIT 6.S191</title>
+                        
+                
+                    <description>&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;AGENDA&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;1. Introduction of basic concepts for CNN&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+</description>
+                
+                <pubDate>Thu, 13 Jun 2019 00:00:00 +0900</pubDate>
+                <link>http://localhost:4000/archive/Deep-Learning-for-Computer-Vision-(MIT-6.S191)</link>
+                <guid isPermaLink="true">http://localhost:4000/archive/Deep-Learning-for-Computer-Vision-(MIT-6.S191)</guid>
+            </item>
         
             <item>
                 <title>Recurrent Neural Networks-MIT 6.S191</title>
                         
                 
-                    <description>&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;AGENDA&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;1. Introduction of basic concepts for RNN&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+                    <description>&lt;p&gt;```yaml
+Recurrent Neural Networks-MIT 6.S191&lt;/p&gt;
 
 </description>
                 
                 <pubDate>Fri, 07 Jun 2019 00:00:00 +0900</pubDate>
-                <link>http://localhost:4000/lectures/basic/Recurrent-Neural-Networks-(MIT-6.S191)/</link>
-                <guid isPermaLink="true">http://localhost:4000/lectures/basic/Recurrent-Neural-Networks-(MIT-6.S191)/</guid>
+                <link>http://localhost:4000/archive/Recurrent-Neural-Networks-(MIT-6.S191)</link>
+                <guid isPermaLink="true">http://localhost:4000/archive/Recurrent-Neural-Networks-(MIT-6.S191)</guid>
             </item>
         
             <item>
                 <title>Introduction to Deep Learning-MIT 6.S191</title>
                         
                 
-                    <description>&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;AGENDA&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;1. Introduction of basic concepts for Deep learning&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+                    <description>&lt;p&gt;```yaml
+Introduction to Deep Learning&lt;/p&gt;
 
 </description>
                 
                 <pubDate>Sat, 01 Jun 2019 00:00:00 +0900</pubDate>
-                <link>http://localhost:4000/lectures/basic/Introduction-to-Deep-Learning-(MIT-6.S191)/</link>
-                <guid isPermaLink="true">http://localhost:4000/lectures/basic/Introduction-to-Deep-Learning-(MIT-6.S191)/</guid>
+                <link>http://localhost:4000/archive/Introduction-to-Deep-Learning-MIT-6.S191</link>
+                <guid isPermaLink="true">http://localhost:4000/archive/Introduction-to-Deep-Learning-MIT-6.S191</guid>
             </item>
         
             <item>
@@ -49,8 +62,8 @@
 </description>
                 
                 <pubDate>Wed, 22 May 2019 00:00:00 +0900</pubDate>
-                <link>http://localhost:4000/adversarial%20example/explaining&harnessing-adversarial-examples/</link>
-                <guid isPermaLink="true">http://localhost:4000/adversarial%20example/explaining&harnessing-adversarial-examples/</guid>
+                <link>http://localhost:4000/archive/FGSM</link>
+                <guid isPermaLink="true">http://localhost:4000/archive/FGSM</guid>
             </item>
         
     </channel>
