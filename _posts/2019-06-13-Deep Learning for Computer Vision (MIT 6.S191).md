@@ -29,11 +29,10 @@ AGENDA
 
 컴퓨터는 사물을 어떻게 인식할까요? 우리가 이미지를 보는 것 처럼 똑같이 인식할 수 있을까요? 인지공학이나 뇌공학을 모르기 때문에 확신할 수는 없지만 아마 그렇지 않을 것 같습니다. 그 이유는 컴퓨터에게 이미지는 숫자들의 나열 그 이상도 그 이하도 아니기 때문이죠. 흑백 사진인 gray scaled image같은 경우는 정말 단순한 2D matrix 이며, color image의 경우에는 3D tensor가 됩니다. 아래와 같이 말이죠.
 
-<figure class="align-left">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec3/image.png" alt="">
-  <figcaption>Images are numbers(Credit:MIT6.S191)</figcaption>
-</figure>
-
+<p align="center">
+  <img width="900" height="650" src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec3/image.png">
+  <figcaption style="text-align: center;">Images are numbers(Credit:MIT6.S191)</figcaption>
+</p>
 이번 강의는 이러한 이미지를 computer가 보다 잘 분류할 수 있는 Convolutional Neural Network에 대해서 소개하고 있습니다.
 
 ## **Tasks in Computer Vision**
@@ -42,10 +41,10 @@ Vision domain에서 가장 대표적인 task는 classification입니다. 모델�
 
 이러한 분류 문제를 풀기 위하여 전통적으로 feature를 manually 추출 하였습니다. 물론 성능이 좋고 지금까지도 여러 분야에서 쓰이는 hand-crafted feature 방식들이 있지만 이러한 방식에서는 occlusion, deformation, illumination과 같은 이미지의 variation에 강건하지 못한 치명적인 한계가 있습니다. 다시 말해, 동일한 class임에도 불구하고 이미지의 단순한 shifting에도 분류 정확도가 매우 떨어지는 문제를 지니죠. 아래는 여러 이미지 variation에 대한 예제 입니다.
 
-<figure class="align-left">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec3/variations.png" alt="">
-  <figcaption>Examples of image variation types.</figcaption>
-</figure>
+<p align="center">
+  <img width="900" height="650" src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec3/variations.png">
+  <figcaption style="text-align: center;">Examples of image variation types</figcaption>
+</p>
 
 그렇다면 이러한 한계를 어떻게 해결할 수 있을까요? 이에 대해서 연구자들이 내린 답은 classifier (model)에게 직접 중요한 feature를 추출하도록 하면 해결되지 않을까? 였습니다.
 
@@ -53,10 +52,10 @@ Vision domain에서 가장 대표적인 task는 classification입니다. 모델�
 
 ### Fully Connected Neural Network (FCN)
 
-<figure class="align-left">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec3/FCN.png" alt="">
-  <figcaption>Fully Connected Neural Network.</figcaption>
-</figure>
+<p align="center">
+  <img width="900" height="650" src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec3/FCN.png">
+  <figcaption style="text-align: center;">Fully Connected Neural Network</figcaption>
+</p>
 
 위의 이미지에 보이는 구조가 fully connected neural network입니다. FCN는 위에서 보이는 것처럼 모든 neuron이 연결되어 있는 구조입니다. 하지만 FCN은 input image의 위치 정보를 보존할 수 없으며 update해야할 parameter가 매우 많다는 단점이 있습니다.
 
@@ -81,10 +80,10 @@ Vision domain에서 가장 대표적인 task는 classification입니다. 모델�
 
 아래 gif를 확인해보죠.
 
-<figure class="align-left">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec3/conv.gif" alt="">
-  <figcaption>Convolution operation.</figcaption>
-</figure>
+<p align="center">
+  <img width="900" height="650" src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec3/conv.gif">
+  <figcaption style="text-align: center;">Convolution operation</figcaption>
+</p>
 
 위의 gif는 3x3 filter가 stride 2인 경우 어떻게 연산이 되는지를 보여줍니다. 순서는 다음과 같습니다. Input image에 pixel값과 filter의 weight 값이 elementwise 곱해집니다. 그 후 연산된 값들을 모두 더 해 feature map의 한 pixel값이 됩니다. Filter는 stride의 크기만큼 image (feature map)을 건너띄며 convolution 연산을 진행합니다. 첫 번째 filter가 image (feature map) 전체에 대한 연산을 마무리 하면 두 번째 filter가, 그 후에는 또 그 다음 filter가 순차적으로 convolution 연산을 진행합니다. 최종적으로 하나의 filter마다 하나의 feature map이 생성되게 됩니다.
 
@@ -93,14 +92,16 @@ Vision domain에서 가장 대표적인 task는 classification입니다. 모델�
 그렇다면 이러한 방식은 hand-crafted feature들에 비해 장점을 가질까요?
 
 수업에서 제시하는 예시는 다음과 같습니다. 사람은 아래 두 이미지 모두 x로 판단하겠죠.
-<figure class="align-left">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec3/x_image.png" alt="">
-</figure>
+
+<p align="center">
+  <img width="900" height="650" src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec3/x_image.png">
+</p>
 
 하지만 기존의 방식으로는 이러한 variation에 강건하기 힘듭니다.하지만 우리는 shited, shrunk, rotated, deformed와 같은 variation에대해 모델이 강건하기를 바라며 이러한 이유로 convolution 연산을 사용합니다.
-<figure class="align-left">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec3/x_1_image.png" alt="">
-</figure>
+
+<p align="center">
+  <img width="900" height="650" src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec3/x_1_image.png">
+</p>
 
  위의 figure와 같이 3x3 filter가 stride 1로 움직이며 연산을 하다보면 왜곡된 이미지임에도 불구하고 동일한 featrue를 강건하게 추출할 수 있게 됩니다.
 
@@ -112,10 +113,10 @@ CNN은 아래와 같은 propertise를 가집니다.
 * Non-linearity : Convolution 연산 이후에 비선형성을 추가해주기 위한 activation function 진행(일반적으로 ReLU-아래 figure 참조) 사용
 * Pooling : 각 feature map에 downsampling 진행(max나 average pooling)
 
-<figure class="align-left">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec3/ReLU.png" alt="">
-    <figcaption>ReLU function</figcaption>
-</figure>
+<p align="center">
+  <img width="900" height="650" src="{{ site.url }}{{ site.baseurl }}/assets/images/MIT6.S191/lec3/ReLU.png">
+  <figcaption style="text-align: center;">ReLU function</figcaption>
+</p>
 
 ### Receptive field
 
