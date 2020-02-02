@@ -1,0 +1,72 @@
+Deep Learning for Computer Vision MIT 6.S191
+
+# What computers "See"
+Images are Numbers : 이미지는 단순히 pixel 값들의 모임이다.
+gray scale : 2d matrix
+color image : 3d tensor
+
+가장 대표적인 task는 classification이다.
+모델이 인풋 이미지에 대해서 classification을 하기 위해서는 각 class의 특징적인 properties를 파악하는 능력이 있어야 한다
+예를 들어 사람은 눈과 코와 입이 있고, 자동차는 바퀴와 창문 좌석등이 있을 것이다
+전통적으로 이러한 feature를 manually 추출 하였다.
+하지만 이러한 방식에서는 occlusion, deformation, illumination과 같은 이미지의 variation에 강건하지 못한 치명적인 한계를 지닌다.
+그렇다면 이러한 한계를 어떻게 해결할 수 있을까?
+Classifier (model)에게 직접 중요한 feature를 추출하도록 하면 해결되지 않을까?
+
+# Learning Visual Features
+## Fully connected Neural Network
+Input : 2D image, Vector of pixel values
+Fully Connected: Connect neuron in hidden layer to all neurons in input layer,
+                 No spatial information
+                 And many, many parameters
+
+그렇다면 어떻게 Input의 위치 정보를 network에서 사용할 수 있을까?
+
+## Using Spatial Structure
+Input : 2D image. Array of pixel values
+Idea : connect patches of input to neurons in hidden layer.
+Connect patch in input layer to a single neuron in subsequent layer.
+Use a sliding window to define connections.
+How can we weight the patch to detect particular features?
+
+## Applying Filters (set of weights) 
+1) Apply a filter to extract local features
+2) Use multiply filters to extract different features
+3) Spatially share parameters of each filter
+
+## Feature Extraction with Convolution
+Filter of size 4x4 : 16 different weights
+Apply this same filter to 4x4 patches in input
+shift bt 2 pixels for next patch
+
+This "patchy" operation is Convolution
+
+# Feature Extraction and Convolution A Case Study
+그렇다면 이러한 방식은 hand-crafted feature들에 비해 장점을 가지는가? 어떻게?
+
+사람은 아래 두 이미지 모두 x로 판단할 것이다. 하지만 기존의 방식으로는 이러한 variation에 강건하기 힘들다.
+하지만 우리는 shited, shrunk, rotated, deformed와 같은 variation에 강건하기를 바라며 이러한 이유로 convolution 연산을 사용한다.
+conv 연산은 아래와 같이 이루어 진다.
+.gif가 필요하겠는데..?
+
+# Convolutional Neural Networks (CNNs)
+1. convolution : Apply filters with learned weights to generate feature maps.
+2. Non-linearity : Often ReLU (After every conv operation)
+3. Pooling : Downsampling operation on each feature maps
+
+## receptive field:
+A neuron in a downstream layer is only connected to a particular location in its respective input layer 
+
+## Feature Learning
+1. Learn features in input image through convolution
+2. Introduce non-linearity through activation function (real-world data is non-linear!)
+3. Reduce dimensionality and preserve spatial invariance with pooling
+
+## Class Probabilities
+CONV and POOL layers output high-level features of input
+- Fully connected layer uses these features for classifying input image
+- Express output as probability of image belonging to a particular class
+
+## Backpropagation
+Learn weights for convolutional filters and fully connected layers
+Backpropagation: cross-entropy loss

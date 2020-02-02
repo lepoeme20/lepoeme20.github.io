@@ -9,9 +9,6 @@ sidebar:
   - title: "Year : 2014"
   - title: "Citation : 2208 (2019.05.22)"
 use_math: true
-sitemap :
-  changefreq : daily
-  priority : 1.0
 categories : 
   - adversarial example
 tags: 

@@ -1,0 +1,570 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.13.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Explaining and Harnessing Adversarial Examples - lepoeme’s Blog</title>
+<meta name="description" content="AGENDA1. What are the adversarial examples2. Explaining and Harnessing Adversarial Examples 논문 설명">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="lepoeme's Blog">
+<meta property="og:title" content="Explaining and Harnessing Adversarial Examples">
+<meta property="og:url" content="http://localhost:4000/adversarial%20example/Introduction-to-Deep-Learning-(MIT-6/">
+
+
+  <meta property="og:description" content="AGENDA1. What are the adversarial examples2. Explaining and Harnessing Adversarial Examples 논문 설명">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-06-01T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/adversarial%20example/Introduction-to-Deep-Learning-(MIT-6/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "lepoeme20",
+      "url": "http://localhost:4000/",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="lepoeme's Blog Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    
+      <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+    
+  </head>
+
+  <body class="layout--single wide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">lepoeme's Blog</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/" >Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories-archive/" >Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/profile/" >Profile</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      <h3>Domain</h3>
+      <p>Adversarial example</p>
+
+    
+      
+      <h3>Year : 2014</h3>
+      
+    
+      
+      <h3>Citation : 2208 (2019.05.22)</h3>
+      
+    
+    
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Explaining and Harnessing Adversarial Examples">
+    <meta itemprop="description" content="AGENDA1. What are the adversarial examples2. Explaining and Harnessing Adversarial Examples 논문 설명">
+    <meta itemprop="datePublished" content="June 01, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Explaining and Harnessing Adversarial Examples
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        ```yaml
+AGENDA
+1. What are the adversarial examples
+2. Explaining and Harnessing Adversarial Examples 논문 설명
+```
+
+Adversarial example에 대하여 생소하신 분들이 있으실 수 있으니, 우선 간략히 해당 개념에 대하여 영상과 함께 설명 드리겠습니다.
+그 후 본 포스트의 주제인 Explaining and Harnessing Adversarial Examples 논문에 대하여 설명 드리겠습니다.
+
+## Adversarial example이란 무엇인가?
+
+<iframe width="640" height="360" src="https://www.youtube.com/embed/i1sp4X57TL4" frameborder="0" allowfullscreen></iframe>
+
+위의 영상을 보시면 바나나가 있습니다. 바나나가 홀로 있을 때와, 영상 초반에 깨끗해 보이는 이미지 패치 (사람이 들고 있는 작은 이미지)를 바나나 옆에 두었을 때는 학습해둔 모델이 100%에 가까운 confidence로 바나나를 분류 하고 있습니다(초록색 그래프).
+하지만 영상 중반부에 나오는 이상하게 생긴 이미지 패치를 바나나 옆에 두게 되면 모델은 이전과 다르게 100%에 가까운 confidence로 바나나를 토스터기로 **오분류** 하고 있음을 볼 수 있죠.
+이와 같이 모델이 오분류를 하게끔 하는 패치를 "Adversarial patch", 모델이 오분류를 하게끔 noise를 더한 이미지를 adversarial example이라 부릅니다.
+
+Adversarial example의 통상적인 정의는 아래와 같습니다:
+> Original input에 매우 작은 noise를 더하여(perturbation) 사람의 눈에는 차이가 없어 보이나 분류기는 잘못 분류 하도록 변형된 input
+
+Adversarial example을 만들어 내는 행위를 adversarial attack이라 칭하며, 이를 방어하는 행위는 defense against adversarial attack 이라 부릅니다.<br/>
+Adversarial attack의 종류와 의미는 다음과 같습니다(여기서 말하는 종류는 세세한 모델이 아니라 큰 흐름을 의미합니다):
+* White-box attack - 공격자가 target model (e.g. classifier)의 parameters를 알고 있는 상황
+* Black-box attack - 공격자가 target model (e.g. classifier)의 parameters를 모르는 상황
+* Targeted attack - Adversarial example이 공격자가 원하는 class로 target classifier가 오분류 하도록 공격하는 방식
+* Untargeted attack - Adversarial example이 true class가 아닌 어떠한 class로 target classifier가 오분류 하도록 공격하는 방식
+
+한 가지 더 언급할 점은 black-box attack의 경우 공격자가 target model의 parameter를 모르기 때문에 공격이 불가능 합니다. 이에 공격자가 가지고 있는 데이터를 이용하여 target model의 분류 경계면을 근사하는 모델을 하나 만들어 낸 후 해당 모델의 parameter를 이용하여 adversarial example을 생성하는 flow를 가집니다. 이러한 특성상 black-box attack이 방어를 하는 입장에서는 white-box attack보다 쉬운 경향을 띄게 됩니다.
+
+<figure class="align-center">
+  <img src="http://localhost:4000//assets/images/adv_exm.jpg" alt="">
+  <figcaption>Fig 1. Examples of adversarial examples</figcaption>
+</figure> 
+Fig 1.에서 위쪽 행은 clean images이며 아래쪽 행은 adversarial examples입니다. 이미지 아래 보이는 숫자와 기호는 모델이 위의 이미지를 보고 분류한 class를 나타내고 있습니다. 자율주행 자동차가 카메라로 사물을 인식하며 움직이다가 위와 같이 adversarial example을 만나 오분류를 하게 된다면 정말 끔찍한 일이 아닐 수 없습니다. 이러한 문제 인식을 통하여 모델 자체(연구) 뿐만 아니라 실생활에서도 본 문제를 꼭 해결해야 한다는 경각심을 가질 수 있습니다.
+
+## Explaining and Harnessing Adversarial Examples
+
+Adversarial example이 대략 이런거구나 라고 생각 하셨을테니, 이제 본격적으로 본 논문을 소개 드리도록 하겠습니다.
+
+본 논문에서는 adversarial example을 연구함으로써 엔지니어들의 학습 algoritms에 대한 blind spots을 찾을 수 있다고 언급하고 있습니다. 저에게는 이 말이 보다 사람다운 모델과 사람다운 학습 방식을 찾아야 한다는 의미로 들리더군요.
+또한 이전까지는 adversarial example에 대하여 모델은 완전하나 이를 사용하는 engineer가 매우 비선형적인 Deep Neural Network (DNN)을 제대로 이해하지 못하고 모델을 제대로 학습시키지 못했기 때문에 발생하는 특수 케이스라고 여겼습니다. 하지만 본 논문에서는 이러한 추측이 틀렸음을 실험을 통하여 보여주고 있죠.
+
+한 가지 재미 있는 사실은 본 논문에서 activation fuction으로 기존에 사용하던 sigmoid 혹은 ReLU를 사용하지 않고 RBF를 사용하면 adversarial noise에 보다 강건한 모델이 됨을 언급하고 있습니다.
+> 다시 말해 DNN은 우리가 생각하는 것 만큼 non-linear 하지 않습니다.
+
+생각을 해본다면 ReLU의 경우 최적화를 위해 태생이 매우 linear한 구조를 띄고 있습니다. 또한 sigmoid의 경우에도 모델을 학습 하다 보면 선형성을 지닌 부분에 많은 activation이 된다는 언급도 본 논문의 저자들은 잊지 않고 있네요.
+
+하지만 이렇게 말로써 우리가 비선형적이라고 생각했던 모델은 사실 선형적이었어! 라고 한다면 이렇게까지 주목받는 논문이 되지 못했겠죠. 저자들은 매우 선형적인 공격 방식으로 생성한 adversarial example이 '**비선형적**' 이라고 알려진 DNN (maxout)을 얼마나 잘 속이는지 실험을 통해 보여줍니다. 본 논문에서 사용하는 공격 방식은 Fast Gradient Sign Method (FGSM)이라고 불리며 식은 아래와 같습니다:
+> FGSM:
+>
+> $$ \eta = \epsilon(\nabla_x J(\theta, x, y)) $$,
+>
+> where J는 target model의 목적식, $\theta$는 모델의 파라미터, x와 y는 각각 input과 output 이며 $\epsilon$은 노이즈의 크기를 결정하는 상수 
+
+위에서 구한 $\eta$를 원본 이미지에 더해주어 나온 이미지가 adversarial example이 되며 식은 아래와 같습니다:
+>$$\widetilde{x} = x + \eta$$
+
+본 포스트의 상단부에서 말씀드린 adversarial example의 통상적인 정의에 따라 공격자는 사람이 인지하지 못할 만큼 작은 $\eta$를 원본 이미지에 더하여 target model을 속이는 것을 목표로 하고 있습니다. 
+
+<figure class="align-center">
+  <img src="http://localhost:4000//assets/images/fgsm.jpg" alt="">
+  <figcaption>Fig 2. FGSM</figcaption>
+</figure> 
+
+위의 2번 이미지를 보면 57.7%의 confidence를 가지고 팬더를 팬더로 인식하는 모델을 속이기 위하여 FGSM 방식으로 얻은 noise를 원본 이미지에 더해주고 있습니다. 이러한 과정을 거쳐 나온 이미지, adversarial example은 모델이 99.3%의 confidence로 긴팔 원숭이로 분류하고 있음을 확인 할 수 있습니다. 심지어 생성된 노이즈는 8.2%의 confidence로 선형동물로 인식되는 매우 의미 없는 문자 그대로의 nosie인데도 말이죠. 그리고 위에서 노이즈 앞에 보이시는 0.007이라는 수가 위 식에서 보셨던 noise의 크기를 결정하는 $\epsilon$입니다. 
+
+본 논문에서 저자들은 adversarial training이라는 개념을 통하여 이러한 공격을 어느정도 막을 수 있다고 언급하고 있습니다. 하지만 최근 연구 동향은 이러한 adversarial training이 여러 공격 패턴에 robust하지 못하다는 점을 조금 critical하게 생각하고 크게 사용하지 않는 추세 입니다. Adversarial training은 간략히 말해서 생성된 adversarial example을 모델이 학습하는 동안 clean data와 함께 학습시키는 방식 입니다. 직관적으로 생각해봐도 공격 방법이 늘어날수록 모든 공격방법으로 얻은 adversarial example을 획득한 다음 모든 data를 학습에 이용해야 하니 상당히 비효율 적일 것 같네요.
+
+## 마무리
+이로써 첫 번째 포스팅이 마무리 되었습니다. 어떠신가요? 저는 이 분야를 공부하면서 매우 새롭고 신비로웠습니다. 지금도 그렇구요. 여러분들도 조금의 흥미 그리고 믿고 있던 DNN에 대해서 회의를 느끼는 시간이 되셨으면 좋겠습니다. 
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#adversarial-examples" class="page__taxonomy-item" rel="tag">adversarial examples</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#explaining-and-harnessing-adversarial-examples" class="page__taxonomy-item" rel="tag">Explaining and Harnessing Adversarial Examples</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#fast-gradient-sign-method" class="page__taxonomy-item" rel="tag">fast gradient sign method</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#fgsm" class="page__taxonomy-item" rel="tag">FGSM</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#iclr" class="page__taxonomy-item" rel="tag">ICLR</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#adversarial-example" class="page__taxonomy-item" rel="tag">adversarial example</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-06-01T00:00:00+09:00">June 01, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Explaining+and+Harnessing+Adversarial+Examples%20http%3A%2F%2Flocalhost%3A4000%2Fadversarial%2520example%2FIntroduction-to-Deep-Learning-%28MIT-6%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fadversarial%2520example%2FIntroduction-to-Deep-Learning-%28MIT-6%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=http%3A%2F%2Flocalhost%3A4000%2Fadversarial%2520example%2FIntroduction-to-Deep-Learning-%28MIT-6%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fadversarial%2520example%2FIntroduction-to-Deep-Learning-%28MIT-6%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/adversarial%20example/explaining&harnessing-adversarial-examples/" class="pagination--pager" title="Explaining and Harnessing Adversarial Examples
+">Previous</a>
+    
+    
+      <a href="/lectures/basic/Introduction-to-Deep-Learning-(MIT-6.S191)/" class="pagination--pager" title="2019-06-01-Introduction to Deep Learning (MIT 6.S191)
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/500x300.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/lectures/basic/Introduction-to-Deep-Learning-(MIT-6.S191)/" rel="permalink">2019-06-01-Introduction to Deep Learning (MIT 6.S191)
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">AGENDA
+1. Introduction of basic concepts for Deep learning
+
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/500x300.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/adversarial%20example/explaining&harnessing-adversarial-examples/" rel="permalink">Explaining and Harnessing Adversarial Examples
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">AGENDA
+1. What are the adversarial examples
+2. Explaining and Harnessing Adversarial Examples 논문 설명
+
+
+</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2019 lepoeme20. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/adversarial%20example/explaining&harnessing-adversarial-examples/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/adversarial%20example/explaining&harnessing adversarial examples"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://lepoeme20.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140652840-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-140652840-1');
+</script>
+
+
+  </body>
+</html>
