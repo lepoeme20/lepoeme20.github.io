@@ -20,12 +20,12 @@ Graduate student in Korea Univ. Seoul, Korea
 
 ### Specialized in
 
-Deep learning, Machine learning, Anomaly detection
+Deep learning, Machine learning
 
 
 ### Research interests
 
-Image process, Adversarial example
+Computer vision (Adversarial example & GANs)
 
 
 ## Education
@@ -49,23 +49,30 @@ INFORMS Annual Meeting 2018, Poster Competition Session
 ## Publications
 
 ### Journals
+`2020`
+Unusual customer response identification and visualization based on text mining and anomaly detection \\
+*<font size="2">Expert Systems with Applications, Volume 144, April 2020, 113111</font>*
+
+Comparative Study of Deep Learning-Based Sentiment Classification \\
+*<font size="2">IEEE Access, Volume 8, January 2020, Pages 6861 - 6875</font>*
 
 `2019`
-Recurrent neural network-based semantic variational autoencoder for Sequence-to-sequence learning
-
-Information Sciences, Volume 490, July 2019, Pages 59-73
+Recurrent neural network-based semantic variational autoencoder for Sequence-to-sequence learning \\
+*<font size="2">Information Sciences, Volume 490, July 2019, Pages 59-73</font>*
 
 `2018`
-Sentiment classification with word localization based on weakly supervised learning with a convolutional neural network
-
-Knowledge-Based Systems Volume 152, 15 July 2018, Pages 70-82
+Sentiment classification with word localization based on weakly supervised learning with a convolutional neural network \\
+*<font size="2">Knowledge-Based Systems Volume 152, 15 July 2018, Pages 70-82</font>*
 
 ## Projects
 
-`2019.06 - `
+`2019.06 - current`
 사회적 약자를 보호하기 위한 인공지능 기반의 CCTV 영상 속 폭력행위 실시간 탐지 및 모니터링 기술 개발
 
-`2019.06 - `
+`2019.09 - current`
+해양 이미지 생성 및 해양 unseen data 분류 정확도 향상을 위한 방법론 연구
+
+`2019.03 - 2019.09`
 게임 로그로부터 노이즈에 강건한 패턴 탐지 및 축약 방법론 연구
 
 `2018.03 - 2019.03`
