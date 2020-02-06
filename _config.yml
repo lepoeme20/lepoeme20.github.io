@@ -16,14 +16,14 @@ style:  davewhipp
 
 # Site Settings
 locale                   : "en-US"
-title                    : "lepoeme's Blog"
+title                    : "지도교수님의 권유로 시작하는 블로그"
 title_separator          : "-"
 name                     : "lepoeme20"
 description              : "고려대학교 DSBA Lab "
 url                      : "https://lepoeme20.github.io"
 baseurl                  : "/"
 repository               : "lepoeme20/lepoeme20"
-teaser                   : "/assets/images/500x300.png"
+teaser                   : # "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
