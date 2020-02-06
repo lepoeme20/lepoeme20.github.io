@@ -5,7 +5,33 @@
         <description>고려대학교 DSBA Lab </description>      
         <link>http://localhost:4000</link>
         <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Thu, 13 Jun 2019 00:00:00 +0900</lastBuildDate>
+        <lastBuildDate>Thu, 06 Feb 2020 00:00:00 +0900</lastBuildDate>
+        
+            <item>
+                <title>Rotate display on terminal</title>
+                        
+                
+                    <description>
+</description>
+                
+                <pubDate>Thu, 06 Feb 2020 00:00:00 +0900</pubDate>
+                <link>http://localhost:4000/archive/rotate-display-on-terminal</link>
+                <guid isPermaLink="true">http://localhost:4000/archive/rotate-display-on-terminal</guid>
+            </item>
+        
+            <item>
+                <title>Setup ubuntu for deeplearning</title>
+                        
+                
+                    <description>&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;본 포스터는 https://www.pytorials.com 를 참조하였습니다.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+</description>
+                
+                <pubDate>Thu, 06 Feb 2020 00:00:00 +0900</pubDate>
+                <link>http://localhost:4000/archive/Set-up-ubuntu-for-deeplearning</link>
+                <guid isPermaLink="true">http://localhost:4000/archive/Set-up-ubuntu-for-deeplearning</guid>
+            </item>
         
             <item>
                 <title>Deep Learning for Computer Vision-MIT 6.S191</title>
