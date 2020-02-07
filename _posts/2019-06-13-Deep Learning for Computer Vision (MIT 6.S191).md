@@ -1,6 +1,5 @@
 ---
 title: "Deep Learning for Computer Vision-MIT 6.S191"
-classes: wide
 author_profile: false
 comments: true
 sidebar:
@@ -9,8 +8,8 @@ sidebar:
   - title: "Year : 2019"
 use_math: true
 categories : 
-  - lectures
-  - basic
+  - Lectures
+  - Basic
 sitemap :
   changefreq : daily
   priority : 1.0
@@ -20,6 +19,9 @@ tags:
   - Lecture
   - Basic
   - CNN
+toc: true
+toc_sticky: true
+toc_label: "Page Index"
 ---
 
 ```yaml

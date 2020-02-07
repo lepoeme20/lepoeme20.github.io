@@ -1,14 +1,14 @@
 ---
 title: "Rotate display on terminal"
-author_profile: false
+author_profile: true
 comments: true
 use_math: true
 sitemap :
   changefreq : daily
   priority : 1.0
 categories : 
-  - ubuntu
-  - remote
+  - Ubuntu
+  - Remote
 tags: 
   - ubuntu
   - xrandr

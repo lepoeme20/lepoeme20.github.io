@@ -11,7 +11,7 @@ sitemap :
   changefreq : daily
   priority : 1.0
 categories : 
-  - ubuntu
+  - Ubuntu
 tags: 
   - ubuntu
   - nvidia

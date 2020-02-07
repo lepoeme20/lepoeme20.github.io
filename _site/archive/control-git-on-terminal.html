@@ -9,38 +9,38 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Rotate display on terminal - 지도교수님의 권유로 시작하는 블로그</title>
-<meta name="description" content="이번 포스터에서는 terminal에서 display를 회전하는 방법에 대하여 살표보겠습니다.">
+<!-- begin _includes/seo.html --><title>Control git on terminal - 지도교수님의 권유로 시작하는 블로그</title>
+<meta name="description" content="이번 포스터에서는 github repository와 local folder를 연동하여 repository를 관리하는 방법에 대하여 알아보겠습니다.">
 
 
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="지도교수님의 권유로 시작하는 블로그">
-<meta property="og:title" content="Rotate display on terminal">
-<meta property="og:url" content="http://localhost:4000/archive/rotate-display-on-terminal">
+<meta property="og:title" content="Control git on terminal">
+<meta property="og:url" content="http://localhost:4000/archive/control-git-on-terminal">
 
 
-  <meta property="og:description" content="이번 포스터에서는 terminal에서 display를 회전하는 방법에 대하여 살표보겠습니다.">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2020-02-06T00:00:00+09:00">
+  <meta property="og:description" content="이번 포스터에서는 github repository와 local folder를 연동하여 repository를 관리하는 방법에 대하여 알아보겠습니다.">
 
 
 
 
 
-  
+
+
+  <meta property="article:published_time" content="2020-02-07T00:00:00+09:00">
+
+
+
+
 
   
 
+  
 
-<link rel="canonical" href="http://localhost:4000/archive/rotate-display-on-terminal">
+
+<link rel="canonical" href="http://localhost:4000/archive/control-git-on-terminal">
 
 
 
@@ -286,15 +286,15 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Rotate display on terminal">
-    <meta itemprop="description" content="이번 포스터에서는 terminal에서 display를 회전하는 방법에 대하여 살표보겠습니다.">
-    <meta itemprop="datePublished" content="February 06, 2020">
+    <meta itemprop="headline" content="Control git on terminal">
+    <meta itemprop="description" content="이번 포스터에서는 github repository와 local folder를 연동하여 repository를 관리하는 방법에 대하여 알아보겠습니다.">
+    <meta itemprop="datePublished" content="February 07, 2020">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Rotate display on terminal
+          <h1 id="page-title" class="page__title" itemprop="headline">Control git on terminal
 </h1>
           
             <!-- <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
@@ -302,9 +302,9 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 
 
-  less than 1 minute read
+  1 minute read
 </p> -->
-            <p class="page__meta"><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated: <time datetime="2020-02-06T00:00:00+09:00">February 06, 2020</time></p>
+            <p class="page__meta"><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated: <time datetime="2020-02-07T00:00:00+09:00">February 07, 2020</time></p>
           
         </header>
       
@@ -314,33 +314,140 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Page Index</h4></header>
-              
+              <ul class="toc__menu">
+  <li><a href="#git-설치">Git 설치</a></li>
+  <li><a href="#local-folder-연동">Local folder 연동</a></li>
+  <li><a href="#repository에-push하기">Repository에 push하기</a></li>
+  <li><a href="#git-status">git status</a></li>
+  <li><a href="#항상-무시할-파일-지정">항상 무시할 파일 지정</a></li>
+  <li><a href="#마무리">마무리</a></li>
+</ul>
             </nav>
           </aside>
         
-        <p>이번 포스터에서는 terminal에서 display를 회전하는 방법에 대하여 살표보겠습니다.</p>
+        <p>이번 포스터에서는 github repository와 local folder를 연동하여 repository를 관리하는 방법에 대하여 알아보겠습니다.</p>
 
-<p>저는 보조 모니터를 세로형으로 사용하고 있습니다. 이런 상황에서 vnc viewer와 같이 원격 viewer를 사용할 때 세로형 모니터를 Landscape (정방향)으로 돌려주지 않으면 매우 불편한 상황들이 많기 때문에 매우 유용하게 사용하는 명령어 중 하나 입니다.</p>
+<h2 id="git-설치"><strong>Git 설치</strong></h2>
 
-<p>우선 <code class="highlighter-rouge">xrandr</code> 명령어를 통해 어떤 port (DP-0, DP-1, HDMI-0, and etc)에 screen이 있는지 확인할 수 있습니다.</p>
+<p>우선 아래 명령어를 통하여 git을 설치하겠습니다.</p>
 
-<p><img src="/assets/images/ubuntu/rotate_display.png" alt="xrandr example" title="xrandr example" width="650" height="550" /></p>
-
-<p>저의 경우에는 HDMI-0과 DP-2에 연결이 되어 있네요.
-HDMI-0을 회전한 후 정렬까지 해보겠습니다:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xrandr <span class="nt">--output</span> HDMI-0 <span class="nt">--rotate</span> normal
-xrandr <span class="nt">--output</span> DP-2 <span class="nt">--pos</span> 3840x0
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>git
 </code></pre></div></div>
 
-<p>이후 다시 세로형 모니터로 전환하기 위해 아래의 명령어를 입력하시면 됩니다:</p>
+<p>이후 버전 확인은 아래와같이 할 수 있습니다.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xrandr <span class="nt">--output</span> HDMI-0 <span class="nt">--rotate</span> left
-xrandr <span class="nt">--output</span> DP-2 <span class="nt">--pos</span> 2160x800
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git <span class="nt">--version</span>
 </code></pre></div></div>
 
-<p>position같은 경우에는 해상도 별로 둬야하는 위치가 달라지기 때문에 각자 상황에 맞게 변경해 주시면 되겠습니다!</p>
+<h2 id="local-folder-연동"><strong>Local folder 연동</strong></h2>
 
+<p>git을 설치하셨다면 다음 step은 git repository와 local folder를 연동하는 것 입니다.
+(git repository는 생성되어 있다고 가정합니다)</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># local folder로 이동</span>
+<span class="nb">cd</span> /path/to/local/folder
+
+<span class="c"># git 시작</span>
+git init
+git remote add origin your/repository/url
+git remote <span class="nt">-v</span>
+</code></pre></div></div>
+
+<h2 id="repository에-push하기"><strong>Repository에 push하기</strong></h2>
+
+<p>github repository에 push, 즉 sync되어 있는 repository를 update 하기 위해서는 아래 세 가지 step이 필요합니다.</p>
+
+<ol>
+  <li>add</li>
+  <li>commit</li>
+  <li>push</li>
+</ol>
+
+<p>간략히 살펴보자면 아래와 같습니다.</p>
+
+<ul>
+  <li>add
+    <ul>
+      <li>Repository를 update 하기 위한 파일을 선택합니다</li>
+    </ul>
+  </li>
+  <li>commit
+    <ul>
+      <li>git을 사용하는 이유라고 생각해도 무방한 version을 생성하는 명령어 입니다</li>
+    </ul>
+  </li>
+  <li>push
+    <ul>
+      <li>선택한 파일들을 생성한 version으로 update 합니다</li>
+    </ul>
+  </li>
+</ul>
+
+<p>사용법은 아래와 같습니다</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 모든 파일 add</span>
+git add <span class="nb">.</span>
+
+<span class="c"># "First update" 라는 이름으로 commit 진행</span>
+git commit <span class="nt">-m</span> <span class="s2">"First update"</span>
+
+<span class="c"># push</span>
+git push origin master
+</code></pre></div></div>
+
+<h2 id="git-status"><strong>git status</strong></h2>
+
+<p>하지만 항상 모든 파일을 <code class="highlighter-rouge">git add .</code> 으로 add를 한다면 원하지 않는 파일을 add 하거나, 변경된 모든 파일을 하나로 commit 할 수 밖에 없는 단점이 있습니다.</p>
+
+<p>이러한 상황에서 유용하게 사용할 수 있는 명령어가 <code class="highlighter-rouge">git status</code> 입니다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git status
+</code></pre></div></div>
+
+<p>git sataus를 입력하시면 어떤 파일들에 수정이 있었는지(modified files) 쉽게 알 수 있습니다. 그럼 원하는 파일만 아래와 같이 add 할 수 있겠죠.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add file1 file2
+</code></pre></div></div>
+
+<p>뿐만 아니라 새로운 파일인 untracked files에 대한 정보도 확인 가능합니다.</p>
+
+<h2 id="항상-무시할-파일-지정"><strong>항상 무시할 파일 지정</strong></h2>
+
+<p>github에는 40M 이상 용량을 차지하는 파일을 올릴 수 없습니다. 그럼 폴더에 데이터가 있으면 어쩌죠? 혹은 .idea나 cache file들 처럼 원하지 않으나 생성되는, 그래서 지저분해 보이는 파일들을 항상 수동으로 관리 해야 할까요?</p>
+
+<p>이와같이 코드에는 필요하나 repository에는 ‘항상’ add 하지 않을 파일들을 지정할 수 있습니다.</p>
+
+<p><code class="highlighter-rouge">.gitignore</code> 파일로 말이죠!</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># open .gitignore using your favorite editor</span>
+vim .gitignore
+</code></pre></div></div>
+
+<p>이후 아래와같이 .gitignore 파일을 원하시는대로 수정해 주시면 됩니다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">## Ignore files ##</span>
+
+.idea
+path/to/large/file
+</code></pre></div></div>
+
+<p>만약 commit을 진행 한 후 <code class="highlighter-rouge">.gitignore</code> file에 내용을 수정하셨다면 <code class="highlighter-rouge">git add .</code> <code class="highlighter-rouge">git commit</code> <code class="highlighter-rouge">git push</code>를 하셔도 지정된 파일이 repository에서 삭제되지 않음을 볼 수 있습니다.</p>
+
+<p>이런 경우에는 아래의 명령어를 입력해 주시면 해결 가능 합니다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git <span class="nb">rm</span> <span class="nt">-r</span> <span class="nt">--cached</span> <span class="nb">.</span> <span class="c"># remove cache</span>
+
+git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"Update .gitignore"</span>
+git push origin master
+</code></pre></div></div>
+
+<h2 id="마무리"><strong>마무리</strong></h2>
+
+<p>이번 포스터에서는 git에 관련된 매우 필수적인, 그리고 유용한 명령어들을 살펴보았습니다.</p>
+
+<p>그럼 다음 포스터로 뵙겠습니다.</p>
 
         
       </section>
@@ -361,19 +468,11 @@ xrandr <span class="nt">--output</span> DP-2 <span class="nt">--pos</span> 2160x
     
       
       
-      <a href="/tags/#display" class="page__taxonomy-item" rel="tag">display</a><span class="sep">, </span>
+      <a href="/tags/#git" class="page__taxonomy-item" rel="tag">git</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#rotate" class="page__taxonomy-item" rel="tag">rotate</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#ubuntu" class="page__taxonomy-item" rel="tag">ubuntu</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#xrandr" class="page__taxonomy-item" rel="tag">xrandr</a>
+      <a href="/tags/#ubuntu" class="page__taxonomy-item" rel="tag">ubuntu</a>
     
     </span>
   </p>
@@ -394,7 +493,7 @@ xrandr <span class="nt">--output</span> DP-2 <span class="nt">--pos</span> 2160x
     
       
       
-      <a href="/categories/#remote" class="page__taxonomy-item" rel="tag">Remote</a><span class="sep">, </span>
+      <a href="/categories/#git" class="page__taxonomy-item" rel="tag">Git</a><span class="sep">, </span>
     
       
       
@@ -405,7 +504,7 @@ xrandr <span class="nt">--output</span> DP-2 <span class="nt">--pos</span> 2160x
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-02-06T00:00:00+09:00">February 06, 2020</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-02-07T00:00:00+09:00">February 07, 2020</time></p>
         
       </footer>
 
@@ -414,23 +513,22 @@ xrandr <span class="nt">--output</span> DP-2 <span class="nt">--pos</span> 2160x
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Rotate+display+on+terminal%20http%3A%2F%2Flocalhost%3A4000%2Farchive%2Frotate-display-on-terminal" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Control+git+on+terminal%20http%3A%2F%2Flocalhost%3A4000%2Farchive%2Fcontrol-git-on-terminal" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Farchive%2Frotate-display-on-terminal" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Farchive%2Fcontrol-git-on-terminal" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Farchive%2Frotate-display-on-terminal" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Farchive%2Fcontrol-git-on-terminal" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/archive/Set-up-ubuntu-for-deeplearning" class="pagination--pager" title="Setup ubuntu for deeplearning
+      <a href="/archive/rotate-display-on-terminal" class="pagination--pager" title="Rotate display on terminal
 ">Previous</a>
     
     
-      <a href="/archive/control-git-on-terminal" class="pagination--pager" title="Control git on terminal
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -454,14 +552,14 @@ xrandr <span class="nt">--output</span> DP-2 <span class="nt">--pos</span> 2160x
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="/archive/control-git-on-terminal" rel="permalink">Control git on terminal
+        <a href="/archive/rotate-display-on-terminal" rel="permalink">Rotate display on terminal
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-calendar-alt" aria-hidden="true"></i> Updated: <time datetime="2020-02-07T00:00:00+09:00">February 07, 2020</time></p>
+      <p class="page__meta"><i class="far fa-calendar-alt" aria-hidden="true"></i> Updated: <time datetime="2020-02-06T00:00:00+09:00">February 06, 2020</time></p>
     
-    <p class="archive__item-excerpt" itemprop="description">이번 포스터에서는 github repository와 local folder를 연동하여 repository를 관리하는 방법에 대하여 알아보겠습니다.
+    <p class="archive__item-excerpt" itemprop="description">이번 포스터에서는 terminal에서 display를 회전하는 방법에 대하여 살표보겠습니다.
 
 </p>
   </article>

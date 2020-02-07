@@ -2,6 +2,6 @@
 
 layout: category
 
-title: adversarial example
+title: Adversarial example
 
 ---

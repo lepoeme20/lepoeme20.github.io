@@ -1,6 +1,5 @@
 ---
 title: "Introduction to Deep Learning-MIT 6.S191"
-classes: wide
 author_profile: false
 comments: true
 sidebar:
@@ -9,8 +8,8 @@ sidebar:
   - title: "Year : 2019"
 use_math: true
 categories : 
-  - lectures
-  - basic
+  - Lectures
+  - Basic
 tags: 
   - MIT
   - Deep learning
@@ -20,6 +19,9 @@ tags:
   - Regulaization
   - overfitting
   - optimization
+toc: true
+toc_sticky: true
+toc_label: "Page Index"
 ---
 
 ```yaml
