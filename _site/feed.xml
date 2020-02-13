@@ -5,7 +5,33 @@
         <description>고려대학교 DSBA Lab </description>      
         <link>http://localhost:4000</link>
         <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Fri, 07 Feb 2020 00:00:00 +0900</lastBuildDate>
+        <lastBuildDate>Thu, 13 Feb 2020 00:00:00 +0900</lastBuildDate>
+        
+            <item>
+                <title>SSH on Ubuntu 18.04</title>
+                        
+                
+                    <description>&lt;p&gt;이번 포스터에서는 원격 제어의 꽃인 Secure Shell Protocol (SSH)의 사용법에 대하여 알아보겠습니다.&lt;/p&gt;
+
+</description>
+                
+                <pubDate>Thu, 13 Feb 2020 00:00:00 +0900</pubDate>
+                <link>http://localhost:4000/archive/ssh</link>
+                <guid isPermaLink="true">http://localhost:4000/archive/ssh</guid>
+            </item>
+        
+            <item>
+                <title>conda 가상환경 사용하기</title>
+                        
+                
+                    <description>&lt;p&gt;이번 포스터에서는 python virtual environment, 아나콘다를 활용한 파이썬 가상환경 구축에 대하여 알아보겠습니다.&lt;/p&gt;
+
+</description>
+                
+                <pubDate>Thu, 13 Feb 2020 00:00:00 +0900</pubDate>
+                <link>http://localhost:4000/archive/conda</link>
+                <guid isPermaLink="true">http://localhost:4000/archive/conda</guid>
+            </item>
         
             <item>
                 <title>Control git on terminal</title>
