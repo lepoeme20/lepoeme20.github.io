@@ -5,7 +5,24 @@
         <description>고려대학교 DSBA Lab </description>      
         <link>http://localhost:4000</link>
         <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Thu, 13 Feb 2020 00:00:00 +0900</lastBuildDate>
+        <lastBuildDate>Wed, 13 May 2020 00:00:00 +0900</lastBuildDate>
+        
+            <item>
+                <title>About GANs and Adversarial Training</title>
+                        
+                
+                    <description>&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;AGENDA&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;1. GANs&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;2. Adversarial examples&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;3. Adversarial training&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+</description>
+                
+                <pubDate>Wed, 13 May 2020 00:00:00 +0900</pubDate>
+                <link>http://localhost:4000/archive/ADV_Training</link>
+                <guid isPermaLink="true">http://localhost:4000/archive/ADV_Training</guid>
+            </item>
         
             <item>
                 <title>SSH on Ubuntu 18.04</title>
