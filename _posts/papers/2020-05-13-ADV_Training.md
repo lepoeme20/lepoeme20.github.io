@@ -1,6 +1,6 @@
 ---
 title: "About GANs and Adversarial Training"
-author_profile: false
+author_profile: true
 comments: true
 use_math: true
 sitemap :
