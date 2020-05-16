@@ -66,5 +66,12 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 ## **Install Nvidia Docker**
 Docker version 
 ```console
-sudo apt-get remove docker docker-engine docker.io containerd runc
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+
+sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
+sudo systemctl restart docker
 ```
+
+Nvidia docker의 경우 최신 버전의 도커(2020 이후, docker version 19.03 이후)를 사용하시는 경우 설치 하지 않으셔도 GPU 자원을 사용하실 수 있습니다. 
