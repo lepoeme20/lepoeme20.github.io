@@ -1,0 +1,764 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.13.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Deeplearning을 위한 Docker 사용하기 - 크리니의 탐구생활</title>
+<meta name="description" content="진행 환경- Ubuntu 18.04- docker version: 19.03- CUDA 10.2 &amp; cuDNN 설치 ">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="크리니의 탐구생활">
+<meta property="og:title" content="Deeplearning을 위한 Docker 사용하기">
+<meta property="og:url" content="http://localhost:4000/archive/use-docker">
+
+
+  <meta property="og:description" content="진행 환경- Ubuntu 18.04- docker version: 19.03- CUDA 10.2 &amp; cuDNN 설치 ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-05-16T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/archive/use-docker">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "lepoeme20",
+      "url": "http://localhost:4000/",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="크리니의 탐구생활 Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+<script data-ad-client="ca-pub-6150728808077226" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+      <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+    
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">크리니의 탐구생활</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/" >Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories-archive/" >Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/profile/" >Profile</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Seungwan Seo</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Graduate student in </br> DSBA Lab. Korea Univ. </br></br> Interested in computer vision </br> Especially GANs && </br> Adversarial example
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Seoul, Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://www.linkedin.com/in/lepoeme"><i class="fas fa-fw fa-link" aria-hidden="true"></i> LinkedIn</a></li>
+          
+        
+          
+            <li><a href="https://github.com/lepoeme20"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:zach0206@korea.ac.kr">
+            <meta itemprop="email" content="zach0206@korea.ac.kr" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Deeplearning을 위한 Docker 사용하기">
+    <meta itemprop="description" content="진행 환경- Ubuntu 18.04- docker version: 19.03- CUDA 10.2 &amp; cuDNN 설치 ">
+    <meta itemprop="datePublished" content="May 16, 2020">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Deeplearning을 위한 Docker 사용하기
+</h1>
+          
+            <!-- <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p> -->
+            <p class="page__meta"><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated: <time datetime="2020-05-16T00:00:00+09:00">May 16, 2020</time></p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Page Index</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#image">Image</a>
+    <ul>
+      <li><a href="#create-dockerfile">Create Dockerfile</a></li>
+      <li><a href="#build-docker-image">Build docker image</a></li>
+      <li><a href="#create-container">Create container</a></li>
+      <li><a href="#run-docker-container">Run docker container</a></li>
+    </ul>
+  </li>
+</ul>
+            </nav>
+          </aside>
+        
+        <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">진행 환경</span>
+<span class="pi">-</span> <span class="s">Ubuntu </span><span class="m">18.04</span>
+<span class="pi">-</span> <span class="na">docker version</span><span class="pi">:</span> <span class="m">19.03</span>
+<span class="pi">-</span> <span class="s">CUDA 10.2 &amp; cuDNN 설치</span> 
+</code></pre></div></div>
+
+<p><strong>연구실에서 서버 및 도커를 사용할 기회를 주신 지도교수님께 무한한 감사를 드립니다</strong> <a href="http://dsba.korea.ac.kr/">(DSBA lab)</a></p>
+
+<p>Docker에서 image와 container를 생성하고 사용해봅시다.</p>
+
+<h2 id="image"><strong>Image</strong></h2>
+<p><a href="https://hub.docker.com/">Docker Hub</a>에 들어가시면 github에 repository를 관리하는 것 처럼, official하게 또 개인이 개인의 목적을 가지고 생성한 docker image들이 있습니다. Ubuntu, CentOS와 같은 OS는 물론이며 postgresql, mysql, mongoDB와 같은 툴들도 이미지화 되어 업로드 되어 있죠. 본 포스트에서는 deeplearning을 하기 위한 환경을 구축하려 합니다.</p>
+
+<p>Deep learining framework을 사용하기 위한 가장 대표적인 이미지는 <a href="https://hub.docker.com/r/ufoym/deepo/">Deepo</a> 입니다. 본 이미지에는 pytorch, tensorflow는 물론 keras, theano, 심지어 darknet까지 일반적으로 필요로 하는 라이브러리들을 모두 포함하고 있습니다. Docker hub에 있는 deepo를 사용하기 위해서는 git pull과 같이 <code class="highlighter-rouge">docker pull ufoym/deepo:all-jupyter-py36-cu102</code>와 같은 명령어를 사용하면 됩니다. 하지만 이와같이 모든 라이브러리가 들어가있는 이미지는 매우 무겁기 때문에(10G 이상) 각자 사용하는 환경에 맞게 custom을 해주시는것을 추천 드립니다.</p>
+
+<h3 id="create-dockerfile">Create Dockerfile</h3>
+<p>Dockerfile을 사용하여 custom image를 build하는 방법을 살펴보겠습니다.
+우선 Dockerfile을 생성할 path로 이동해줍니다.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">mkdir docker #</span><span class="w"> </span>원하는 이름으로 변경 가능
+<span class="gp">vim Dockerfile #</span><span class="w"> </span>Dockerfile 생성 및 수정
+</code></pre></div></div>
+
+<p>위의 라인에서 vim 대신 vi나 nano처럼 편하신 명령어를 사용하셔서 Dockerfile을 아래처럼 생성하겠습니다.</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">#</span><span class="w"> </span>Dockerfile
+<span class="go">
+</span><span class="gp">#</span><span class="w"> </span>Pull bse image
+<span class="gp">#</span><span class="w"> </span>- 저는 cuda 10.2에 ubuntu 18.04를 사용하고 있기 때문에 아래의 이미지를 가지고 왔습니다.
+<span class="gp">#</span><span class="w"> </span>- docker hub에서 nvidia official image를 확인하시고 상황에 맞는 이미지를 가지고 오시면 되겠습니다.
+<span class="go">FROM nvidia/cuda:10.2-base-ubuntu18.04
+ENV LC_ALL=C.UTF-8
+
+</span><span class="gp">#</span><span class="w"> </span>Install basic utilities
+<span class="gp">#</span><span class="w"> </span>- ubuntu에 필요한 기본적인 것들을 설치해줍니다.
+<span class="gp">#</span><span class="w"> </span>- 더 원하시는 util이 있으시면 아래 라인에 추가 혹은 삭제 해주시면 됩니다.
+<span class="gp">RUN . /etc/os-release;</span><span class="w"> </span><span class="se">\</span>
+                <span class="nb">printf</span> <span class="s2">"deb http://ppa.launchpad.net/jonathonf/vim/ubuntu %s main"</span> <span class="s2">"</span><span class="nv">$UBUNTU_CODENAME</span><span class="s2">"</span> main | <span class="nb">tee</span> /etc/apt/sources.list.d/vim-ppa.list <span class="o">&amp;&amp;</span> <span class="se">\</span>
+                apt-key  adv <span class="nt">--keyserver</span> hkps://keyserver.ubuntu.com <span class="nt">--recv-key</span> 4AB0F789CBA31744CC7DA76A8CF63AD3F06FC659 <span class="o">&amp;&amp;</span> <span class="se">\</span>
+                apt-get update <span class="nt">--fix-missing</span> <span class="o">&amp;&amp;</span> <span class="se">\</span>
+                <span class="nb">env </span><span class="nv">DEBIAN_FRONTEND</span><span class="o">=</span>noninteractive apt-get dist-upgrade <span class="nt">--autoremove</span> <span class="nt">--purge</span> <span class="nt">--no-install-recommends</span> <span class="nt">-y</span> <span class="se">\</span>
+                        build-essential <span class="se">\</span>
+                        bzip2 <span class="se">\</span>
+                        ca-certificates <span class="se">\</span>
+                        curl <span class="se">\</span>
+                        git <span class="se">\</span>
+                        libcanberra-gtk-module <span class="se">\</span>
+                        libgtk2.0-0 <span class="se">\</span>
+                        libx11-6 <span class="se">\</span>
+                        <span class="nb">sudo</span> <span class="se">\</span>
+                        graphviz <span class="se">\</span>
+                        vim-nox
+<span class="go">
+</span><span class="gp">#</span><span class="w"> </span>Install miniconda
+<span class="gp">#</span><span class="w"> </span>- python에서 ML/DL을 사용할 것이기 때문에 여러모로 편리한 miniconda를 설치합니다.
+<span class="gp">#</span><span class="w"> </span>- 환경변수도 함께 지정해줍니다.
+<span class="go">ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
+</span><span class="gp">ENV PATH /opt/conda/bin:$</span>PATH
+<span class="go">RUN apt-get install -y wget bzip2 ca-certificates \
+    libglib2.0-0 libxext6 libsm6 libxrender1 \
+    git mercurial subversion
+</span><span class="gp">RUN wget --quiet https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh &amp;&amp; \
+    /bin/bash ~/miniconda.sh -b -p /opt/conda &amp;&amp; \
+    rm ~/miniconda.sh &amp;&amp; \
+    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh &amp;&amp; \
+    echo ". /opt/conda/etc/profile.d/conda.sh" &gt;</span><span class="o">&gt;</span> ~/.bashrc <span class="o">&amp;&amp;</span> <span class="se">\</span>
+    <span class="nb">echo</span> <span class="s2">"conda activate base"</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="gp">RUN apt-get install -y curl grep sed dpkg &amp;&amp; \
+    TINI_VERSION=`curl https://github.com/krallin/tini/releases/latest | grep -o "/v.*\"" | sed 's:^..\(.*\).$</span>:<span class="se">\1</span>:<span class="s1">'` &amp;&amp; \
+    curl -L "https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini_${TINI_VERSION}.deb" &gt; tini.deb &amp;&amp; \
+    dpkg -i tini.deb &amp;&amp; \
+    rm tini.deb &amp;&amp; \
+    apt-get clean
+</span><span class="go">
+</span><span class="gp">#</span><span class="w"> </span>Install python packages
+<span class="gp">#</span><span class="w"> </span>- python에서 사용할 패키지를 설치합니다.
+<span class="go">RUN pip install torch torchvision &amp;&amp; \
+    pip install cython &amp;&amp; \
+    pip install simplejson &amp;&amp; \
+    conda install av -c conda-forge &amp;&amp; \
+    pip install jupyterlab jupyterhub
+
+</span><span class="gp">#</span><span class="w"> </span>혹시 python 패키지를 설치하실때 원래 사용하시던 패키지에서 생성한 requirements.txt 파일을 가지고 있고,
+<span class="gp">#</span><span class="w"> </span>해당 파일을 사용하여 패키지 설치를 하고싶으시다면 아래와 같은 라인들을 추가해주시면 됩니다.
+<span class="go">
+COPY requirements.txt /tmp
+WORKDIR /tmp
+RUN pip install -r requirements.txt
+</span></code></pre></div></div>
+
+<h3 id="build-docker-image">Build docker image</h3>
+<p>생성한 Dockerfile을 사용하여 image를 빌드해보겠습니다.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">#</span><span class="w"> </span>nvidia-docker를 사용하는 경우
+<span class="gp">nvidia-docker build -t $</span>image_name <span class="nb">.</span>
+<span class="go">
+</span><span class="gp">#</span><span class="w"> </span>nvidia-docker 없이 docker만 사용하는 경우
+<span class="gp">docker build -t $</span>image_name <span class="nb">.</span>
+</code></pre></div></div>
+
+<p>일반적으로 docker image 이름은 identity/name 정도로 지정해주시면 됩니다. 예를 들어 제가 가장 많이 사용하는 이미지 이름은 sw/base 이며, 생성한 이미지는 <code class="highlighter-rouge">docker image ls</code>를 통해 확인할 수 있습니다.</p>
+
+<h3 id="create-container">Create container</h3>
+<p>빌드한 Image 위에 container를 생성해보겠습니다.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">#</span><span class="w"> </span>nvidia-docker를 사용하는 경우
+<span class="gp">nvidia-docker run -td --ipc=host --name $</span>container_name <span class="nt">-v</span> ~/code/and/data/path/on/your/host:/folder/name/on/docker <span class="nt">-p</span> 8888:8888 <span class="nt">-p</span> 6006:6006 <span class="nv">$Image_name</span>
+<span class="go">
+</span><span class="gp">#</span><span class="w"> </span>nvidia-docker 없이 docker만 사용하는 경우
+<span class="gp">docker run --gpus all -td --ipc=host --name $</span>container_name <span class="nt">-v</span> ~/code/and/data/path/on/your/host:/folder/name/on/docker <span class="nt">-p</span> 8888:8888 <span class="nt">-p</span> 6006:6006 <span class="nv">$Image_name</span>
+</code></pre></div></div>
+
+<p>option들은 아래와 같습니다:</p>
+<ul>
+  <li>–gpus all (docker): nvidia-docker는 자동으로 GPUs를 사용할 수 있지만, docker만 사용하는 경우 본 옵션을 사용해야만 GPU 자원들을 인식합니다.</li>
+  <li>-t: tty 입니다.</li>
+  <li>-d: detacth 입니다. 저는 컨테이너를 생성하고 후에 따로 실행하는 방식을 선호하기 때문에 해당 옵션을 항상 넣어둡니다.</li>
+  <li>–name: 생성 될 container의 이름 입니다.</li>
+  <li>-v: mount할 volumn의 이름입니다. Host OS에 code와 data가 담긴 폴더:container에 mount할 volumn이름 으로 지정하시면 됩니다.</li>
+  <li>-p: 사용할 port number 입니다.</li>
+  <li>이후 container를 올릴 image의 이름을 지정해주시면 해당 image위에 container가 생성됩니다.</li>
+</ul>
+
+<h3 id="run-docker-container">Run docker container</h3>
+
+<p>위에서 생성한 container를 실행해보겠습니다.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">#</span><span class="w"> </span>bash
+<span class="gp">docker exec -it $</span>container_name bash
+<span class="go">
+</span><span class="gp">#</span><span class="w"> </span>jupyterlab
+<span class="gp">docker exec -it $</span>container_name jupyter lab <span class="nt">--no-browser</span> <span class="nt">--ip</span><span class="o">=</span>0.0.0.0 <span class="nt">--allow-root</span> <span class="nt">--NotebookApp</span>.token<span class="o">=</span> <span class="nt">--notebook-dir</span><span class="o">=</span><span class="s1">'/folder/name/on/docker'</span>
+</code></pre></div></div>
+
+<p>위의 라인을 실행시키면 생성한 container에 접속할 수 있습니다. 접속을 하신 후 <code class="highlighter-rouge">ls</code>를 통해 확인해 보시면 일반적인 우분투와 같이 폴더들이 잡혀 있는 것을 확인할 수 있으며, <strong>container를 생성할 때 -v 옵션으로 지정하셨던 volumn이 폴더 형태로 들어 있음을 보실 수 있습니다.</strong> 해당 폴더에 접근하시어 원하시는 code를 실행시켜 주시면 됩니다!</p>
+
+        
+
+        <!-- google adsense -->
+        <script data-ad-client="ca-pub-6150728808077226" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#container" class="page__taxonomy-item" rel="tag">container</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#docker" class="page__taxonomy-item" rel="tag">Docker</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#image" class="page__taxonomy-item" rel="tag">image</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#ubuntu" class="page__taxonomy-item" rel="tag">ubuntu</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#docker" class="page__taxonomy-item" rel="tag">Docker</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-16T00:00:00+09:00">May 16, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Deeplearning%EC%9D%84+%EC%9C%84%ED%95%9C+Docker+%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0%20http%3A%2F%2Flocalhost%3A4000%2Farchive%2Fuse-docker" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Farchive%2Fuse-docker" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Farchive%2Fuse-docker" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/archive/install-docker" class="pagination--pager" title="Deeplearning을 위한 Docker 설치
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/archive/install-docker" rel="permalink">Deeplearning을 위한 Docker 설치
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-calendar-alt" aria-hidden="true"></i> Updated: <time datetime="2020-05-16T00:00:00+09:00">May 16, 2020</time></p>
+    
+    <p class="archive__item-excerpt" itemprop="description">진행 환경
+- Ubuntu 18.04
+- docker version: 19.03
+- CUDA &amp; cuDNN 설치 가정
+
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/archive/docker1" rel="permalink">Docker란 무엇인가
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-calendar-alt" aria-hidden="true"></i> Updated: <time datetime="2020-05-16T00:00:00+09:00">May 16, 2020</time></p>
+    
+    <p class="archive__item-excerpt" itemprop="description">진행 환경
+- Ubuntu 18.04
+- docker version: 19.03
+- CUDA &amp; cuDNN 설치 가정
+
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/archive/ADV_Training" rel="permalink">About GANs and Adversarial Training
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-calendar-alt" aria-hidden="true"></i> Updated: <time datetime="2020-05-13T00:00:00+09:00">May 13, 2020</time></p>
+    
+    <p class="archive__item-excerpt" itemprop="description">AGENDA
+1. GANs
+2. Adversarial examples
+3. Adversarial training
+
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/archive/ssh" rel="permalink">SSH on Ubuntu 18.04
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-calendar-alt" aria-hidden="true"></i> Updated: <time datetime="2020-02-13T00:00:00+09:00">February 13, 2020</time></p>
+    
+    <p class="archive__item-excerpt" itemprop="description">이번 포스터에서는 원격 제어의 꽃인 Secure Shell Protocol (SSH)의 사용법에 대하여 알아보겠습니다.
+
+</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+  
+</div>
+      <!-- google adsense -->
+      <script data-ad-client="ca-pub-6150728808077226" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 lepoeme20. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/archive/FGSM";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/archive/FGSM"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://lepoeme20.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140652840-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-140652840-1');
+</script>
+
+
+  </body>
+</html>

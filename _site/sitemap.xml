@@ -2,6 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>http://localhost:4000/archive/use-docker</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/archive/install-docker</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/archive/docker1</loc>
+    </url>
+    
+    <url>
         <loc>http://localhost:4000/archive/ADV_Training</loc>
     </url>
     
@@ -267,6 +279,14 @@
     
     <url>
         <loc>http://localhost:4000/page2/</loc>
+    </url>
+    
+    
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/page3/</loc>
     </url>
     
     
