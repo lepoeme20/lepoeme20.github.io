@@ -10,7 +10,7 @@ Deep Learning, Machine Learning
 
 <div id="webaddress">
 <a href="https://www.linkedin.com/in/lepoeme/">linkedIn</a>
-| <a href="github.com/lepoeme20">My github page</a>
+| <a href="https://www.github.com/lepoeme20">github</a>
 </div>
 
 
@@ -49,6 +49,9 @@ INFORMS Annual Meeting 2018, Poster Competition Session
 ## Publications
 
 ### Journals
+`Under Review`
+Intrusion Detection based on Sequential Information preserving Log Embedding Methods and Anomaly Detection Algorithms \\
+
 `2020`
 Unusual customer response identification and visualization based on text mining and anomaly detection \\
 *<font size="2">Expert Systems with Applications, Volume 144, April 2020, 113111</font>*
@@ -65,11 +68,13 @@ Sentiment classification with word localization based on weakly supervised learn
 *<font size="2">Knowledge-Based Systems Volume 152, 15 July 2018, Pages 70-82</font>*
 
 ## Projects
+`2020.07 - current`
+Fashion image detection 및 추천 모델 연구
 
 `2019.06 - current`
-사회적 약자를 보호하기 위한 인공지능 기반의 CCTV 영상 속 폭력행위 실시간 탐지 및 모니터링 기술 개발
+DeepFake 영상 탐지를 위한 방법론 연구
 
-`2019.09 - current`
+`2019.09 - 2020.05`
 해양 이미지 생성 및 해양 unseen data 분류 정확도 향상을 위한 방법론 연구
 
 `2019.03 - 2019.09`
