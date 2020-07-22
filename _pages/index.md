@@ -50,7 +50,7 @@ INFORMS Annual Meeting 2018, Poster Competition Session
 
 ### Journals
 `Under Review`
-Intrusion Detection based on Sequential Information preserving Log Embedding Methods and Anomaly Detection Algorithms \\
+Intrusion Detection based on Sequential Information preserving Log Embedding Methods and Anomaly Detection Algorithms
 
 `2020`
 Unusual customer response identification and visualization based on text mining and anomaly detection \\
