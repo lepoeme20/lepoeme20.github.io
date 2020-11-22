@@ -5,7 +5,7 @@ main:
   - title: "Category"
     url: /categories-archive/
   - title: "Profile"
-    url: /profile/
+    url: /Portfolio/
 
 # sidebar navigation list sample
 sidebar-sample:
