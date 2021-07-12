@@ -103,7 +103,7 @@ analytics:
 author:
   name             : "Seungwan Seo"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Graduate student in </br> DSBA Lab. Korea Univ. </br></br> Interested in computer vision </br> Especially GANs && </br> Adversarial example"
+  bio              : "Graduate student in </br> DSBA Lab. Korea Univ. </br></br> Interested in computer vision </br> Especially Adversarial example"
   location         : "Seoul, Korea"
   email            : "zach0206@korea.ac.kr"
   links:

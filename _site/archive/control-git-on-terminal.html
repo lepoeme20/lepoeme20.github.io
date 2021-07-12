@@ -143,9 +143,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
       <nav id="site-nav" class="greedy-nav">
         <a class="site-title" href="/">크리니의 탐구생활</a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/year-archive/" >Posts</a>
-            </li><li class="masthead__menu-item">
-              <a href="/categories-archive/" >Category</a>
+              <a href="/categories-archive/" >Posts</a>
             </li><li class="masthead__menu-item">
               <a href="/portfolio/" >Profile</a>
             </li></ul>
@@ -399,9 +397,9 @@ git push origin master
 
 <h2 id="git-status"><strong>git status</strong></h2>
 
-<p>하지만 항상 모든 파일을 <code class="highlighter-rouge">git add .</code> 으로 add를 한다면 원하지 않는 파일을 add 하거나, 변경된 모든 파일을 하나로 commit 할 수 밖에 없는 단점이 있습니다.</p>
+<p>하지만 항상 모든 파일을 <code class="language-plaintext highlighter-rouge">git add .</code> 으로 add를 한다면 원하지 않는 파일을 add 하거나, 변경된 모든 파일을 하나로 commit 할 수 밖에 없는 단점이 있습니다.</p>
 
-<p>이러한 상황에서 유용하게 사용할 수 있는 명령어가 <code class="highlighter-rouge">git status</code> 입니다.</p>
+<p>이러한 상황에서 유용하게 사용할 수 있는 명령어가 <code class="language-plaintext highlighter-rouge">git status</code> 입니다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git status
 </code></pre></div></div>
@@ -419,7 +417,7 @@ git push origin master
 
 <p>이와같이 코드에는 필요하나 repository에는 ‘항상’ add 하지 않을 파일들을 지정할 수 있습니다.</p>
 
-<p><code class="highlighter-rouge">.gitignore</code> 파일로 말이죠!</p>
+<p><code class="language-plaintext highlighter-rouge">.gitignore</code> 파일로 말이죠!</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># open .gitignore using your favorite editor</span>
 vim .gitignore
@@ -433,7 +431,7 @@ vim .gitignore
 path/to/large/file
 </code></pre></div></div>
 
-<p>만약 commit을 진행 한 후 <code class="highlighter-rouge">.gitignore</code> file에 내용을 수정하셨다면 <code class="highlighter-rouge">git add .</code> <code class="highlighter-rouge">git commit</code> <code class="highlighter-rouge">git push</code>를 하셔도 지정된 파일이 repository에서 삭제되지 않음을 볼 수 있습니다.</p>
+<p>만약 commit을 진행 한 후 <code class="language-plaintext highlighter-rouge">.gitignore</code> file에 내용을 수정하셨다면 <code class="language-plaintext highlighter-rouge">git add .</code> <code class="language-plaintext highlighter-rouge">git commit</code> <code class="language-plaintext highlighter-rouge">git push</code>를 하셔도 지정된 파일이 repository에서 삭제되지 않음을 볼 수 있습니다.</p>
 
 <p>이런 경우에는 아래의 명령어를 입력해 주시면 해결 가능 합니다.</p>
 
@@ -699,7 +697,7 @@ git push origin master
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2020 lepoeme20. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2021 lepoeme20. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

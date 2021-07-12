@@ -143,9 +143,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
       <nav id="site-nav" class="greedy-nav">
         <a class="site-title" href="/">크리니의 탐구생활</a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/year-archive/" >Posts</a>
-            </li><li class="masthead__menu-item">
-              <a href="/categories-archive/" >Category</a>
+              <a href="/categories-archive/" >Posts</a>
             </li><li class="masthead__menu-item">
               <a href="/portfolio/" >Profile</a>
             </li></ul>
@@ -213,7 +211,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 
 
-  3 minute read
+  4 minute read
 </p> -->
             <p class="page__meta"><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated: <time datetime="2019-05-22T00:00:00+09:00">May 22, 2019</time></p>
           
@@ -290,14 +288,14 @@ Adversarial attack의 종류와 의미는 다음과 같습니다(여기서 말�
 <blockquote>
   <p>FGSM:</p>
 
-  <p><script type="math/tex">\eta = \epsilon(\nabla_x J(\theta, x, y))</script>,</p>
+  <p>\(\eta = \epsilon(\nabla_x J(\theta, x, y))\),</p>
 
   <p>where J는 target model의 목적식, $\theta$는 모델의 파라미터, x와 y는 각각 input과 output 이며 $\epsilon$은 노이즈의 크기를 결정하는 상수</p>
 </blockquote>
 
 <p>위에서 구한 $\eta$를 원본 이미지에 더해주어 나온 이미지가 adversarial example이 되며 식은 아래와 같습니다:</p>
 <blockquote>
-  <script type="math/tex; mode=display">\widetilde{x} = x + \eta</script>
+\[\widetilde{x} = x + \eta\]
 </blockquote>
 
 <p>본 포스트의 상단부에서 말씀드린 adversarial example의 통상적인 정의에 따라 공격자는 사람이 인지하지 못할 만큼 작은 $\eta$를 원본 이미지에 더하여 target model을 속이는 것을 목표로 하고 있습니다.</p>
@@ -405,7 +403,8 @@ Adversarial attack의 종류와 의미는 다음과 같습니다(여기서 말�
       
   <nav class="pagination">
     
-      <a href="#" class="pagination--pager disabled">Previous</a>
+      <a href="/archive/FGSM" class="pagination--pager" title="Deep learning을 속이는 기술: Adverarial example (paper: Explaining and Harnessing Adversarial Examples)
+">Previous</a>
     
     
       <a href="/archive/Introduction-to-Deep-Learning-(MIT-6.S191)" class="pagination--pager" title="Introduction to Deep Learning-MIT 6.S191
@@ -575,7 +574,7 @@ Adversarial attack의 종류와 의미는 다음과 같습니다(여기서 말�
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2020 lepoeme20. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2021 lepoeme20. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

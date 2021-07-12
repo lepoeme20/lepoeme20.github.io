@@ -143,9 +143,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
       <nav id="site-nav" class="greedy-nav">
         <a class="site-title" href="/">크리니의 탐구생활</a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/year-archive/" >Posts</a>
-            </li><li class="masthead__menu-item">
-              <a href="/categories-archive/" >Category</a>
+              <a href="/categories-archive/" >Posts</a>
             </li><li class="masthead__menu-item">
               <a href="/portfolio/" >Profile</a>
             </li></ul>
@@ -341,7 +339,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 <h2 id="image"><strong>Image</strong></h2>
 <p><a href="https://hub.docker.com/">Docker Hub</a>에 들어가시면 github에 repository를 관리하는 것 처럼, official하게 또 개인이 개인의 목적을 가지고 생성한 docker image들이 있습니다. Ubuntu, CentOS와 같은 OS는 물론이며 postgresql, mysql, mongoDB와 같은 툴들도 이미지화 되어 업로드 되어 있죠. 본 포스트에서는 deeplearning을 하기 위한 환경을 구축하려 합니다.</p>
 
-<p>Deep learining framework을 사용하기 위한 가장 대표적인 이미지는 <a href="https://hub.docker.com/r/ufoym/deepo/">Deepo</a> 입니다. 본 이미지에는 pytorch, tensorflow는 물론 keras, theano, 심지어 darknet까지 일반적으로 필요로 하는 라이브러리들을 모두 포함하고 있습니다. Docker hub에 있는 deepo를 사용하기 위해서는 git pull과 같이 <code class="highlighter-rouge">docker pull ufoym/deepo:all-jupyter-py36-cu102</code>와 같은 명령어를 사용하면 됩니다. 하지만 이와같이 모든 라이브러리가 들어가있는 이미지는 매우 무겁기 때문에(10G 이상) 각자 사용하는 환경에 맞게 custom을 해주시는것을 추천 드립니다.</p>
+<p>Deep learining framework을 사용하기 위한 가장 대표적인 이미지는 <a href="https://hub.docker.com/r/ufoym/deepo/">Deepo</a> 입니다. 본 이미지에는 pytorch, tensorflow는 물론 keras, theano, 심지어 darknet까지 일반적으로 필요로 하는 라이브러리들을 모두 포함하고 있습니다. Docker hub에 있는 deepo를 사용하기 위해서는 git pull과 같이 <code class="language-plaintext highlighter-rouge">docker pull ufoym/deepo:all-jupyter-py36-cu102</code>와 같은 명령어를 사용하면 됩니다. 하지만 이와같이 모든 라이브러리가 들어가있는 이미지는 매우 무겁기 때문에(10G 이상) 각자 사용하는 환경에 맞게 custom을 해주시는것을 추천 드립니다.</p>
 
 <h3 id="create-dockerfile">Create Dockerfile</h3>
 <p>Dockerfile을 사용하여 custom image를 build하는 방법을 살펴보겠습니다.
@@ -427,7 +425,7 @@ RUN pip install -r requirements.txt
 <span class="gp">docker build -t $</span>image_name <span class="nb">.</span>
 </code></pre></div></div>
 
-<p>일반적으로 docker image 이름은 identity/name 정도로 지정해주시면 됩니다. 예를 들어 제가 가장 많이 사용하는 이미지 이름은 sw/base 이며, 생성한 이미지는 <code class="highlighter-rouge">docker image ls</code>를 통해 확인할 수 있습니다.</p>
+<p>일반적으로 docker image 이름은 identity/name 정도로 지정해주시면 됩니다. 예를 들어 제가 가장 많이 사용하는 이미지 이름은 sw/base 이며, 생성한 이미지는 <code class="language-plaintext highlighter-rouge">docker image ls</code>를 통해 확인할 수 있습니다.</p>
 
 <h3 id="create-container">Create container</h3>
 <p>빌드한 Image 위에 container를 생성해보겠습니다.</p>
@@ -461,7 +459,7 @@ RUN pip install -r requirements.txt
 <span class="gp">docker exec -it $</span>container_name jupyter lab <span class="nt">--no-browser</span> <span class="nt">--ip</span><span class="o">=</span>0.0.0.0 <span class="nt">--allow-root</span> <span class="nt">--NotebookApp</span>.token<span class="o">=</span> <span class="nt">--notebook-dir</span><span class="o">=</span><span class="s1">'/folder/name/on/docker'</span>
 </code></pre></div></div>
 
-<p>위의 라인을 실행시키면 생성한 container에 접속할 수 있습니다. 접속을 하신 후 <code class="highlighter-rouge">ls</code>를 통해 확인해 보시면 일반적인 우분투와 같이 폴더들이 잡혀 있는 것을 확인할 수 있으며, <strong>container를 생성할 때 -v 옵션으로 지정하셨던 volumn이 폴더 형태로 들어 있음을 보실 수 있습니다.</strong> 해당 폴더에 접근하시어 원하시는 code를 실행시켜 주시면 됩니다!</p>
+<p>위의 라인을 실행시키면 생성한 container에 접속할 수 있습니다. 접속을 하신 후 <code class="language-plaintext highlighter-rouge">ls</code>를 통해 확인해 보시면 일반적인 우분투와 같이 폴더들이 잡혀 있는 것을 확인할 수 있으며, <strong>container를 생성할 때 -v 옵션으로 지정하셨던 volumn이 폴더 형태로 들어 있음을 보실 수 있습니다.</strong> 해당 폴더에 접근하시어 원하시는 code를 실행시켜 주시면 됩니다!</p>
 
         
 
@@ -711,7 +709,7 @@ RUN pip install -r requirements.txt
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2020 lepoeme20. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2021 lepoeme20. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

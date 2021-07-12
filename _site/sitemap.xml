@@ -53,6 +53,10 @@
         <loc>http://localhost:4000/archive/FGSM</loc>
     </url>
     
+    <url>
+        <loc>http://localhost:4000/archive/FGSM</loc>
+    </url>
+    
 
     
     
@@ -61,6 +65,14 @@
     
     <url>
         <loc>http://localhost:4000/categories/Git</loc>
+    </url>
+    
+    
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/categories/ViT</loc>
     </url>
     
     

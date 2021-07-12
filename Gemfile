@@ -1,8 +1,10 @@
 source "https://rubygems.org"
+gem 'github-pages'
 
-gem "jekyll", "~> 3.8.6"
-gem "jekyll-feed", "~> 0.13"
-gem "jekyll-sitemap", "~> 1.4.0"
-gem "jekyll-paginate", "~> 1.1.0"
+gem "jekyll"
+gem "jekyll-feed"
+gem "jekyll-sitemap"
+gem "jekyll-paginate"
 
 gem "minimal-mistakes-jekyll"
+gem "webrick"

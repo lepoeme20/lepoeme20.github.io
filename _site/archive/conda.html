@@ -143,9 +143,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
       <nav id="site-nav" class="greedy-nav">
         <a class="site-title" href="/">크리니의 탐구생활</a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/year-archive/" >Posts</a>
-            </li><li class="masthead__menu-item">
-              <a href="/categories-archive/" >Category</a>
+              <a href="/categories-archive/" >Posts</a>
             </li><li class="masthead__menu-item">
               <a href="/portfolio/" >Profile</a>
             </li></ul>
@@ -426,13 +424,13 @@ conda activate env_name
 conda deactivate
 </code></pre></div></div>
 
-<p>이후 활성화된 가상환경에 원하는 패키지들을 설치하기 위하여서는 base 환경과 마찬가지로 <code class="highlighter-rouge">pip install package</code> 또는 <code class="highlighter-rouge">conda install package</code>를 사용할 수 있습니다.</p>
+<p>이후 활성화된 가상환경에 원하는 패키지들을 설치하기 위하여서는 base 환경과 마찬가지로 <code class="language-plaintext highlighter-rouge">pip install package</code> 또는 <code class="language-plaintext highlighter-rouge">conda install package</code>를 사용할 수 있습니다.</p>
 
 <h3 id="사용하고-있는-가상환경-export하기"><strong>사용하고 있는 가상환경 export하기</strong></h3>
 
 <p>참 유용하고 편리한 기능인 export에 대하여 알아보겠습니다.</p>
 
-<p><code class="highlighter-rouge">conda env export &gt; file_name.yml</code> 을 통하여 현재 활성화된 가상환경에 설치된 패키지들의 버전 정보를 담은 파일(.yml)을 export할 수 있습니다. 이 기능이 좋은 이유는 역시 코드 공유에 있습니다. 나의 개발 환경을 그대로 저장하여 코드와 함께 전달해 준다면 본 코드를 받은 공동 작업자는 힘들이지 않고 같은 환경의 가상환경을 쉽게 만들어 충돌 없이 코드를 시행할 수 있습니다. 마찬가지로 github에 upload를 할 때에도 해당 .yml 파일을 함께 올려주면 upload한 코드를 사용하는 사람들이 정말 고마워할것 입니다.</p>
+<p><code class="language-plaintext highlighter-rouge">conda env export &gt; file_name.yml</code> 을 통하여 현재 활성화된 가상환경에 설치된 패키지들의 버전 정보를 담은 파일(.yml)을 export할 수 있습니다. 이 기능이 좋은 이유는 역시 코드 공유에 있습니다. 나의 개발 환경을 그대로 저장하여 코드와 함께 전달해 준다면 본 코드를 받은 공동 작업자는 힘들이지 않고 같은 환경의 가상환경을 쉽게 만들어 충돌 없이 코드를 시행할 수 있습니다. 마찬가지로 github에 upload를 할 때에도 해당 .yml 파일을 함께 올려주면 upload한 코드를 사용하는 사람들이 정말 고마워할것 입니다.</p>
 
 <p>그렇다면, 다른 사람이 export한 가상환경 파일 (.yml)을 사용하여 나의 환경에서 가상환경을 어떻게 구축할 수 있을까요? 이는 아래 라인과 같이 매우 간단하게 진행할 수 있습니다:</p>
 
@@ -725,7 +723,7 @@ conda <span class="nb">env </span>remove <span class="nt">--name</span> env_name
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2020 lepoeme20. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2021 lepoeme20. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
