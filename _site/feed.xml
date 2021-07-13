@@ -5,7 +5,20 @@
         <description>고려대학교 DSBA Lab </description>      
         <link>http://localhost:4000</link>
         <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Sat, 16 May 2020 00:00:00 +0900</lastBuildDate>
+        <lastBuildDate>Tue, 13 Jul 2021 00:00:00 +0900</lastBuildDate>
+        
+            <item>
+                <title>An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (ViT)</title>
+                        
+                
+                    <description>&lt;p&gt;ICLR 2021에 “AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE” 라는 제목을 가진 논문이 게재되었습니다. Google research와 brain에서 힘을 합쳐 진행한 연구인데요, 역시 구글입니다. 폭발적인 후속 연구들을 이끈 논문, ViT에 대해 알아보겠습니다.&lt;/p&gt;
+
+</description>
+                
+                <pubDate>Tue, 13 Jul 2021 00:00:00 +0900</pubDate>
+                <link>http://localhost:4000/archive/ViT</link>
+                <guid isPermaLink="true">http://localhost:4000/archive/ViT</guid>
+            </item>
         
             <item>
                 <title>Deeplearning을 위한 Docker 사용하기</title>
@@ -139,21 +152,6 @@
                 <pubDate>Thu, 06 Feb 2020 00:00:00 +0900</pubDate>
                 <link>http://localhost:4000/archive/Set-up-ubuntu-for-deeplearning</link>
                 <guid isPermaLink="true">http://localhost:4000/archive/Set-up-ubuntu-for-deeplearning</guid>
-            </item>
-        
-            <item>
-                <title>Deep Learning for Computer Vision-MIT 6.S191</title>
-                        
-                
-                    <description>&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;AGENDA&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;1. Introduction of basic concepts for CNN&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-</description>
-                
-                <pubDate>Thu, 13 Jun 2019 00:00:00 +0900</pubDate>
-                <link>http://localhost:4000/archive/Deep-Learning-for-Computer-Vision-(MIT-6.S191)</link>
-                <guid isPermaLink="true">http://localhost:4000/archive/Deep-Learning-for-Computer-Vision-(MIT-6.S191)</guid>
             </item>
         
     </channel>

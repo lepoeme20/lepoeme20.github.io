@@ -2,6 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>http://localhost:4000/archive/ViT</loc>
+    </url>
+    
+    <url>
         <loc>http://localhost:4000/archive/use-docker</loc>
     </url>
     
@@ -47,10 +51,6 @@
     
     <url>
         <loc>http://localhost:4000/archive/Introduction-to-Deep-Learning-(MIT-6.S191)</loc>
-    </url>
-    
-    <url>
-        <loc>http://localhost:4000/archive/FGSM</loc>
     </url>
     
     <url>

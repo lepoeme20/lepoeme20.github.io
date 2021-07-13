@@ -1,0 +1,609 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.13.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (ViT) - 크리니의 탐구생활</title>
+<meta name="description" content="ICLR 2021에 “AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE” 라는 제목을 가진 논문이 게재되었습니다. Google research와 brain에서 힘을 합쳐 진행한 연구인데요, 역시 구글입니다. 폭발적인 후속 연구들을 이끈 논문, ViT에 대해 알아보겠습니다.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="크리니의 탐구생활">
+<meta property="og:title" content="An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (ViT)">
+<meta property="og:url" content="http://localhost:4000/archive/ViT">
+
+
+  <meta property="og:description" content="ICLR 2021에 “AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE” 라는 제목을 가진 논문이 게재되었습니다. Google research와 brain에서 힘을 합쳐 진행한 연구인데요, 역시 구글입니다. 폭발적인 후속 연구들을 이끈 논문, ViT에 대해 알아보겠습니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-07-13T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/archive/ViT">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "lepoeme20",
+      "url": "http://localhost:4000/",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="크리니의 탐구생활 Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+<script data-ad-client="ca-pub-6150728808077226" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+      <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+    
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">크리니의 탐구생활</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories-archive/" >Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/portfolio/" >Profile</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      <h3>Domain</h3>
+      <p>Vision Transformer</p>
+
+    
+    
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (ViT)">
+    <meta itemprop="description" content="ICLR 2021에 “AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE” 라는 제목을 가진 논문이 게재되었습니다. Google research와 brain에서 힘을 합쳐 진행한 연구인데요, 역시 구글입니다. 폭발적인 후속 연구들을 이끈 논문, ViT에 대해 알아보겠습니다.">
+    <meta itemprop="datePublished" content="July 13, 2021">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (ViT)
+</h1>
+          
+            <!-- <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p> -->
+            <p class="page__meta"><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated: <time datetime="2021-07-13T00:00:00+09:00">July 13, 2021</time></p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Page Index</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#transformer">Transformer</a></li>
+  <li><a href="#vit">ViT</a>
+    <ul>
+      <li><a href="#model-structure">Model structure</a>
+        <ul>
+          <li><a href="#image-to-patch">Image to patch</a></li>
+        </ul>
+      </li>
+      <li><a href="#position-embedding">Position Embedding</a></li>
+      <li><a href="#inductive-bias">Inductive Bias</a></li>
+      <li><a href="#experiments">Experiments</a></li>
+    </ul>
+  </li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>ICLR 2021에 <a href="https://arxiv.org/pdf/2010.11929.pdf">“AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE”</a> 라는 제목을 가진 논문이 게재되었습니다. Google research와 brain에서 힘을 합쳐 진행한 연구인데요, 역시 구글입니다. 폭발적인 후속 연구들을 이끈 논문, ViT에 대해 알아보겠습니다.</p>
+
+<h2 id="transformer"><strong>Transformer</strong></h2>
+<p>Transformer 구조는 NLP domain에서 이미 지배적입니다. 일반적으로는 wikipedia와 같은 대용량의 corpus를 통하여 pre-train을 시킨 후 target domain의 data를 통하여 further pre-train을 진행합니다. 사실 further pre-train 단계는 optional한 감이 있지만 가능한 상황이라면 진행하는 것이 좋다로 정리가 되는 것 같습니다. 이후 최종적으로 task-specific dataset을 통하여 fine-tuning을 진행합니다. 현재 NLP는 BERT 전성시대 라고 불러도 과언이 아닙니다. 이러한 BERT와 지속적으로 후속 모델을 내고 있는 GPT 시리즈는 Transformer를 기반하고 있습니다. 결국, Transformer를 통해 seq2seq-based model의 한계들을 극복하여 모든 downstream task에서 SotA를 기록하고 있다고 볼 수 있습니다. 오늘 소개할 ViT는 Transformer를 vision에서 사용할 수 없을까? 라는 고민에서 시작되었습니다.</p>
+
+<h2 id="vit"><strong>ViT</strong></h2>
+<h3 id="model-structure"><strong>Model structure</strong></h3>
+<figure class="align-center">
+  <img src="http://localhost:4000//assets/images/paper/vit/vit/vit_overview.jpg" alt="" />
+  <figcaption>Figure 1. Vision Transformer Model Overview</figcaption>
+</figure>
+
+<p>ViT의 구조는 Figure 1과 같습니다. 매우 단순합니다. Transformer를 알고 계신 분이라면 추가적으로 이해를 해야하는 부분이 거의 없습니다. Transformer에 익숙하지 않으신 분들은 <a href="https://jalammar.github.io/illustrated-transformer/">본 블로그</a>를 참고해 주세요.</p>
+
+<h4 id="image-to-patch"><strong>Image to patch</strong></h4>
+<p>ViT는 Transformer에 image를 feeding합니다. 일반적인 상황에서는 Transformer에 문장이 들어가죠. 전처리를 진행한 후 [“나”, “너”, “사랑”] 이라는 word token들이 input으로 들어가면, Transformer는 [“I”, “Love”, “You”]라는 token들로 구성된 output을 내뱉습니다. 결국 이미지 한 장을 한 문장으로 고려할때 우리는 저 문장 내부의 단어, 즉 token을 어떤식으로 구성해야 할 지를 해결해야 합니다. 본 논문에서 저자들은 이미지를 자르는 형태로 이를 해결합니다. 사실 이미지를 patch로 잘라 전처리를 진행하거나 model에 input으로 사용하는 연구들은 이전에도 많았습니다(<del>역시 아는 것이 힘입니다</del>). Figure 1의 &lt;Linear Projection of Flattened Patches&gt; 아래에 보면 작은 사이즈의 이미지들이 나열되어 있는 것을 볼 수 있습니다. 여기가 이미지를 patch로 잘라 한 patch를 하나의 token으로 사용함을 보여주는 부분입니다. Patch의 사이즈는 원본 이미지가 $x \in \mathbb{R}^{H\times W\times C}$ 인 경우에 $x_p \in \mathbb{R}^{N\times (P^2\times C)}$ 로 정해집니다. 예를 들어 9x9 크기의 color image가 있을 때, patch size를 3으로 지정하면 3x3 ($P^2$) patch가 9 ($N$)개 생성되겠죠. 그럼 이 9 개의 patch를 token으로 고려해서 vector로 만든 후에 &lt;Linear Projection of Flattened Patches&gt; module에 넣어주게 됩니다. 비록 image는 word token과 다르게 연속적이지만, 모델이 보다 의미 있는 input을 받게 하기 위해서 embedding을 거칩니다.</p>
+
+<p>다만 한 가지 “실험적으로” 주의 하실 점은, patch를 vector로 만드는 부분입니다. 일반적으로 flatten을 한다고 생각하기 쉽고, 몇몇 공개된 ViT code에서도 flatten을 사용하고 있으나 <strong>모델의 성능을 위해서 kernel size와 stride가 patch size이며 output dim이 vector size로 지정된 Conv2d를 사용</strong>해야 합니다. 위의 예시와 같은 상황에서는 아래와 같이 지정된 kernel을 통하여 각 patch를 256차원의 vector로 변경할 수 있습니다:</p>
+<blockquote>
+  <p>torch.nn.Conv2d(3, out_channels=256, kernel_size=3, stride=3)</p>
+</blockquote>
+
+<h3 id="position-embedding"><strong>Position Embedding</strong></h3>
+<p>다음으로 구성해야하는 input은 Position embedding 입니다. 이는 input patch의 위치를 모델이 알 수 있게끔 해주는 역할을 합니다.</p>
+<figure class="align-center">
+  <img src="http://localhost:4000//assets/images/paper/vit/vit/position_embedding_example.jpg" alt="" />
+  <figcaption>Figure 2. Position Embedding Example</figcaption>
+</figure>
+<p>위의 Figure 2에서 볼 수 있듯이 이미지를 대상으로 하는 position embedding은 1차원, 혹은 2차원으로 구성할 수 있습니다. 본 논문에서는 두 가지 모두 사용해본 결과 성능에는 큰 차이가 없다고 말합니다. ViT position embedding의 특징은 Figure 2와 같이 patch의 실질적인 위치를 사용하거나 Transformer의 position embedding처럼 계산에 의한 값을 사용하지 않는다는 것 입니다. ViT의 position embedding은 random하게 초기화 되어 모델의 학습이 진행되는 동안 지속적으로 update 됩니다. PyTorch에서는 <code class="language-plaintext highlighter-rouge">torch.nn.Parameter()</code> 로 지정됩니다.</p>
+
+<figure class="align-center">
+  <img src="http://localhost:4000//assets/images/paper/vit/vit/position_embedding_result.jpg" alt="" />
+  <figcaption>Figure 3. Position Embedding Similarity</figcaption>
+</figure>
+<p>Figure 3를 통해 논문에서 제시하는 position embedding 끼리의 유사도를 확인할 수 있습니다. 밝은색일수록 유사하다는 의미이며 반대로 짙은 초록색일수록 유사성이 떨어진다는 의미 입니다. Random vector로 초기화 되어 학습이 된 ViT의 position embedding은 신기하게도 같은 행과 열의 embedding들과 유사성이 높음을 확인할 수 있습니다. 이런식으로 구성되는 position embedding은 linear layer를 거친 image patch vector와 더해져서 Transformer module의 input으로 사용됩니다.</p>
+
+<p>추가적으로 ViT에서는 NLP의 Transformer의 문장을 대표하는 CLS token과 같은 역할을 하는 $z_0$ token을 사용하여 이미지를 대표하도록 합니다.</p>
+
+<h3 id="inductive-bias"><strong>Inductive Bias</strong></h3>
+<p>최근 한 커뮤니티에서 논의가 활발했던 inductive bias에 대해 살펴보겠습니다. Inductive bias에 대한 본 포스팅의 해석은 지극히 개인적인 의견이니 참고만 하시길 부탁드립니다.</p>
+
+<p>개인적으로 inductive bias를 engineer가 임의로 주는 편향으로 정의하고 있습니다. 본 논문의 저자들의 주장을 바탕으로 예를 들어 보자면, CNN의 경우에는 input image에 비해 매우 작은 size의 kernel을 사용함으로써 receptive field를 local에서 global로 가져가게끔 engineer가 의도 했다고 해석할 수 있습니다. 결국 이러한 의도로 CNN은 locality라는 inductive bias가 강하게 생기게 되는 것이죠. 하지만 ViT에서는 self attention layer가 global하게 연산되기 때문에 inductive bias가 없다고 저자들이 주장하고 있습니다. 이러한 주장이 나오게 되는 배경을 살펴보면 지금까지 충분한 양으로 생각 됐던 ImageNet-1k dataset으로 모델을 학습하는 경우 ResNet에 비해 성능이 좋지 않았기 때문입니다. 이러한 좋지 못한 결과에 타당성을 부여하기 위해 ResNet은 locality라는 inductive bias에 의해 강하게 drive되는 모델이기 때문에 적은 양의 데이터로 학습을 진행해도 좋은 성능을 보일 수 있지만, ViT의 경우에는 그러한 inductive bias가 없기 때문에 NLP의 wikipedia dataset과 같은 대용량의 데이터(ImageNet-21k, JFT-300M)가 필요하다고 주장합니다.</p>
+
+<p>하지만 이러한 주장은 말 그대로 본인들의 실험 결과를 납득시키기 위한 주장이지 않을까 생각합니다. 우선 최근 연구들을 살펴보면 regularization과 augmentation을 통해서 ImageNet-1k로도 학습이 가능하다는 논문(<a href="https://arxiv.org/abs/2106.10270">How to train your ViT? Data, Augmentation, and Regularization in Vision Transformers</a>) 도 등장하였으며, ViT에서도 position embedding이라는 locality information을 담고 있는 vector를 통해 bias를 주고 있습니다. 또한 우리가 CNN을 사용하는 동안 locality라는 inductive bias를 고려한 적이 없었던 것 처럼 또 다른 모델이 Transformer를 대체한다면 ViT의 global한 attention 연산 또한 inductive bias로 해석될 수 있지 않을까? 싶습니다. 이러한 생각에 의해 ViT를 inductive bias가 없는 모델이다 라고 말하기에는 틀렸다는 느낌이 있습니다. 그저 locality에 관련된 inductive bias가 CNN에 비해 작은 모델이라고 보는 게 정확하지 않을까 싶습니다.</p>
+
+<h3 id="experiments"><strong>Experiments</strong></h3>
+<figure class="align-center">
+  <img src="http://localhost:4000//assets/images/paper/vit/vit/ViT_variants.jpg" alt="" />
+  <figcaption>Table 1. ViT model variants</figcaption>
+</figure>
+
+<p>Table 1에는 ViT paper에서 사용한 모델들에 대한 설명을 확인할 수 있습니다.</p>
+
+<figure class="align-center">
+  <img src="http://localhost:4000//assets/images/paper/vit/vit/ViT_results1.jpg" alt="" />
+  <figcaption>Table 2. ViT main results</figcaption>
+</figure>
+
+<p>Table 2를 확인해보면 확실히 JFT-300M dataset으로 ViT를 pre-train한 경우에 성능이 가장 좋음을 확인할 수 있습니다. ImageNet-21k는 앞선 설명과는 다르게 large dataset 임에도 불구하고 ResNet에 비해 좋은 성능을 못 보여주고 있습니다.</p>
+
+<figure class="align-center">
+  <img src="http://localhost:4000//assets/images/paper/vit/vit/ViT_results2.jpg" alt="" />
+  <figcaption>Figure 4. Ablation study</figcaption>
+</figure>
+
+<p>Figure 4에서는 pre-train dataset에 대한 ImageNet-1k의 top-1 accuracy를 보여주고 있습니다. BiT는 ResNet에서 Batch Norm을 Group Norm으로 변경하고, standardized convolutions를 사용한 모델입니다.</p>
+
+        
+
+        <!-- google adsense -->
+        <script data-ad-client="ca-pub-6150728808077226" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#iclr" class="page__taxonomy-item" rel="tag">ICLR</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#inductive-bias" class="page__taxonomy-item" rel="tag">inductive bias</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#transformer" class="page__taxonomy-item" rel="tag">transformer</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#vision-transformer" class="page__taxonomy-item" rel="tag">vision transformer</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#vit" class="page__taxonomy-item" rel="tag">ViT</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#vit" class="page__taxonomy-item" rel="tag">ViT</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-07-13T00:00:00+09:00">July 13, 2021</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=An+Image+is+Worth+16x16+Words%3A+Transformers+for+Image+Recognition+at+Scale+%28ViT%29%20http%3A%2F%2Flocalhost%3A4000%2Farchive%2FViT" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Farchive%2FViT" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Farchive%2FViT" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/archive/use-docker" class="pagination--pager" title="Deeplearning을 위한 Docker 사용하기
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/archive/use-docker" rel="permalink">Deeplearning을 위한 Docker 사용하기
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-calendar-alt" aria-hidden="true"></i> Updated: <time datetime="2020-05-16T00:00:00+09:00">May 16, 2020</time></p>
+    
+    <p class="archive__item-excerpt" itemprop="description">진행 환경
+- Ubuntu 18.04
+- docker version: 19.03
+- CUDA 10.2 &amp; cuDNN 설치 
+
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/archive/install-docker" rel="permalink">Deeplearning을 위한 Docker 설치
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-calendar-alt" aria-hidden="true"></i> Updated: <time datetime="2020-05-16T00:00:00+09:00">May 16, 2020</time></p>
+    
+    <p class="archive__item-excerpt" itemprop="description">진행 환경
+- Ubuntu 18.04
+- docker version: 19.03
+- CUDA &amp; cuDNN 설치 가정
+
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/archive/docker1" rel="permalink">Docker란 무엇인가
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-calendar-alt" aria-hidden="true"></i> Updated: <time datetime="2020-05-16T00:00:00+09:00">May 16, 2020</time></p>
+    
+    <p class="archive__item-excerpt" itemprop="description">진행 환경
+- Ubuntu 18.04
+- docker version: 19.03
+- CUDA &amp; cuDNN 설치 가정
+
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/archive/ADV_Training" rel="permalink">About GANs and Adversarial Training
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-calendar-alt" aria-hidden="true"></i> Updated: <time datetime="2020-05-13T00:00:00+09:00">May 13, 2020</time></p>
+    
+    <p class="archive__item-excerpt" itemprop="description">AGENDA
+1. GANs
+2. Adversarial examples
+3. Adversarial training
+
+
+</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    <script data-ad-client="ca-pub-6150728808077226" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<script data-ad-client="ca-pub-6150728808077226" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 lepoeme20. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/archive/ViT";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/archive/ViT"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://lepoeme20.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140652840-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-140652840-1');
+</script>
+
+
+  </body>
+</html>
