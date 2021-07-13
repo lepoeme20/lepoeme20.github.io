@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (ViT) - 크리니의 탐구생활</title>
-<meta name="description" content="ICLR 2021에 “AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE” 라는 제목을 가진 논문이 게재되었습니다. Google research와 brain에서 힘을 합쳐 진행한 연구인데요, 역시 구글입니다. 폭발적인 후속 연구들을 이끈 논문, ViT에 대해 알아보겠습니다.">
+<meta name="description" content="ICLR 2021에 “AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE” AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE 라는 제목을 가진 논문이 게재되었습니다. Google research와 brain에서 힘을 합쳐 진행한 연구인데요, 역시 구글입니다. 폭발적인 후속 연구들을 이끈 논문, ViT에 대해 알아보겠습니다.">
 
 
 
@@ -21,7 +21,7 @@
 <meta property="og:url" content="http://localhost:4000/archive/ViT">
 
 
-  <meta property="og:description" content="ICLR 2021에 “AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE” 라는 제목을 가진 논문이 게재되었습니다. Google research와 brain에서 힘을 합쳐 진행한 연구인데요, 역시 구글입니다. 폭발적인 후속 연구들을 이끈 논문, ViT에 대해 알아보겠습니다.">
+  <meta property="og:description" content="ICLR 2021에 “AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE” AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE 라는 제목을 가진 논문이 게재되었습니다. Google research와 brain에서 힘을 합쳐 진행한 연구인데요, 역시 구글입니다. 폭발적인 후속 연구들을 이끈 논문, ViT에 대해 알아보겠습니다.">
 
 
 
@@ -188,7 +188,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     <meta itemprop="headline" content="An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (ViT)">
-    <meta itemprop="description" content="ICLR 2021에 “AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE” 라는 제목을 가진 논문이 게재되었습니다. Google research와 brain에서 힘을 합쳐 진행한 연구인데요, 역시 구글입니다. 폭발적인 후속 연구들을 이끈 논문, ViT에 대해 알아보겠습니다.">
+    <meta itemprop="description" content="ICLR 2021에 “AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE” AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE 라는 제목을 가진 논문이 게재되었습니다. Google research와 brain에서 힘을 합쳐 진행한 연구인데요, 역시 구글입니다. 폭발적인 후속 연구들을 이끈 논문, ViT에 대해 알아보겠습니다.">
     <meta itemprop="datePublished" content="July 13, 2021">
     
 
@@ -233,7 +233,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
             </nav>
           </aside>
         
-        <p>ICLR 2021에 <a href="https://arxiv.org/pdf/2010.11929.pdf">“AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE”</a> 라는 제목을 가진 논문이 게재되었습니다. Google research와 brain에서 힘을 합쳐 진행한 연구인데요, 역시 구글입니다. 폭발적인 후속 연구들을 이끈 논문, ViT에 대해 알아보겠습니다.</p>
+        <p>ICLR 2021에 <a href="https://arxiv.org/pdf/2010.11929.pdf">“AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE”</a> <a href="https://arxiv.org/pdf/2010.11929.pdf" style="color: blue; text-decoration: underline;text-decoration-style: dotted;">AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE</a> 라는 제목을 가진 논문이 게재되었습니다. Google research와 brain에서 힘을 합쳐 진행한 연구인데요, 역시 구글입니다. 폭발적인 후속 연구들을 이끈 논문, ViT에 대해 알아보겠습니다.</p>
 
 <h2 id="transformer"><strong>Transformer</strong></h2>
 <p>Transformer 구조는 NLP domain에서 이미 지배적입니다. 일반적으로는 wikipedia와 같은 대용량의 corpus를 통하여 pre-train을 시킨 후 target domain의 data를 통하여 further pre-train을 진행합니다. 사실 further pre-train 단계는 optional한 감이 있지만 가능한 상황이라면 진행하는 것이 좋다로 정리가 되는 것 같습니다. 이후 최종적으로 task-specific dataset을 통하여 fine-tuning을 진행합니다. 현재 NLP는 BERT 전성시대 라고 불러도 과언이 아닙니다. 이러한 BERT와 지속적으로 후속 모델을 내고 있는 GPT 시리즈는 Transformer를 기반하고 있습니다. 결국, Transformer를 통해 seq2seq-based model의 한계들을 극복하여 모든 downstream task에서 SotA를 기록하고 있다고 볼 수 있습니다. 오늘 소개할 ViT는 Transformer를 vision에서 사용할 수 없을까? 라는 고민에서 시작되었습니다.</p>
@@ -241,7 +241,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 <h2 id="vit"><strong>ViT</strong></h2>
 <h3 id="model-structure"><strong>Model structure</strong></h3>
 <figure class="align-center">
-  <img src="http://localhost:4000//assets/images/paper/vit/vit/vit_overview.jpg" alt="" />
+  <img src="http://localhost:4000//assets/images/paper/vit/vit/vit_overview.png" alt="" />
   <figcaption>Figure 1. Vision Transformer Model Overview</figcaption>
 </figure>
 
@@ -258,13 +258,13 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 <h3 id="position-embedding"><strong>Position Embedding</strong></h3>
 <p>다음으로 구성해야하는 input은 Position embedding 입니다. 이는 input patch의 위치를 모델이 알 수 있게끔 해주는 역할을 합니다.</p>
 <figure class="align-center">
-  <img src="http://localhost:4000//assets/images/paper/vit/vit/position_embedding_example.jpg" alt="" />
+  <img src="http://localhost:4000//assets/images/paper/vit/vit/position_embedding_example.png" alt="" />
   <figcaption>Figure 2. Position Embedding Example</figcaption>
 </figure>
 <p>위의 Figure 2에서 볼 수 있듯이 이미지를 대상으로 하는 position embedding은 1차원, 혹은 2차원으로 구성할 수 있습니다. 본 논문에서는 두 가지 모두 사용해본 결과 성능에는 큰 차이가 없다고 말합니다. ViT position embedding의 특징은 Figure 2와 같이 patch의 실질적인 위치를 사용하거나 Transformer의 position embedding처럼 계산에 의한 값을 사용하지 않는다는 것 입니다. ViT의 position embedding은 random하게 초기화 되어 모델의 학습이 진행되는 동안 지속적으로 update 됩니다. PyTorch에서는 <code class="language-plaintext highlighter-rouge">torch.nn.Parameter()</code> 로 지정됩니다.</p>
 
 <figure class="align-center">
-  <img src="http://localhost:4000//assets/images/paper/vit/vit/position_embedding_result.jpg" alt="" />
+  <img src="http://localhost:4000//assets/images/paper/vit/vit/position_embedding_result.png" alt="" />
   <figcaption>Figure 3. Position Embedding Similarity</figcaption>
 </figure>
 <p>Figure 3를 통해 논문에서 제시하는 position embedding 끼리의 유사도를 확인할 수 있습니다. 밝은색일수록 유사하다는 의미이며 반대로 짙은 초록색일수록 유사성이 떨어진다는 의미 입니다. Random vector로 초기화 되어 학습이 된 ViT의 position embedding은 신기하게도 같은 행과 열의 embedding들과 유사성이 높음을 확인할 수 있습니다. 이런식으로 구성되는 position embedding은 linear layer를 거친 image patch vector와 더해져서 Transformer module의 input으로 사용됩니다.</p>
@@ -280,25 +280,27 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 <h3 id="experiments"><strong>Experiments</strong></h3>
 <figure class="align-center">
-  <img src="http://localhost:4000//assets/images/paper/vit/vit/ViT_variants.jpg" alt="" />
+  <img src="http://localhost:4000//assets/images/paper/vit/vit/ViT_variants.png" alt="" />
   <figcaption>Table 1. ViT model variants</figcaption>
 </figure>
 
 <p>Table 1에는 ViT paper에서 사용한 모델들에 대한 설명을 확인할 수 있습니다.</p>
 
 <figure class="align-center">
-  <img src="http://localhost:4000//assets/images/paper/vit/vit/ViT_results1.jpg" alt="" />
+  <img src="http://localhost:4000//assets/images/paper/vit/vit/ViT_results1.png" alt="" />
   <figcaption>Table 2. ViT main results</figcaption>
 </figure>
 
 <p>Table 2를 확인해보면 확실히 JFT-300M dataset으로 ViT를 pre-train한 경우에 성능이 가장 좋음을 확인할 수 있습니다. ImageNet-21k는 앞선 설명과는 다르게 large dataset 임에도 불구하고 ResNet에 비해 좋은 성능을 못 보여주고 있습니다.</p>
 
 <figure class="align-center">
-  <img src="http://localhost:4000//assets/images/paper/vit/vit/ViT_results2.jpg" alt="" />
+  <img src="http://localhost:4000//assets/images/paper/vit/vit/ViT_results2.png" alt="" />
   <figcaption>Figure 4. Ablation study</figcaption>
 </figure>
 
-<p>Figure 4에서는 pre-train dataset에 대한 ImageNet-1k의 top-1 accuracy를 보여주고 있습니다. BiT는 ResNet에서 Batch Norm을 Group Norm으로 변경하고, standardized convolutions를 사용한 모델입니다.</p>
+<p>Figure 4에서는 pre-train dataset에 대한 ImageNet-1k의 top-1 accuracy를 보여주고 있습니다. BiT는 ResNet에서 Batch Norm을 Group Norm으로 변경하고, standardized convolutions를 사용한 모델입니다. 결과를 살펴보면 volume이 작은 dataset으로 pre-train을 진행하는 경우에는 ViT에 비해 BiT가 좋은 성능을 보이고 있지만 JFT-300M으로 pre-train을 진행하면 ViT가 더 좋은 성능을 보이게 됩니다.</p>
+
+<p>지금까지 ViT에 대해서 간략하게 리뷰를 진행했습니다. AlexNet의 등장 이후로 ResNet-based model들까지 굉장히 빠르게 발전했던 것처럼, 수 없이 많은 발전된 ViT-based model들이 등장하지 않을까 싶습니다. 이미 굉장히 활발하게 연구가 진행되고 있구요! 천천히 하나씩 리뷰를 진행해보겠습니다.</p>
 
         
 
