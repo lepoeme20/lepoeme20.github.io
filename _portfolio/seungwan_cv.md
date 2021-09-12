@@ -4,7 +4,7 @@ classes: wide
 excerpt: "Seungwan Seo CV"
 header:
   # image: /assets/images/docker/docker-logo.png
-  teaser: assets/images/docker/cv2.png
+  teaser: assets/images/docker/cv1.png
 # sidebar:
 #   - title: "Role"
 #     image: http://placehold.it/350x250
