@@ -1,0 +1,16 @@
+current directory: /Users/zach/Documents/lepoeme20.github.io/_vendor/ruby/3.0.0/gems/unf_ext-0.0.7.7/ext/unf_ext
+/Users/zach/.rbenv/versions/3.0.2/bin/ruby -I /Users/zach/.rbenv/versions/3.0.2/lib/ruby/site_ruby/3.0.0 -r ./siteconf20210913-15394-yl072n.rb extconf.rb
+checking for -lstdc++... yes
+creating Makefile
+
+current directory: /Users/zach/Documents/lepoeme20.github.io/_vendor/ruby/3.0.0/gems/unf_ext-0.0.7.7/ext/unf_ext
+make DESTDIR\= clean
+
+current directory: /Users/zach/Documents/lepoeme20.github.io/_vendor/ruby/3.0.0/gems/unf_ext-0.0.7.7/ext/unf_ext
+make DESTDIR\=
+compiling unf.cc
+linking shared-object unf_ext.bundle
+
+current directory: /Users/zach/Documents/lepoeme20.github.io/_vendor/ruby/3.0.0/gems/unf_ext-0.0.7.7/ext/unf_ext
+make DESTDIR\= install
+/usr/local/bin/ginstall -c -m 0755 unf_ext.bundle ./.gem.20210913-15394-55x3k6

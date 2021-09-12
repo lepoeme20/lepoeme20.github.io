@@ -13,3 +13,5 @@ gem "webrick"
 group :jekyll_plugins do
     gem "jekyll-pdf-embed"
 end
+
+gem 'http_parser.rb', '~> 0.6.0'
