@@ -4,7 +4,7 @@ classes: wide
 excerpt: "Seungwan Seo CV"
 header:
   # image: /assets/images/docker/docker-logo.png
-  teaser: assets/images/docker/cv1.png
+  teaser: assets/images/cv1.png
 # sidebar:
 #   - title: "Role"
 #     image: http://placehold.it/350x250
@@ -24,4 +24,5 @@ header:
 #     alt: "placeholder image 3"
 ---
 
-<object data="{{ site.url }}{{ site.baseurl }}/_pdfs/Algebra_I_Reference_Sheet.pdf" width="1000" height="1000" type="application/pdf"></object>
+
+<iframe src="/assets/pdf/resume.pdf" width="100%" height="100%"></iframe>
