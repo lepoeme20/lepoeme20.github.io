@@ -1,7 +1,7 @@
 ---
-title: "CURRICULUM VITAE"
+title: "Publication - undereview"
 classes: wide
-excerpt: "Seungwan Seo CV"
+excerpt: "CFAD"
 header:
   # image: /assets/images/docker/docker-logo.png
   teaser: assets/images/docker/cv2.png
@@ -23,5 +23,3 @@ header:
 #     image_path: assets/images/unsplash-gallery-image-3-th.jpg
 #     alt: "placeholder image 3"
 ---
-
-{% pdf "/assets/pdf/resume.pdf" %}
