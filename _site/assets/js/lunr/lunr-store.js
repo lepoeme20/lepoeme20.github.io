@@ -1,6 +1,6 @@
 var store = [{
         "title": "CURRICULUM VITAE",
-        "excerpt":" ","categories": [],
+        "excerpt":"  \"Show the CV on the new page\"   ","categories": [],
         "tags": [],
         "url": "http://localhost:4000/portfolio/seungwan_cv/",
         "teaser":"http://localhost:4000/assets/images/cv1.png"},{

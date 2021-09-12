@@ -24,5 +24,8 @@ header:
 #     alt: "placeholder image 3"
 ---
 
-
-<iframe src="/assets/pdf/resume.pdf" width="100%" height="100%"></iframe>
+<center>
+<a href="/assets/pdf/resume.pdf" style="color: blue; text-decoration: underline;text-decoration-style: dotted;" target="_blank">
+"Show the CV on the new page"</a>
+<iframe src="/assets/pdf/resume.pdf" style="width:100%; height:800px;" frameborder="0" allowfullscreen></iframe>
+</center>
