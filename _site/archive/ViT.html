@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (ViT) - 크리니의 탐구생활</title>
-<meta name="description" content="ICLR 2021에 “AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE” AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE 라는 제목을 가진 논문이 게재되었습니다. Google research와 brain에서 힘을 합쳐 진행한 연구인데요, 역시 구글입니다. 폭발적인 후속 연구들을 이끈 논문, ViT에 대해 알아보겠습니다.">
+<meta name="description" content="ICLR 2021에 “AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE” 라는 제목을 가진 논문이 게재되었습니다. Google research와 brain에서 힘을 합쳐 진행한 연구인데요, 역시 구글입니다. 폭발적인 후속 연구들을 이끈 논문, ViT에 대해 알아보겠습니다.">
 
 
 
@@ -21,7 +21,7 @@
 <meta property="og:url" content="http://localhost:4000/archive/ViT">
 
 
-  <meta property="og:description" content="ICLR 2021에 “AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE” AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE 라는 제목을 가진 논문이 게재되었습니다. Google research와 brain에서 힘을 합쳐 진행한 연구인데요, 역시 구글입니다. 폭발적인 후속 연구들을 이끈 논문, ViT에 대해 알아보겠습니다.">
+  <meta property="og:description" content="ICLR 2021에 “AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE” 라는 제목을 가진 논문이 게재되었습니다. Google research와 brain에서 힘을 합쳐 진행한 연구인데요, 역시 구글입니다. 폭발적인 후속 연구들을 이끈 논문, ViT에 대해 알아보겠습니다.">
 
 
 
@@ -188,7 +188,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     <meta itemprop="headline" content="An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (ViT)">
-    <meta itemprop="description" content="ICLR 2021에 “AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE” AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE 라는 제목을 가진 논문이 게재되었습니다. Google research와 brain에서 힘을 합쳐 진행한 연구인데요, 역시 구글입니다. 폭발적인 후속 연구들을 이끈 논문, ViT에 대해 알아보겠습니다.">
+    <meta itemprop="description" content="ICLR 2021에 “AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE” 라는 제목을 가진 논문이 게재되었습니다. Google research와 brain에서 힘을 합쳐 진행한 연구인데요, 역시 구글입니다. 폭발적인 후속 연구들을 이끈 논문, ViT에 대해 알아보겠습니다.">
     <meta itemprop="datePublished" content="July 13, 2021">
     
 
@@ -233,7 +233,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
             </nav>
           </aside>
         
-        <p>ICLR 2021에 <a href="https://arxiv.org/pdf/2010.11929.pdf">“AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE”</a> <a href="https://arxiv.org/pdf/2010.11929.pdf" style="color: blue; text-decoration: underline;text-decoration-style: dotted;">AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE</a> 라는 제목을 가진 논문이 게재되었습니다. Google research와 brain에서 힘을 합쳐 진행한 연구인데요, 역시 구글입니다. 폭발적인 후속 연구들을 이끈 논문, ViT에 대해 알아보겠습니다.</p>
+        <p>ICLR 2021에 <a href="https://arxiv.org/pdf/2010.11929.pdf" style="color: blue; text-decoration: underline;text-decoration-style: dotted;">“AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE”</a> 라는 제목을 가진 논문이 게재되었습니다. Google research와 brain에서 힘을 합쳐 진행한 연구인데요, 역시 구글입니다. 폭발적인 후속 연구들을 이끈 논문, ViT에 대해 알아보겠습니다.</p>
 
 <h2 id="transformer"><strong>Transformer</strong></h2>
 <p>Transformer 구조는 NLP domain에서 이미 지배적입니다. 일반적으로는 wikipedia와 같은 대용량의 corpus를 통하여 pre-train을 시킨 후 target domain의 data를 통하여 further pre-train을 진행합니다. 사실 further pre-train 단계는 optional한 감이 있지만 가능한 상황이라면 진행하는 것이 좋다로 정리가 되는 것 같습니다. 이후 최종적으로 task-specific dataset을 통하여 fine-tuning을 진행합니다. 현재 NLP는 BERT 전성시대 라고 불러도 과언이 아닙니다. 이러한 BERT와 지속적으로 후속 모델을 내고 있는 GPT 시리즈는 Transformer를 기반하고 있습니다. 결국, Transformer를 통해 seq2seq-based model의 한계들을 극복하여 모든 downstream task에서 SotA를 기록하고 있다고 볼 수 있습니다. 오늘 소개할 ViT는 Transformer를 vision에서 사용할 수 없을까? 라는 고민에서 시작되었습니다.</p>
@@ -276,7 +276,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 <p>개인적으로 inductive bias를 engineer가 임의로 주는 편향으로 정의하고 있습니다. 본 논문의 저자들의 주장을 바탕으로 예를 들어 보자면, CNN의 경우에는 input image에 비해 매우 작은 size의 kernel을 사용함으로써 receptive field를 local에서 global로 가져가게끔 engineer가 의도 했다고 해석할 수 있습니다. 결국 이러한 의도로 CNN은 locality라는 inductive bias가 강하게 생기게 되는 것이죠. 하지만 ViT에서는 self attention layer가 global하게 연산되기 때문에 inductive bias가 없다고 저자들이 주장하고 있습니다. 이러한 주장이 나오게 되는 배경을 살펴보면 지금까지 충분한 양으로 생각 됐던 ImageNet-1k dataset으로 모델을 학습하는 경우 ResNet에 비해 성능이 좋지 않았기 때문입니다. 이러한 좋지 못한 결과에 타당성을 부여하기 위해 ResNet은 locality라는 inductive bias에 의해 강하게 drive되는 모델이기 때문에 적은 양의 데이터로 학습을 진행해도 좋은 성능을 보일 수 있지만, ViT의 경우에는 그러한 inductive bias가 없기 때문에 NLP의 wikipedia dataset과 같은 대용량의 데이터(ImageNet-21k, JFT-300M)가 필요하다고 주장합니다.</p>
 
-<p>하지만 이러한 주장은 말 그대로 본인들의 실험 결과를 납득시키기 위한 주장이지 않을까 생각합니다. 우선 최근 연구들을 살펴보면 regularization과 augmentation을 통해서 ImageNet-1k로도 학습이 가능하다는 논문(<a href="https://arxiv.org/abs/2106.10270">How to train your ViT? Data, Augmentation, and Regularization in Vision Transformers</a>) 도 등장하였으며, ViT에서도 position embedding이라는 locality information을 담고 있는 vector를 통해 bias를 주고 있습니다. 또한 우리가 CNN을 사용하는 동안 locality라는 inductive bias를 고려한 적이 없었던 것 처럼 또 다른 모델이 Transformer를 대체한다면 ViT의 global한 attention 연산 또한 inductive bias로 해석될 수 있지 않을까? 싶습니다. 이러한 생각에 의해 ViT를 inductive bias가 없는 모델이다 라고 말하기에는 틀렸다는 느낌이 있습니다. 그저 locality에 관련된 inductive bias가 CNN에 비해 작은 모델이라고 보는 게 정확하지 않을까 싶습니다.</p>
+<p>하지만 이러한 주장은 말 그대로 본인들의 실험 결과를 납득시키기 위한 주장이지 않을까 생각합니다. 우선 최근 연구들을 살펴보면 regularization과 augmentation을 통해서 ImageNet-1k로도 학습이 가능하다는 논문 <a href="https://arxiv.org/abs/2106.10270" style="color: blue; text-decoration: underline;text-decoration-style: dotted;">“How to train your ViT? Data, Augmentation, and Regularization in Vision Transformers”</a>도 등장하였으며, ViT에서도 position embedding이라는 locality information을 담고 있는 vector를 통해 bias를 주고 있습니다. 또한 우리가 CNN을 사용하는 동안 locality라는 inductive bias를 고려한 적이 없었던 것 처럼 또 다른 모델이 Transformer를 대체한다면 ViT의 global한 attention 연산 또한 inductive bias로 해석될 수 있지 않을까? 싶습니다. 이러한 생각에 의해 ViT를 inductive bias가 없는 모델이다 라고 말하기에는 틀렸다는 느낌이 있습니다. 그저 locality에 관련된 inductive bias가 CNN에 비해 작은 모델이라고 보는 게 정확하지 않을까 싶습니다.</p>
 
 <h3 id="experiments"><strong>Experiments</strong></h3>
 <figure class="align-center">
@@ -580,8 +580,8 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     
   <script>
     var disqus_config = function () {
-      this.page.url = "http://localhost:4000/archive/ViT";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/archive/ViT"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "http://localhost:4000/archive/FGSM";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/archive/FGSM"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function() { // DON'T EDIT BELOW THIS LINE
       var d = document, s = d.createElement('script');
